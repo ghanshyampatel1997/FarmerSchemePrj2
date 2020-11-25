@@ -1,0 +1,109 @@
+-->create empty WebApi project.
+
+-->add Databse by entity frame work
+
+-->Build Solution
+
+-->Add Class As per your requirements in models folder
+	like for FarmerCropSellRequest we required 
+	cropType,cropname ,fertilizerType ,quantity ,SoilPHCertificate 
+	take the defination(like public Nullable<int> quantity { get; set; }) from the respective class in models folder (like farmercropdetails.cs file)
+
+-->FarmerSellID  is just for Primary key,
+-->Make class as Datacontract and only required member as DataMember
+
+
+---------------AngFarmerCropSellRequest.cs-----------
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Web;
+
+namespace FarmerSchemeSellAndBidding.Models
+{
+   [DataContract]
+    public class AngFarmerCropSellRequest
+    {
+        [Key]
+        public int FarmerSellID { get; set; }
+        [DataMember]
+        public string cropType { get; set; }
+        [DataMember]
+        public string cropname { get; set; }
+        [DataMember]
+        public string fertilizerType { get; set; }
+        [DataMember]
+        public Nullable<int> quantity { get; set; }
+        [DataMember]
+        public string SoilPHCertificate { get; set; }
+    }
+}
+
+-------------------------------------------------------------------
+---> Build solution afetr making class
+--->Create controller of webapi2 with  action using Entity Frame work.
+----> select model class as created model and database as FarmerScchemeDB
+
+---->It will Scaffoled and create crud Operation ready.
+ Make some changes, and remove unneccesary mathods like for this, Only insert method is required so only post method of create is present.Other are deleted.
+
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
+using FarmerSchemeSellAndBidding.Models;
+
+namespace FarmerSchemeSellAndBidding.Controllers
+{
+    public class AngFarmerCropSellRequestsController : ApiController
+    {
+        private FarmerSchemeDBEntities db = new FarmerSchemeDBEntities();
+
+        // POST: api/AngFarmerCropSellRequests
+        [ResponseType(typeof(AngFarmerCropSellRequest))]
+        public IHttpActionResult PostAngFarmerCropSellRequest(AngFarmerCropSellRequest angFarmerCropSellRequest)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            int cid = (from cr in db.Cropprices
+                       where cr.cropname == angFarmerCropSellRequest.cropname
+                       select cr.CropId).First();
+            
+            FarmerCropdetil farmerCropdetil = new FarmerCropdetil();
+            ///taking data from Post request in angFarmerCropSellRequest object
+            farmerCropdetil.cropType = angFarmerCropSellRequest.cropType;
+            farmerCropdetil.CropId = cid;
+            farmerCropdetil.fertilizerType = angFarmerCropSellRequest.fertilizerType;
+            farmerCropdetil.quantity = angFarmerCropSellRequest.quantity;
+            farmerCropdetil.SoilPHCertificate = angFarmerCropSellRequest.SoilPHCertificate;
+
+            //saving it into database
+            db.FarmerCropdetils.Add(farmerCropdetil);
+            db.SaveChanges();
+
+            return Ok();
+        }
+
+       
+    }
+}
+
+
+-------------------------------------------for adding  data it is enough--------------------
+
+
+
+

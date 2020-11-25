@@ -1,0 +1,112 @@
+--------Admin.component.ts--------
+import { Component, OnInit } from '@angular/core';
+
+import { Farmerregisterdataservice } from 'src/service/Farmerregisterdata.service';
+
+@Component({
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.css']
+})
+export class AdminComponent implements OnInit {
+  Farmerregister;
+  Farmerregi;
+  constructor(private Fregiservice:Farmerregisterdataservice) { }
+
+  ngOnInit(): void {
+    this.Farmerregister=true;
+    this.Farmerregi=false;
+  }
+  Farmerregisterdataresult;
+  pq;
+  Farmerregiapproval(){
+    this.Farmerregister=false;
+    this.Farmerregi=true;
+    this.Fregiservice.Getfarmerregisterdata().subscribe((data)=>
+    {this.Farmerregisterdataresult=data;console.log(data);console.table(data);
+      this.pq=this.Farmerregisterdataresult.b["BankAccountNo"];console.log(this.pq);});
+    
+    
+
+
+  }
+}
+------Admin.component.html-----------
+<div *ngIf="Farmerregister">
+<p>admin works!</p>
+<p style="text-align: center;"><em><strong>Admin Approval for Users</strong></em></p>
+<p><br /><br /></p>
+<div style="text-align: center;" (click)="Farmerregiapproval()">Approve for Farmer Registration</div>
+<p>&nbsp;</p>
+<div style="text-align: center;">Approve for Bidder Registration</div>
+<p>&nbsp;</p>
+<div style="text-align: center;">Approve for Farmer Sell Request</div>
+<p>&nbsp;</p>
+<div style="text-align: center;">Approve for Bidding Status</div>
+<p>&nbsp;</p>
+<div style="text-align: center;">Approve for Insurance Claim</div>
+
+</div>
+<div *ngIf="Farmerregi">
+
+</div>
+--------admin.component.css----------
+div{
+color:black;
+background-color: lightblue;
+padding:30px ;
+border-style: groove;
+text-indent: 50px;
+text-shadow: 1px 1px;
+}
+-------farmerregi.service.ts-----------
+import { HttpClient } from '@angular/common/http'
+import{Injectable} from '@angular/core'
+@Injectable({providedIn:"root"})
+export class Farmerregisterdataservice
+{
+    constructor(private http:HttpClient)
+        {
+        }
+        readonly uri="https://localhost:44354/api/Adminfarmer";
+        Getfarmerregisterdata() {
+            return this.http.get(this.uri);
+      }  
+    //   InsertInsuranceForm()
+    //    {
+    //     return this.http.post(this.uri,InsuranceForm );
+    //   }
+}
+
+---------Webapi.controller---------------
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using Viewmarket.Models;
+
+namespace Viewmarket.Controllers
+{
+    public class AdminfarmerController : ApiController
+    {
+        private FarmerSchemeDBEntities Db = new FarmerSchemeDBEntities();
+        [HttpGet]
+        public IHttpActionResult Getfarmerdetails()
+        {
+            dynamic farmerdata = (from r in Db.RollTypes
+                                  join u in Db.UserRegisters
+                                  on r.UserEmailId equals u.UserEmailId
+                                  join b in Db.BankDetails
+                                  on r.UserID equals b.UserID
+                                  join f in Db.FarmerLands
+                                  on r.UserID equals f.UserID
+                                  select new { r, u, b, f }).ToList();
+            return Ok(farmerdata);
+                                                                  
+        }
+    }
+}
+

@@ -1,0 +1,183 @@
+--------------webapi.controller---------------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using Viewmarket.Models;
+
+namespace Viewmarket.Controllers
+{
+    
+    public class ClaimController : ApiController
+    {
+        private FarmerSchemeDBEntities Db = new FarmerSchemeDBEntities();
+        [HttpPost]
+        public IHttpActionResult PostInsuranceClaim(dynamic InsClaim)
+        {
+            if(InsClaim != null)
+            {      
+                ClaimForm claimform = new ClaimForm();
+                try
+                {
+                    int pnum = InsClaim.PolicyNo;
+                    int PolicyNo = (from c in Db.InsuranceApplications
+                                    where c.PolicyNo == pnum
+                                    select c.PolicyNo).First();
+                }
+                catch
+                {
+                    return Ok("Policy number is incorrected");
+                }
+                int Pnum = InsClaim.PolicyNo;
+                claimform.dateOfLoss = InsClaim.DateOfLoss ;
+
+                Db.ClaimForms.Add(claimform);
+                Db.SaveChanges();
+
+                long ClaimNo = (from c in Db.ClaimForms
+                               where c.PolicyNo == Pnum
+                               select c.ClaimNo).FirstOrDefault();
+                dynamic Suminsured = (from i in Db.InsuranceApplications
+                                where i.PolicyNo == Pnum
+                                select i.SumInsured).FirstOrDefault();
+                dynamic Uid  = (from i in Db.InsuranceApplications
+                                where i.PolicyNo == Pnum
+                                select i.UserID).FirstOrDefault();
+                int uid = Uid;
+                dynamic BankAccountnumber = (from b in Db.BankDetails
+                               where b.UserID == uid
+                               select b.BankAccountNo).FirstOrDefault();
+                int Ban = BankAccountnumber;
+
+                int sum = Suminsured;
+                return Ok("Added Succesfully.Your Claim number is"+ ClaimNo.ToString() +"Please use this number for any further references when Admin Will Approve You will get Sum insurance amount of " + sum.ToString()+" In "+Ban.ToString());                                                     
+            }
+            else
+            {
+                return BadRequest("Data is present");
+            }
+        }
+
+    }
+}
+-------------Claim.Model.ts-------------------
+export class Claim
+{
+    PolicyNo:number;
+    Insurancecompany:string;
+    Suminsured:number;
+    Nameofinsuree:string;
+    Dateofloss:number;
+    Causeofloss:string;
+
+}
+---------------claim.service.ts-----------
+import { HttpClient } from '@angular/common/http';
+import {Claim} from 'src/model/Claim.model';
+import{Injectable} from '@angular/core'
+@Injectable({providedIn:"root"})
+export class Claimservice
+{
+    constructor(private http:HttpClient)
+        {
+        }
+        readonly uri="https://localhost:44354/api/Claim";
+       
+      
+      InsertClaimForm(InsClaim:Claim)
+       {
+        return this.http.post(this.uri,InsClaim );
+      }
+}
+--------claim.component.ts----------
+import { Component, OnInit } from '@angular/core';
+import { Claim } from 'src/model/Claim.model';
+import { Claimservice } from 'src/service/Claim.service';
+
+@Component({
+  selector: 'app-claim',
+  templateUrl: './claim.component.html',
+  styleUrls: ['./claim.component.css']
+})
+export class ClaimComponent implements OnInit {
+
+  constructor(private claimservice:Claimservice) { }
+
+  ngOnInit(): void {
+  }
+  //postmethod
+    Claim: Claim = new Claim;
+    Result;
+
+ AddInsuranceClaim(PolicyNo,Insurancecompany, Suminsured,Nameofinsuree,Dateofloss,Causeofloss)
+ {
+   debugger;
+   this.Claim.PolicyNo=PolicyNo.value;
+   this.Claim.Insurancecompany=Insurancecompany.value;
+   this.Claim.Suminsured=Suminsured.value;
+   this.Claim.Nameofinsuree=Nameofinsuree.value;
+   this.Claim.Dateofloss=Dateofloss.value;
+   this.Claim.Causeofloss=Causeofloss.value;
+  console.log(this.Claim);
+    this.claimservice.InsertClaimForm(this.Claim).subscribe((data) =>
+     { this.Result = data;
+    window.alert(this.Result);
+  })
+ }
+
+}
+--------------claim.component.css--------------
+div{
+    background-color: aqua;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 1px  red;
+}
+-----------claim.component.html-------------------
+
+<h4 align="center">Particulars of Insuree</h4>
+<form>
+    <div>
+      <em><label for="policyno">Policy No*</label></em><strong>&nbsp;
+      <input id="policyno" #PolicyNo name="policyno" type="text" /></strong><br /><br />
+      </div>
+      <div>
+          <em>
+         <label for="lnsurance company">Insurance Company*</label></em>
+         <select id="myList" #Insurancecompany>
+         <Option Value="Choose">Choose</Option>
+         <option value="SBI">State Bank of India</option></select>
+          </div>
+         <div>  
+          <em>
+         <label for="Sum insured">Sum Insured*</label> 
+         <input id="Sum insured " #Suminsured type="number" /></em><br /><br />
+         </div>    
+          <div> <em><label for="Name insuree">Name of Insuree*</label></em>
+             <input id="Name insuree"#Nameofinsuree name="Name insuree" type="text" /><br /><br />
+         </div>
+</form>
+<h4 align="center">Details of Cause for Loss</h4>
+<form>
+    <div>
+      <em><label for="date of loss">Date of Loss*</label> 
+      <input id="date of loss" #Dateofloss name="date of loss" type="text" /></em><br /><br />
+     </div>
+     <div> 
+            <label for="cause of loss">Cause of Loss*</label>
+         <label>Select list</label><select id="myList" #Causeofloss>
+         <Option Value="Choose">Choose</Option>
+         <option value="Natural Calamities">Natural Calamities</option>
+         <option value="Insects/Pests">Insects/Pests</option>
+          <option value="Crop Diseases">Crop Diseases</option>
+          </select>
+       </div>
+  </form>
+<p><input type="submit" (click)= "AddInsuranceClaim(PolicyNo,Insurancecompany, Suminsured,Nameofinsuree,Dateofloss,Causeofloss) "value="Submit" /></p>
+<p><em>*All fields are Mandatory</em></p>
+

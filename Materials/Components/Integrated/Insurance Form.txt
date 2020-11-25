@@ -1,0 +1,247 @@
+------------InsuranceApplicationController.cs-----------
+
+using InsuranceForm.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+
+
+namespace InsuranceForm.Controllers
+{
+    public class InsuranceApplicationController : ApiController
+    {
+        private FarmerSchemeDBEntities Db = new FarmerSchemeDBEntities();
+        [HttpPost]
+        //[Route("InsuranceApplication")]
+        public IHttpActionResult PostinsuranceForm(dynamic InsForm)
+        {
+            if (InsForm != null)
+            {
+                int uid = InsForm.Userid;
+                int fid = (from l in Db.FarmerLands
+                           where l.UserID == uid
+                           select l.FarmId).First();
+                InsuranceApplication insuranceApplication = new InsuranceApplication();
+                insuranceApplication.season = InsForm.season;
+                /*this.Insurance.season = season.value;
+                this.Insurance.year = year.value;
+                this.Insurance.cropname = cropname.value;
+                this.Insurance.SumInsured = suminsured.value;
+                this.Insurance.Area = area.value;
+                this.Insurance.Userid = 1;*/
+                insuranceApplication.year = InsForm.year;
+                insuranceApplication.cropname = InsForm.cropname;
+                insuranceApplication.SumInsured = InsForm.SumInsured;
+                insuranceApplication.FarmId = fid;
+                insuranceApplication.UserID = uid;
+
+                Db.InsuranceApplications.Add(insuranceApplication);
+                Db.SaveChanges();
+                int PolicyNo = (from i in Db.InsuranceApplications
+                                where i.UserID == uid
+                                select i.PolicyNo).FirstOrDefault();
+                return Ok("Added succesufully.Your Policy number is  "+ PolicyNo.ToString()+" .Please use this number for future claim. ");
+            }
+            else
+            {
+                return BadRequest("Data is present");
+            }
+        }
+    }
+}
+
+---------------insuranceModel.ts-------------------
+
+export class InsuranceForm
+{
+season?:string;
+year?:Number;
+cropname:string;
+SumInsured:string;
+Area:Number;
+Userid:number;
+}
+
+-----------insuranceService.ts-----------------------
+import { HttpClient } from '@angular/common/http';
+import {InsuranceForm} from 'src/Model/InsuranceModel';
+import{Injectable} from '@angular/core'
+@Injectable({providedIn:"root"})
+export class InsuranceService
+{
+    constructor(private http:HttpClient)
+        {
+        }
+        readonly uri="https://localhost:44357/api/InsuranceApplication";
+        GetInsuranceForm() {
+            return this.http.get(this.uri);
+      }  
+      InsertInsuranceForm(InsForm:InsuranceForm)
+       {
+        return this.http.post(this.uri,InsForm );
+      }
+}
+
+
+
+--------------insurance.componet.html-------------------
+
+<p>insurance works!</p>
+<div>
+    <h2 style="text-align: center;"><span style="color: #99cc00;"><em>Insurance Application Form</em></span></h2>
+    </div>
+    <form><fieldset>
+    <p><label><em>Season</em><span style="color: #ff0000;">*</span>:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</label> <label>Select list</label>
+        <select #season id="myList">
+    <option value="Kharif">Kharif</option>
+    <option value="Zaid">Zaid</option>
+    <option value="Rabi">Rabi</option>
+    <option value="Annual">Annual</option>
+
+    </select></p>
+    <p><label><em>Year<span style="color: #ff0000;"><label>*</label></span></em>:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</label>&nbsp;
+        <input #year id="myText" type="number" /></p>
+    <p><label><em>Crop Name<span style="color: #ff0000;"><label>*</label></span></em>:&nbsp; &nbsp; &nbsp; &nbsp;</label> 
+        <input #cropname id="myText" type="text" /></p>
+    <p><label><em>Sum insured<span style="color: #ff0000;"><label>*</label></span></em>:&nbsp; &nbsp; &nbsp;&nbsp;</label>
+         <input #suminsured id="myText" type="number" /></p>
+    <p><label><em>Area<span style="color: #ff0000;"><label>*</label></span></em>:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label> 
+        <input #area id="myText" type="number" /></p>
+    <div>
+    <p><button class="btn btn-danger" type="reset">Reset</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        <button class="btn btn-danger" (click)="CalculateInsurance(season,year,cropname,suminsured,area)" type="Calculate">Calculate</button></p>
+    </div>
+    <p><span style="color: #ff0000;">*</span> <em>All fields are mandatory</em></p>
+    </fieldset></form>
+    <p>&nbsp;</p>
+    <div class="container" *ngIf="Calculate" >            
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Insurance Company</th>
+              <th>Sum Insured (per Hectare)</th>
+              <th>Share Premium </th>
+              <th>Premium Amount</th>
+              <th>Crop Name </th>
+              <th>Area</th>
+              <th>Total Sum Insured</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>HDFC</td>
+              <td>{{SumInsuredperHectare}}</td>
+              <td>{{SharePremium}}</td>
+              <td>{{PremiumAmount}}</td>
+              <td>{{CropName1}}</td>
+              <td>{{Area}} Hectare</td>
+              <td>{{SumInsured1}}</td>
+              <td><button type="submit" (click)="">Apply</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+----------------insurance.component.ts-----------------------
+
+
+import { Component, OnInit } from '@angular/core';
+import { InsuranceService } from 'src/Service/InsuranceService';
+import { NgModel} from '@angular/forms';
+import {InsuranceForm} from 'src/Model/InsuranceModel';
+
+@Component({
+  selector: 'app-insurance',
+  templateUrl: './insurance.component.html',
+  styleUrls: ['./insurance.component.css']
+})
+export class InsuranceComponent implements OnInit {
+  Calculate;
+  constructor(private Inservice:InsuranceService) {this.Calculate=false }
+
+  ngOnInit(): void {this.FetchInsuranceForm();
+  }
+  //GET method
+  InsuranceForm;
+
+  FetchInsuranceForm()
+  {
+    this.Inservice.GetInsuranceForm().subscribe((data)=>{
+      this.InsuranceForm=data;
+      console.log(data)
+    })
+  }
+  //postmethod
+  SumInsuredperHectare;
+  SharePremium;
+  PremiumAmount;
+  CropName1;
+  Area;
+  SumInsured1;
+ Insurance:InsuranceForm=new InsuranceForm();
+ CalculateInsurance(season,year,cropname,suminsured,area){
+  this.Calculate=true;
+  this.SumInsuredperHectare=(suminsured.value/area.value);
+  if(season.value=="Kharif"){this.SharePremium=2};
+  if(season.value=="Zaid"){this.SharePremium=1};
+  if(season.value=="Rabi"){this.SharePremium=1.5};
+  if(season.value=="Annual"){this.SharePremium=5};
+  this.PremiumAmount=(suminsured.value)*(this.SharePremium);
+  this.CropName1=cropname.value;
+  this.Area=area.value;
+  this.SumInsured1=suminsured.value;
+ }
+ Result;
+ AddInsuranceForm(season,year,cropname,suminsured,area){
+   debugger;
+   this.Insurance.season=season.value;
+   this.Insurance.year=year.value;
+   this.Insurance.cropname=cropname.value;
+   this.Insurance.SumInsured=suminsured.value;
+   this.Insurance.Area=area.value;
+   this.Insurance.Userid=1;
+  console.log(this.Insurance);
+  this.Inservice.InsertInsuranceForm(this.Insurance).subscribe((data) => { this.Result = data;
+    window.alert(this.Result);
+  })
+
+  
+  
+ } 
+
+}
+-------------------app.component.html---------------
+
+<app-insurance></app-insurance>
+
+--------------------app.module.ts--------------
+
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { InsuranceComponent } from './insurance/insurance.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
+import { InsuranceService } from 'src/Service/InsuranceService';
+
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    InsuranceComponent
+  ],
+  imports: [
+    BrowserModule,ReactiveFormsModule,
+    AppRoutingModule,HttpClientM,FormsModule,
+  ],
+  providers: [InsuranceService],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

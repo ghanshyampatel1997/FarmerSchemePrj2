@@ -1,0 +1,202 @@
+----------------------------------------------------about.component.html----------------------------------------------------------------------------------------------
+<p>about works!</p>
+<footer class="footer-distributed">
+    <div class="footer-left">
+        <img src="">
+        <h3>About Farmers Scheme</h3>&nbsp;&nbsp;&nbsp;
+        <p class="footer-links">
+            <a href="#">About</a>
+            |
+            <a href="#">Contact</a>
+        </p>
+        <p class="footer-company-name">© 2019 GOI.All rights reserved.</p>
+    </div>
+
+    <div class="footer-center">
+        <div>
+            <i class="fa fa-map-marker"></i>
+              <p><span>FS building no-1,
+                  SEZ, </span>
+               Airoli, Navi Mumbai - 400708</p>
+        </div>
+        <div>
+            <i class="fa fa-phone"></i>
+            <p>+91 22-27782183</p>
+        </div>
+        <div>
+            <i class="fa fa-envelope"></i>
+            <p><a href="mailto:support@FarmersScheme.com">support@FarmersScheme.com</a></p>
+        </div>
+    </div>
+    <div class="footer-right">
+        <p class="footer-company-about">
+            <span>About the Website:-</span>
+            FS is a National Website.we go to extra mile for our farmers and Bidders!!!</p>  
+    </div>
+</footer>
+
+---------------------------------------------------------contact.component.html-----------------------------------------------------------------------------------
+<p>contact works!</p>
+<h3>The contact details needed to be entered here</h3>
+----------------------------------------------------------Home.component.html------------------------------------------------------------------------------------
+<p>home works!</p>
+
+------------------------------------------------------------Login.component.html-----------------------------------------------------------------------------
+<p>login works!</p>
+<div class = "container">
+    <div class = "row">
+        <div class ="col-10">
+            <div class = "jumbotron">
+                <form name = "form" [formGroup] = "form">
+                    <div>
+                        <h2>Login</h2>
+                        <br/>
+                    </div>
+                    <div class = "form-group">
+                        <label for = "userid">Mail Id</label>
+                        <input type = "text" class ="form-control" formControlName="userid" [ngClass]="{'is-invalid':
+                        form.get('userid').touched && form.get('userid').invalid}"/>
+                
+                        <div class = "invalid-feedback">
+                            <div>Please Enter your EMail Id</div>
+                        </div>
+                    </div>
+
+                    <div class = "form-group">
+                        <label for = "password">Password</label>
+                        <input type="password" class = "form-control" formControlName="password" [ngClass]="{'is-invalid':
+                        form.get('password').touched && form.get('password').invalid}"/>
+                        <div *ngIf="form.get('password').touched && form.get('password').invalid"
+                        class = "invalid-feedback">
+                            <div *ngIf="form.get('password').errors.required">Please Enter Your Password</div>
+                            <div *ngIf="form.get('password').errors.minlength">Password must be atleast 5 characters</div>
+                        </div>
+
+                    </div>
+
+                    <div class = "form-group">
+                        <button class = "btn btn-primary"[disabled]="!form.valid">Login</button>
+ 
+                      <br/>
+                      <input type = "submit" class="btn btn-link" value = "Forgot Password?">
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                                                                            
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+-------------------------------------------------------------login.component.ts------------------------------------------------------------------------------
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent implements OnInit {
+  loginForm:FormGroup;
+
+  form = new FormGroup({
+    userid: new FormControl('',Validators.required),
+    password: new FormControl('',[Validators.required,Validators.minLength(6)])
+  })
+
+  constructor(private router:Router) { }
+
+  ngOnInit(): void {
+  }
+
+}
+
+------------------------------------------------------------app-routing.module.ts-------------------------------------------------------------------
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+
+const routes: Routes = [
+{path:'About', component: AboutComponent},
+{path:'Contact', component: ContactComponent },
+{path: 'Home', component: HomeComponent},
+{path: 'Login', component: LoginComponent},
+//{path: '', redirectTo: '/Home', pathMatch:'full'}
+
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+--------------------------------------------------------------app.component.css---------------------------------------------------------------------------
+.mainpage{
+    background-color:powderblue;
+}
+----------------------------------------------------------------app.component.html-----------------------------------------------------------------------------
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Farmers Scheme</a>
+    </div>
+
+    <ul class="nav navbar-nav">
+      <li class="active">
+        <a routerLink="home">Home</a>
+      </li>
+      <li>
+        <a routerLinkActive="active" routerLink="About">About Us</a>
+      </li>
+      <li>
+        <a routerLinkActive="active" routerLink="Login">Login Here!!!</a>
+      </li>
+      <li>
+        <a routerLinkActive="active" routerLink="Contact">Contact Us</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+<div class="mainpage">
+  <router-outlet></router-outlet>
+</div>
+
+---------------------------------------------app.module.ts----------------------------------------------------------------------------------------------------
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    LoginComponent,
+    ContactComponent,
+    AboutComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+

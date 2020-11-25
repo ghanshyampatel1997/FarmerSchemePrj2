@@ -1,0 +1,102 @@
+alter table BiddingTable add Biddingdate date 
+
+Create Procedure ViewMarketplace
+as
+begin
+select f.cropType,c.cropname,c.MSP,b.bidAmount from FarmerCropdetils as f inner join Cropprice as c 
+on  f.CropId=c.CropId inner join BiddingTable as b on b.FarmerSellID=f.FarmerSellID
+order by b.Biddingdate desc;
+end;
+
+EXEC Viewmarketplace;
+
+
+
+import { Component, OnInit } from '@angular/core';
+import { ViewMarketPlace } from 'src/model/ViewMarket.model';
+import { ViewMarketPlaceservice } from 'src/service/ViewMarketplace.service';
+
+----------Viewmarketplace.component.ts------------
+@Component({
+  selector: 'app-view-market',
+  templateUrl: './view-market.component.html',
+  styleUrls: ['./view-market.component.css']
+})
+export class ViewMarketComponent implements OnInit {
+
+  constructor(private VMservice:ViewMarketPlaceservice) { }
+
+  ngOnInit(): void 
+  {
+
+    this.getViewMarketplacedata();
+  }
+  ViewMarketplacedata:ViewMarketPlace;
+  getViewMarketplacedata()
+  {
+   this.VMservice.GetViewMarketplace().subscribe((data)=>{this.ViewMarketplacedata=data;
+    console.table(data)})
+   }
+}
+
+------------viewmarketcomponent.html-------------
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">
+        <img src="" width="30" height="30" alt="" 
+            style="padding-right: 3px"
+            class="d-inline-block align-top"/>View Market Place</a>
+ <!--- <button type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
+        <span class="navbar-toggler-icon"></span>
+    </button>-->
+    <div id="navbarNavDropdown" class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item active"><a href="#" class="nav-link">View Market Place <span class="sr-only">(current)</span></a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Place sell request</a></li>&nbsp;
+             <li class="nav-item"><a href="#" class="nav-link">Sold History</a></li>&nbsp;&nbsp;
+             <li class="nav-item"><a href="#" class="nav-link">Admin</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             <li class="nav-item" ><a href="#" class="nav-link" >Login</a></li>
+        </ul>
+        </div>
+        </nav>
+        <div>
+<div class="container-fluid">
+    <div *ngFor="let v of  ViewMarketplacedata">
+        <div>Crop Type : {{v.cropType}}</div><br/>
+        <div>Crop Name : {{v.cropname}}</div><br/>
+        <div>Minimum selling price : {{v.MSP}}</div><br/>
+        <div style="float: right;">Current Bid Amount : {{v.bidAmount}}</div><br/><hr/>
+    </div>
+</div>
+
+----------Viewmarket.Module.ts----------------
+export class ViewMarketPlace
+{
+    cropType?:Date; 
+    cropname?:string;
+    MSP?:Number;
+    bidAmount?:Number;
+  
+}
+
+------------viewmarketplace.service.ts------------
+import { HttpClient } from '@angular/common/http';
+
+import{Injectable} from '@angular/core'
+
+@Injectable({providedIn:"root"})
+export class ViewMarketPlaceservice
+{
+
+    constructor(private http:HttpClient)
+        {
+
+        }
+
+    GetViewMarketplace()
+      {
+          let data;
+         // debugger;
+         return data=this.http.get("https://localhost:44354/api/ViewMarket");
+         console.log(data);
+      }  
+}

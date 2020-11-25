@@ -1,0 +1,197 @@
+----------app.Module.ts------------
+
+export  class Farmer
+{
+     Fullname: string;
+     ContactNo:number;
+     Address1:string;
+     Emailid:string;
+     Password:string;
+     ConfirmPassword:String;
+     Address2?:string;
+     City:string;
+     State:string;
+     Pincode:Number;
+     BankAccountno:number;
+     IFSCcode:string;
+     AadharcardDocument:string;
+     PancardDocument:string;
+     TradeLicense:string;
+    
+    
+}
+
+--------------farmer.component.ts-------------
+<p class="Heading">Registrationform</p>
+<form #Registrationform="ngForm" (ngSubmit)="onSubmit(Registrationform)" novalidate>
+    <p>
+        <label for="Usertype">Select your User type</label>
+        <select name="Farmer" id="User type">
+         <option selected>Choose</option>
+         <option *ngFor="let use of Usertype">{{use}}</option>
+        </select>
+    <p>
+        <label for="FullName">Enter FullName</label>
+        <input type="text" FullName="Fullname"[(ngModel)]= Registration.Fullname #Fullname="ngModel" required minlength="6">
+        
+    </p>
+    <p>
+        <label for="ContactNo">Enter Mobile number</label>
+        <input type="text" id="Phone Number" name="ContactNo" [(ngModel)]= Registration.ContactNo #ContactNo=ngModel required pattern="^\d{3}-\d{3}-\d{4}$">
+
+    </p>
+ 
+  <div *ngIf="!ContactNo?.valid && (ContactNo?.dirty || ContactNo?.touched)" class="error">
+    <div *ngIf="ContactNo.errors.required">
+        <small class="text-danger">mobile number is Required</small>
+    </div>
+    <div *ngIf="ContactNo.pattern">
+        <small class="text-danger">use pattern:000-000-0000</small>
+    </div>
+  </div>
+      
+   <p>
+        <label for="Address1">Enter Address</label>
+        <input type="text"  name="Address1"  [(ngModel)]= Registration.Address1 #Address1="ngModel"  required minlength="10">
+        </p>
+       
+        <p>
+            <label for="Emailid">Enter Mailid</label>
+            <input type="text" id=" Registrationemail" name="Emailid" [(ngModel)]=Registration.Emailid  #Emailid="ngModel" required Emailid>
+        </p>
+     <div *ngIf="!Emailid?.valid && (Emailid?.dirty || Emailid?.touched)" class="error">
+            <div *ngIf="Emailid.errors.required">
+                <small class="text-danger">Mail id is Required</small>
+            </div>
+            <div *ngIf="Emailid.errors.email">
+                <small class="text-danger">invalid email address</small>
+            </div>
+     </div>
+       <p>
+            <label for="Address2">Enter Address2</label>
+            <input type="text"  name="Address2"  [(ngModel)]= Registration.Address2 #Address2="ngModel"  required minlength="25">
+      </p>
+
+      <p>
+                <label for="City">Enter City Name</label>
+                <input type="text"  name="City"  [(ngModel)]= Registration.City #City="ngModel"  required minlength="6">
+     </p>
+           <p>
+                    <label for="State">Enter State Name</label>
+                    <input type="text"  name="State"  [(ngModel)]= Registration.State #State="ngModel"  required minlength="8">
+          </p>
+           <p>
+                    <label for=" Pincode">Enter Pincode</label>
+                    <input type="number"  name="State"  [(ngModel)]= Registration.Pincode #Pincode="ngModel"  required minlength="5">
+          </p>
+           <p>
+                        <label for=" AadharcardDocument">Select AadharcardDocument image:</label>
+                        <input type="file" id="img" name="img" accept="image/*">
+                        <input type="submit">   
+          </p>
+           <p>
+                <label for=" PancardDocument">Select PancardDocument image:</label>
+                <input type="file" id="img" name="img" accept="image/*">
+                <input type="submit">
+           </p>
+           <p>
+                    <label for="image ">Select TradeLicense image:</label>
+                    <input type="file" id="img" name="img" accept="image/*">
+                    <input type="submit">
+          </p>
+          <p>
+                <label for="BankAccountno">Enter Bankaccountno</label>
+                <input type="number"  BankAccountno=" BankAccountno"[(ngModel)]= Registration.BankAccountno #BankAccountno="ngModel" required minlength="12">
+          </p>
+          <p>
+             <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" [(ngModel)]="Registration.Password" name="password"
+                    #Password="ngModel" appPasswordPattern required>
+                <span class="text-danger"
+                    *ngIf="(Password.touched || Registration.submitted) && Password.errors?.required">
+                    Password is required
+                </span>
+                <span class="text-danger" *ngIf="Password.touched && Password.errors?.invalidPassword">
+                    Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+                    letter and 1 number
+                </span>
+             </div>
+               <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" class="form-control" [(ngModel)]="Registration.ConfirmPassword"
+                    name="ConfirmPassword" #ConfirmPassword="ngModel" required>
+                <span class="text-danger"
+                    *ngIf="(ConfirmPassword.touched || Registration.submitted) && ConfirmPassword.errors?.required">
+                    Confirm Password is required
+                </span>
+                <span class="text-danger"
+                    *ngIf="(ConfirmPassword.touched || Registration.submitted) && ConfirmPassword.errors?.passwordMismatch">
+                  class="text-danger"*ngIf="confirmPassword.touched && confirmPassword.errors?.passwordMismatch">
+                    Passwords doesnot match
+                </span>
+               </div>
+              
+                  <p>
+                    <button class="btn btn-primary" type="submit" [disabled]="!Registrationform.valid"> Submit</button>
+                 </p>
+        
+                {{Registrationform.valid}}
+               </form>
+
+----------farmer.component.ts-------------
+import { NullTemplateVisitor } from '@angular/compiler';
+import { Component, OnInit } from '@angular/core';
+import {  NgForm } from '@angular/forms';
+import { Farmer } from 'src/Models/Farmer.Module';
+
+@Component({
+  selector: 'app-farmer',
+  templateUrl: './farmer.component.html',
+  styleUrls: ['./farmer.component.css']
+})
+export class FarmerComponent implements OnInit 
+{
+ 
+  
+  Usertype:string[]=["Farmer","Bidder"]
+  Registration:Farmer;
+  
+  constructor() 
+  {
+    this.Registration ={ Fullname:"",
+    ContactNo:0,
+    Emailid:"",
+    Password:"",
+    ConfirmPassword:"",
+    Address1:"",
+    Address2:"",
+    City:"",State:"",
+    Pincode:0 ,
+    BankAccountno:0,
+    IFSCcode:"",
+    AadharcardDocument: "", 
+    PancardDocument:"" ,
+    TradeLicense:""
+  }
+}
+
+   onSubmit(Registrationform:NgForm)
+   {
+     
+     console.log(Registrationform.value)
+   }
+   
+  ngOnInit(): void {
+  }
+
+}
+
+    
+
+    
+
+
+           
+
+ 

@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FarmerSchemeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BankDetail">
+    <Key>
+      <PropertyRef Name="BankId" />
+    </Key>
+    <Property Name="BankId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IFSCCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BankAccountNo" Type="Int64" />
+    <Property Name="UserID" Type="Int32" />
+    <NavigationProperty Name="RollType" Relationship="Self.FK_266" FromRole="BankDetails" ToRole="RollType" />
+  </EntityType>
+  <EntityType Name="BiddingTable">
+    <Key>
+      <PropertyRef Name="BidID" />
+    </Key>
+    <Property Name="BidID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bidAmount" Type="Int32" />
+    <Property Name="FarmerSellID" Type="Int32" />
+    <Property Name="ApprovedBid" Type="Boolean" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="FarmerCropdetil" Relationship="Self.FK_235" FromRole="BiddingTable" ToRole="FarmerCropdetils" />
+    <NavigationProperty Name="RollType" Relationship="Self.FK_272" FromRole="BiddingTable" ToRole="RollType" />
+    <Property Name="Biddingdate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="ClaimForm">
+    <Key>
+      <PropertyRef Name="ClaimNo" />
+    </Key>
+    <Property Name="PolicyNo" Type="Int32" />
+    <Property Name="ClaimNo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dateOfLoss" Type="DateTime" Precision="0" />
+    <Property Name="CauseOfLoss" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimApprove" Type="Boolean" />
+    <NavigationProperty Name="InsuranceApplication" Relationship="Self.FK_185" FromRole="ClaimForm" ToRole="InsuranceApplication" />
+  </EntityType>
+  <EntityType Name="Cropprice">
+    <Key>
+      <PropertyRef Name="CropId" />
+    </Key>
+    <Property Name="CropId" Type="Int32" Nullable="false" />
+    <Property Name="cropname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MSP" Type="Int32" />
+    <NavigationProperty Name="FarmerCropdetils" Relationship="Self.FK_228" FromRole="Cropprice" ToRole="FarmerCropdetils" />
+  </EntityType>
+  <EntityType Name="FarmerCropdetil">
+    <Key>
+      <PropertyRef Name="FarmerSellID" />
+    </Key>
+    <Property Name="FarmerSellID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cropType" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CropId" Type="Int32" />
+    <Property Name="fertilizerType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="SoilPHCertificate" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="AproovedFarmersell" Type="Boolean" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="AddedDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="BiddingTables" Relationship="Self.FK_235" FromRole="FarmerCropdetils" ToRole="BiddingTable" />
+    <NavigationProperty Name="Cropprice" Relationship="Self.FK_228" FromRole="FarmerCropdetils" ToRole="Cropprice" />
+    <NavigationProperty Name="RollType" Relationship="Self.FK_144" FromRole="FarmerCropdetils" ToRole="RollType" />
+  </EntityType>
+  <EntityType Name="FarmerLand">
+    <Key>
+      <PropertyRef Name="FarmId" />
+    </Key>
+    <Property Name="FarmId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="landArea" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="landAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="landPinCode" Type="Int32" />
+    <Property Name="UserID" Type="Int32" />
+    <NavigationProperty Name="RollType" Relationship="Self.FK_258" FromRole="FarmerLand" ToRole="RollType" />
+    <NavigationProperty Name="InsuranceApplications" Relationship="Self.FK_276" FromRole="FarmerLand" ToRole="InsuranceApplication" />
+  </EntityType>
+  <EntityType Name="InsuranceApplication">
+    <Key>
+      <PropertyRef Name="PolicyNo" />
+    </Key>
+    <Property Name="PolicyNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="season" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="year" Type="Int32" Nullable="false" />
+    <Property Name="cropname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SumInsured" Type="Int32" />
+    <Property Name="FarmId" Type="Int32" />
+    <Property Name="UserID" Type="Int32" />
+    <NavigationProperty Name="ClaimForms" Relationship="Self.FK_185" FromRole="InsuranceApplication" ToRole="ClaimForm" />
+    <NavigationProperty Name="FarmerLand" Relationship="Self.FK_276" FromRole="InsuranceApplication" ToRole="FarmerLand" />
+    <NavigationProperty Name="RollType" Relationship="Self.FK_173" FromRole="InsuranceApplication" ToRole="RollType" />
+  </EntityType>
+  <EntityType Name="RollType">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RollType1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="certificate" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="ApprovedStatus" Type="Boolean" />
+    <Property Name="UserEmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BankDetails" Relationship="Self.FK_266" FromRole="RollType" ToRole="BankDetails" />
+    <NavigationProperty Name="BiddingTables" Relationship="Self.FK_272" FromRole="RollType" ToRole="BiddingTable" />
+    <NavigationProperty Name="FarmerCropdetils" Relationship="Self.FK_144" FromRole="RollType" ToRole="FarmerCropdetils" />
+    <NavigationProperty Name="FarmerLands" Relationship="Self.FK_258" FromRole="RollType" ToRole="FarmerLand" />
+    <NavigationProperty Name="InsuranceApplications" Relationship="Self.FK_173" FromRole="RollType" ToRole="InsuranceApplication" />
+    <NavigationProperty Name="UserRegister" Relationship="Self.FK_301" FromRole="RollType" ToRole="UserRegister" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserRegister">
+    <Key>
+      <PropertyRef Name="UserEmailId" />
+    </Key>
+    <Property Name="UserEmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContactNo_" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="address2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="pincode" Type="Int32" />
+    <Property Name="pancardDocument" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="aadharCardDocument" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="RollTypes" Relationship="Self.FK_301" FromRole="UserRegister" ToRole="RollType" />
+  </EntityType>
+  <Association Name="FK_266">
+    <End Role="RollType" Type="Self.RollType" Multiplicity="0..1" />
+    <End Role="BankDetails" Type="Self.BankDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RollType">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="BankDetails">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_235">
+    <End Role="FarmerCropdetils" Type="Self.FarmerCropdetil" Multiplicity="0..1" />
+    <End Role="BiddingTable" Type="Self.BiddingTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FarmerCropdetils">
+        <PropertyRef Name="FarmerSellID" />
+      </Principal>
+      <Dependent Role="BiddingTable">
+        <PropertyRef Name="FarmerSellID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_272">
+    <End Role="RollType" Type="Self.RollType" Multiplicity="1" />
+    <End Role="BiddingTable" Type="Self.BiddingTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RollType">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="BiddingTable">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_185">
+    <End Role="InsuranceApplication" Type="Self.InsuranceApplication" Multiplicity="0..1" />
+    <End Role="ClaimForm" Type="Self.ClaimForm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InsuranceApplication">
+        <PropertyRef Name="PolicyNo" />
+      </Principal>
+      <Dependent Role="ClaimForm">
+        <PropertyRef Name="PolicyNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_228">
+    <End Role="Cropprice" Type="Self.Cropprice" Multiplicity="0..1" />
+    <End Role="FarmerCropdetils" Type="Self.FarmerCropdetil" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cropprice">
+        <PropertyRef Name="CropId" />
+      </Principal>
+      <Dependent Role="FarmerCropdetils">
+        <PropertyRef Name="CropId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_144">
+    <End Role="RollType" Type="Self.RollType" Multiplicity="0..1" />
+    <End Role="FarmerCropdetils" Type="Self.FarmerCropdetil" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RollType">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="FarmerCropdetils">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_258">
+    <End Role="RollType" Type="Self.RollType" Multiplicity="0..1" />
+    <End Role="FarmerLand" Type="Self.FarmerLand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RollType">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="FarmerLand">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_276">
+    <End Role="FarmerLand" Type="Self.FarmerLand" Multiplicity="0..1" />
+    <End Role="InsuranceApplication" Type="Self.InsuranceApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FarmerLand">
+        <PropertyRef Name="FarmId" />
+      </Principal>
+      <Dependent Role="InsuranceApplication">
+        <PropertyRef Name="FarmId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_173">
+    <End Role="RollType" Type="Self.RollType" Multiplicity="0..1" />
+    <End Role="InsuranceApplication" Type="Self.InsuranceApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RollType">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="InsuranceApplication">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_301">
+    <End Role="UserRegister" Type="Self.UserRegister" Multiplicity="0..1" />
+    <End Role="RollType" Type="Self.RollType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegister">
+        <PropertyRef Name="UserEmailId" />
+      </Principal>
+      <Dependent Role="RollType">
+        <PropertyRef Name="UserEmailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FarmerSchemeDBEntities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="BankDetails" EntityType="Self.BankDetail" />
+    <EntitySet Name="BiddingTables" EntityType="Self.BiddingTable" />
+    <EntitySet Name="ClaimForms" EntityType="Self.ClaimForm" />
+    <EntitySet Name="Cropprices" EntityType="Self.Cropprice" />
+    <EntitySet Name="FarmerCropdetils" EntityType="Self.FarmerCropdetil" />
+    <EntitySet Name="FarmerLands" EntityType="Self.FarmerLand" />
+    <EntitySet Name="InsuranceApplications" EntityType="Self.InsuranceApplication" />
+    <EntitySet Name="RollTypes" EntityType="Self.RollType" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="UserRegisters" EntityType="Self.UserRegister" />
+    <AssociationSet Name="FK_266" Association="Self.FK_266">
+      <End Role="RollType" EntitySet="RollTypes" />
+      <End Role="BankDetails" EntitySet="BankDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_235" Association="Self.FK_235">
+      <End Role="FarmerCropdetils" EntitySet="FarmerCropdetils" />
+      <End Role="BiddingTable" EntitySet="BiddingTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_272" Association="Self.FK_272">
+      <End Role="RollType" EntitySet="RollTypes" />
+      <End Role="BiddingTable" EntitySet="BiddingTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_185" Association="Self.FK_185">
+      <End Role="InsuranceApplication" EntitySet="InsuranceApplications" />
+      <End Role="ClaimForm" EntitySet="ClaimForms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_228" Association="Self.FK_228">
+      <End Role="Cropprice" EntitySet="Cropprices" />
+      <End Role="FarmerCropdetils" EntitySet="FarmerCropdetils" />
+    </AssociationSet>
+    <AssociationSet Name="FK_144" Association="Self.FK_144">
+      <End Role="RollType" EntitySet="RollTypes" />
+      <End Role="FarmerCropdetils" EntitySet="FarmerCropdetils" />
+    </AssociationSet>
+    <AssociationSet Name="FK_258" Association="Self.FK_258">
+      <End Role="RollType" EntitySet="RollTypes" />
+      <End Role="FarmerLand" EntitySet="FarmerLands" />
+    </AssociationSet>
+    <AssociationSet Name="FK_276" Association="Self.FK_276">
+      <End Role="FarmerLand" EntitySet="FarmerLands" />
+      <End Role="InsuranceApplication" EntitySet="InsuranceApplications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_173" Association="Self.FK_173">
+      <End Role="RollType" EntitySet="RollTypes" />
+      <End Role="InsuranceApplication" EntitySet="InsuranceApplications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_301" Association="Self.FK_301">
+      <End Role="UserRegister" EntitySet="UserRegisters" />
+      <End Role="RollType" EntitySet="RollTypes" />
+    </AssociationSet>
+    <FunctionImport Name="MarketViewForBidder" ReturnType="Collection(FarmerSchemeDBModel.MarketViewForBidder_Result)" />
+    <FunctionImport Name="MarketViewForBidderwithMaxBidAmount" ReturnType="Collection(FarmerSchemeDBModel.MarketViewForBidderwithMaxBidAmount_Result)" />
+    <FunctionImport Name="Soldhistory" ReturnType="Collection(FarmerSchemeDBModel.Soldhistory_Result)" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(FarmerSchemeDBModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(FarmerSchemeDBModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="ViewMarketplace" ReturnType="Collection(FarmerSchemeDBModel.ViewMarketplace_Result)" />
+  </EntityContainer>
+  <ComplexType Name="MarketViewForBidder_Result">
+    <Property Type="Int32" Name="FarmerSellID" Nullable="true" />
+    <Property Type="String" Name="cropType" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="cropname" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="MSP" Nullable="true" />
+    <Property Type="Int32" Name="bidAmount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="MarketViewForBidderwithMaxBidAmount_Result">
+    <Property Type="Int32" Name="FarmerSellID" Nullable="true" />
+    <Property Type="String" Name="cropType" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="cropname" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="MSP" Nullable="true" />
+    <Property Type="Int32" Name="bidAmount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Soldhistory_Result">
+    <Property Type="DateTime" Name="date" Nullable="true" />
+    <Property Type="String" Name="cropname" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="MSP" Nullable="true" />
+    <Property Type="Int32" Name="quantity" Nullable="true" />
+    <Property Type="Int32" Name="bidAmount" Nullable="true" />
+    <Property Type="Int32" Name="Totalprice" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="ViewMarketplace_Result">
+    <Property Type="String" Name="cropType" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="cropname" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="MSP" Nullable="true" />
+    <Property Type="Int32" Name="bidAmount" Nullable="true" />
+  </ComplexType>
+</Schema>
