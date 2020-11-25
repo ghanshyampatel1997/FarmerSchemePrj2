@@ -1,0 +1,282 @@
+<p>registration works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col s8 offset-2">
+        <!-- <div class="card-panel teal lighten-2">
+          <h4 class="center white-text">Image Library</h4>
+        </div> -->
+        <form #imageForm=ngForm (ngSubmit)="OnSubmit(Fullname,ContactNo,Emailid,Address1,Address2,City,State,Pincode,LArea,LAddress,LPincode,BankAccountno,IFSCCode,Image1,Image2,Image3,Password,CPassword)">
+            <!-- <form #imageForm=ngForm (ngSubmit)="OnSubmit(Usertype.value,Fullname.value,ContactNo.value,Emailid.value,Address1.value,Address2.value,City.value,State.value,Pincode.value,LArea.value,LAddress.value,LPincode,BankAccountno,IFSCCode,Image1,Image2,Image3,Password,CPassword)"> -->
+                    <!-- <div class="row">
+                <div class="input-field col s12">
+                    <label for="Usertype">Select your User type</label>
+                    <select name="Farmer" id="User type" required #Usertype>
+                    <option selected>Choose</option>
+                    <option>Farmer</option>
+                    <option>Bidder</option>
+                    </select>
+                </div>
+            </div> -->
+            <!-- <div *ngIf="!Usertype?.valid && (Usertype?.dirty || Usertype?.touched)" class="error">
+                <div *ngIf="Usertype.errors.required">
+                    <small class="text-danger">Usertype  is Required</small>
+                </div>
+            </div> -->
+            
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="FullName">Enter FullName</label>
+                    <!-- <input type="text" Name="Fullname" #Fullname required minlength="6"> -->
+                    <input type="text" name="Fullname" ngModel #Fullname="ngModel" required minlength="6">
+                    
+                <!-- <input type="text" #CropeName ngModel name="CropeName" id="CropeName" required>   -->
+                </div>
+            </div>
+
+            <div *ngIf="!Fullname?.valid && (Fullname?.dirty || Fullname?.touched)" class="error">
+                <div *ngIf="Fullname.errors.required">
+                    <small class="text-danger">Fullname  is Required</small>
+                </div>
+                <div *ngIf="Fullname.errors.minlength">
+                    <small class="text-danger">Minimum length of Full name is {{Fullname.errors.minlength.requiredLength}} Required</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="ContactNo">Enter Mobile number</label>
+                    <input type="text" id="Phone Number" ngModel name="ContactNo" #ContactNo="ngModel" required pattern="^\d{3}-\d{3}-\d{4}$">
+                    <!-- <input type="text" id="Phone Number" name="ContactNo" [(ngModel)]= Registration.ContactNo #ContactNo=ngModel required pattern="^\d{3}-\d{3}-\d{4}$"> -->
+                </div>
+            </div>
+            <div *ngIf="!ContactNo?.valid && (ContactNo?.dirty || ContactNo?.touched)" class="error">
+                <div *ngIf="ContactNo.errors.required">
+                    <small class="text-danger">mobile number is Required</small>
+                </div>
+                <div *ngIf="ContactNo.errors.pattern">
+                    <small class="text-danger">use pattern:000-000-0000</small>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="Emailid">Enter Mailid</label>
+                    <input type="text" id=" Registrationemail" ngModel name="Emailid"  #Emailid="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                    <!-- <input type="text" id=" Registrationemail" name="Emailid" [(ngModel)]=Registration.Emailid  #Emailid="ngModel" required Emailid> -->
+                </div>
+            </div>
+            <div *ngIf="!Emailid?.valid && (Emailid?.dirty || Emailid?.touched)" class="error">
+                <div *ngIf="Emailid.errors.required">
+                    <small class="text-danger">Mail id is Required</small>
+                </div>
+                <div *ngIf="Emailid.errors.pattern">
+                    <small class="text-danger">invalid email address</small>
+                </div>
+            </div>
+            <label for="Address1">Enter Address</label>
+            <div class="row">
+                <div class="input-field col s12">
+                    <!-- <label for="Address1">Enter Address</label> -->
+                    <input type="text" ngModel name="Address1"  #Address1="ngModel" required minlength="10">
+                    <!-- <input type="text"  name="Address1"  [(ngModel)]= Registration.Address1 #Address1="ngModel"  required minlength="10"> -->
+                    <!-- <input type="text" #CropeName ngModel name="CropeName" id="CropeName" required>   -->
+                </div>
+            </div>
+            <div *ngIf="!Address1?.valid && (Address1?.dirty || Address1?.touched)" class="error">
+                <div *ngIf="Address1.errors.required">
+                    <small class="text-danger">Address  is Required</small>
+                </div>
+                <div *ngIf="Address1.errors.minlength">
+                    <small class="text-danger">Minimum length of Address is {{Address1.errors.minlength.requiredLength}} Required</small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <!-- <label for="Address1">Enter Address 2</label> -->
+                    <input type="text" ngModel name="Address2" #Address2="ngModel" required minlength="5">
+                    <!-- <input type="text"  name="Address2"  [(ngModel)]= Registration.Address1 #Address2="ngModel"  required minlength="5"> -->
+                    <!-- <input type="text" #CropeName ngModel name="CropeName" id="CropeName" required>   -->
+                </div>
+            </div>
+            <div *ngIf="!Address2?.valid && (Address2?.dirty || Address2?.touched)" class="error">
+                <div *ngIf="Address2.errors.required">
+                    <small class="text-danger">Address  is Required</small>
+                </div>
+                <div *ngIf="Address2.errors.minlength">
+                    <small class="text-danger">Minimum length of Address is {{Address2.errors.minlength.requiredLength}} Required</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="City">Enter City Name</label>
+                    <!-- <input type="text"  name="City"  [(ngModel)]= Registration.City #City="ngModel"  required minlength="6"> -->
+                    <input type="text" ngModel name="City" #City="ngModel" required minlength="4">
+                </div>
+            </div>
+            <div *ngIf="!City?.valid && (City?.dirty || City?.touched)" class="error">
+                <div *ngIf="City.errors.required">
+                    <small class="text-danger">City  is Required</small>
+                </div>
+                <div *ngIf="City.errors.minlength">
+                    <small class="text-danger">Minimum length of City is {{City.errors.minlength.requiredLength}} Required</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="State">Enter State Name</label>
+                    <!-- <input type="text"  name="State"  [(ngModel)]= Registration.State #State="ngModel"  required minlength="8"> -->
+                    <input type="text" ngModel name="State" #State="ngModel" required >
+                </div>
+            </div>
+            <div *ngIf="!State?.valid && (State?.dirty || State?.touched)" class="error">
+                <div *ngIf="State.errors.required">
+                    <small class="text-danger">State  is Required</small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for=" Pincode">Enter Pincode</label>
+                    <!-- <input type="number"  name="State"  [(ngModel)]= Registration.Pincode #Pincode="ngModel"  required minlength="5"> -->
+                    <input type="number" ngModel name="Pincode"  #Pincode="ngModel" required minlength="6" maxlength="6">
+                </div>
+            </div>
+            <div *ngIf="!Pincode?.valid && (Pincode?.dirty || Pincode?.touched)" class="error">
+                <div *ngIf="Pincode.errors.required">
+                    <small class="text-danger">Pincode  is Required</small>
+                </div>
+                <div *ngIf="Pincode.errors.minlength">
+                    <small class="text-danger"> length of Pincode has to be {{Pincode.errors.minlength.requiredLength}}</small>
+                </div>
+            </div>
+            <label for="Area">Land Details</label>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="LArea">Land Area Name</label>
+                    <!-- <input type="text"  name="LArea"  [(ngModel)]= Registration.LArea #LArea="ngModel"  required minlength="6"> -->
+                    <input type="text" ngModel name="LArea" #LArea="ngModel" required>
+                </div>
+            </div>
+            <div *ngIf="!LArea?.valid && (LArea?.dirty || LArea?.touched)" class="error">
+                <div *ngIf="LArea.errors.required">
+                    <small class="text-danger">Area  is Required</small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="LAddress">Land Address</label>
+                    <input type="text" ngModel name="LAddress" #LAddress="ngModel" required minlength="8">
+                    <!-- <input type="text"  name="LAddress"  [(ngModel)]= Registration.LAddress #LAddress="ngModel"  required minlength="8"> -->
+                </div>
+            </div>
+            <div *ngIf="!LAddress?.valid && (LAddress?.dirty || LAddress?.touched)" class="error">
+                <div *ngIf="LAddress.errors.required">
+                    <small class="text-danger">Address  is Required</small>
+                </div>
+                <div *ngIf="LAddress.errors.minlength">
+                    <small class="text-danger"> length of Address has to be minimum {{LAddress.errors.minlength.requiredLength}}</small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for=" LPincode">Pincode</label>
+                    <input type="number" ngModel name="LPincode" #LPincode="ngModel" required minlength="5">
+                    <!-- <input type="number"  name="LPincode"  [(ngModel)]= Registration.LPincode #LPincode="ngModel"  required minlength="5"> -->
+                </div>
+            </div>
+            <div *ngIf="!LPincode?.valid && (LPincode?.dirty || LPincode?.touched)" class="error">
+                <div *ngIf="LPincode.errors.required">
+                    <small class="text-danger">Pincode  is Required</small>
+                </div>
+                <div *ngIf="LPincode.errors.minlength||LPincode.errors.maxlength">
+                    <small class="text-danger"> length of Pincode has to be {{LPincode.errors.minlength.requiredLength}}</small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="BankAccountno">Enter Bankaccountno</label>
+                    <input type="number" ngModel name="BankAccountno" #BankAccountno="ngModel" required minlength="9">
+                    <!-- <input type="number"  name=" BankAccountno"[(ngModel)]= Registration.BankAccountno #BankAccountno="ngModel" required minlength="12"> -->
+                </div>
+            </div>
+            <div *ngIf="!BankAccountno?.valid && (BankAccountno?.dirty || BankAccountno?.touched)" class="error">
+                <div *ngIf="BankAccountno.errors.required">
+                    <small class="text-danger">Bank Account number  is Required</small>
+                </div>
+                <div *ngIf="BankAccountno.errors.minlength">
+                    <small class="text-danger"> minimun length of Bank Account number is {{BankAccountno.errors.minlength.requiredLength}} required</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="IFSCCode">IFSC Code</label>
+                    <input type="text" ngModel name="IFSCCode" #IFSCCode="ngModel" required minlength="11" maxlength="11">
+                    <!-- <input type="text"  name=" IFSCCode"[(ngModel)]= Registration.IFSCCode #IFSCCode="ngModel" required minlength="10"> -->
+                </div>
+            </div>
+            <div *ngIf="!IFSCCode?.valid && (IFSCCode?.dirty || IFSCCode?.touched)" class="error">
+                <div *ngIf="IFSCCode.errors.required">
+                    <small class="text-danger">IFSC Code  is Required</small>
+                </div>
+                <div *ngIf="IFSCCode.errors.minlength||IFSCCode.errors.maxlength">
+                    <small class="text-danger"> length of BIFSC Code is {{IFSCCode.errors.minlength.requiredLength}} required</small>
+                </div>
+            </div>
+
+            <label for="Aadhar">Aadhar Card*</label>
+            <img [src]="imageUrl1"  style="width:250px;height:200px">
+            <input type="file" #Image1 accept="image/*" (change)="handleFileInput1($event.target.files)">
+            <!-- <button type="submit" class="btn-large btn-submit" [disabled]="Image.value=='' || !imageForm.valid">Submit</button> -->
+            <label style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;color:darkcyan;">Only image is allowed to upload.</label>
+            <br/>
+            <label for="pancard">Pan Card*</label>
+            <img [src]="imageUrl2"  style="width:250px;height:200px">
+            <input type="file" #Image2 accept="image/*" (change)="handleFileInput2($event.target.files)">
+            <!-- <button type="submit" class="btn-large btn-submit" [disabled]="Image.value=='' || !imageForm.valid">Submit</button> -->
+            <label style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;color:darkcyan;">Only image is allowed to upload.</label>
+            <br/>
+
+            <label for="Certificate">Certificate*</label>
+            <img [src]="imageUrl3"  style="width:250px;height:200px">
+            <input type="file" #Image3 accept="image/*" (change)="handleFileInput3($event.target.files)">
+            <!-- <button type="submit" class="btn-large btn-submit" [disabled]="Image.value=='' || !imageForm.valid">Submit</button> -->
+            <label style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;color:darkcyan;">Only image is allowed to upload.</label>
+            <br/>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for=" Password">Password</label>
+                    <input type="text" ngModel name="Password" #Password="ngModel" required minlength="5">
+                    <!-- <input type="text"  name="Password"  [(ngModel)]= Registration.Password #Password="ngModel"  required minlength="5"> -->
+                </div>
+            </div>
+            <div *ngIf="!Password?.valid && (Password?.dirty || Password?.touched)" class="error">
+                <div *ngIf="Password.errors.required">
+                    <small class="text-danger">Password is Required</small>
+                </div>
+                <div *ngIf="Password.errors.minlength">
+                    <small class="text-danger"> minimun length of Password is {{Password.errors.minlength.requiredLength}} required</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="CPassword">Confirm Password</label>
+                    <input type="text"  name="CPassword" #CPassword  required >
+                    <!-- <input type="text"  name="CPassword"  [(ngModel)]= Registration.CPassword #CPassword="ngModel"  required minlength="5"> -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+            <button type="submit" class="btn-large btn-submit" [disabled]="Image1.value=='' ||Image2.value=='' ||Image3.value=='' || !imageForm.valid">Register</button>
+            <button type="reset" class="btn-large btn-submit">Reset</button>
+                </div>
+            </div>
+
+        </form>
+      </div>
+    </div>
+  </div>

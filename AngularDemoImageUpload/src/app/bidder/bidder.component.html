@@ -1,0 +1,46 @@
+<p>bidder works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">
+        <img src="https://www.logo-design-india.com/wp-content/uploads/2020/07/farmer-hut-logo.jpg" width="30" height="30" alt="" 
+            style="padding-right: 3px"
+            class="d-inline-block align-top"/>Bidder Welcome page</a>
+    <button type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="navbarNavDropdown" class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a href="#" class="nav-link">Admin</a></li>
+             <li class="nav-item"><a href="#" class="nav-link">Contact us</a></li>
+             <li class="nav-item"><a href="#" class="nav-link">About us</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             <li class="nav-item" ><a href="#" class="nav-link" >Login</a></li>
+             <li class="nav-item"><a href="#" class="nav-link">Register</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div>
+    <table class="Bidding Welcome" border="1" style="width: 720px;">
+        <thead >
+            <tr>
+                <td  style="width: 50px;">Serial No</td>
+                <td  style="width: 500px;">Crop type</td>
+                <td style="width: 500px;">Crop Name</td>
+                <td style="width: 250px;">Base Price</td>
+                <td style="width: 300px;">Current Bid</td>
+                <td style="width: 250px;">Bid amount</td>
+                <td style="width: 150px;">Submit</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let m of MarketData;let i=index;">
+                <td style="width: 105px;">{{i}}</td>
+                <td style="width: 105px;">{{m.cropType}}</td>
+                <td style="width: 119px;">{{m.cropname}}</td>
+                <td style="width: 126px;">{{m.MSP}}</td>
+                <td style="width: 118px;">{{m.bidAmount}}</td>
+                <td style="width: 118px;"><input type="number" #amount required></td>
+                <td><input type="submit" value="Submit" (click)="PlaceBidAmount(m.FarmerSellID,m.MSP,amount.value)"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

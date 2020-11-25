@@ -1,0 +1,26 @@
+div{
+    margin: 35px 70px 50px 90px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-image:url()
+    }
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    
+  }
+  tr:hover {background-color: #f5f5f5;}
+  td {
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+  }
+
+  table{
+    border-spacing: 15px
+  }
+div1{
+    background-image:url();
+}

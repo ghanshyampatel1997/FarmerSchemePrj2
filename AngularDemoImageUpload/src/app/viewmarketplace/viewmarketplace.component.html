@@ -1,0 +1,11 @@
+<p>viewmarketplace works!</p>
+<div>
+    <div class="container-fluid">
+        <div *ngFor="let v of  ViewMarketplacedata">
+            <div>Crop Type : {{v.cropType}}</div><br/>
+            <div>Crop Name : {{v.cropname}}</div><br/>
+            <div>Minimum selling price : {{v.MSP}}</div><br/>
+            <div style="float: right;">Current Bid Amount : {{v.bidAmount}}</div><br/><hr/>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+
+<div *ngIf="farmeroption">
+    <br/><br/><br/>
+    <div class="container-fluid">
+       <p style="text-align: center;"><b><button (click)="sellrequest()">Sell Request </button> </b></p>
+    </div>
+    <br/><br/>
+    <div class="container-fluid">
+        <p style="text-align: center;"><b><button (click)="cropHistoryrequest()">View Sold Crop History </button> </b></p>
+    </div>
+    <br/><br/>
+    <div class="container-fluid">
+        <p style="text-align: center;"><b><button (click)="MarketPlacerequest()">View Marketplace </button> </b></p>
+    </div>
+</div>
+
+<div *ngIf="fsellrequestvalue">
+    <br/><br/><br/>
+    <div class="container">
+        <div class="row">
+          <div class="col s8 offset-2">
+            <!-- <div class="card-panel teal lighten-2">
+              <h4 class="center white-text">Image Library</h4>
+            </div> -->
+            <form #imageForm=ngForm (ngSubmit)="OnSubmit(Cropetype,CropeName,Fertilizertype,Quantity,Image)">
+              <div class="row">
+                <div class="input-field col s12">
+                    <label for="Cropetype">Crope type*</label>
+                  <input type="text" #Cropetype ngModel name="Cropetype" id="Cropetype" required>  
+                </div>
+                <div *ngIf="!Cropetype?.valid && (Cropetype?.dirty || Cropetype?.touched)" class="error">
+                  <div *ngIf="Cropetype.errors.required">
+                      <small class="text-danger">Cropetype Name  is Required</small>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="input-field col s12">
+                    <label for="CropeName">Crope Name*</label>
+                    <select [(ngModel)]="selected">
+                      <option *ngFor="let c of cropdata" [ngValue]="person">{{c.cropname}}</option>
+                    </select>
+                  <!-- <input type="text" #CropeName ngModel name="CropeName" id="CropeName" required>   -->
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                    <label for="Fertilizertype">Fertilizer type*</label>
+                  <input type="text" #Fertilizertype ngModel name="Fertilizertype" id="Fertilizertype" required>  
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                    <label for="Quantity">Quantity(per 20 Kg)*</label>
+                  <input type="text" #Quantity ngModel name="Quantity" id="Quantity" required>  
+                </div>
+              </div>
+              <label for="Quantity">Soil PH Certificate*</label>
+              <img [src]="imageUrl"  style="width:250px;height:200px">
+              <input type="file" #Image accept="image/*" (change)="handleFileInput($event.target.files)">
+              <button type="submit" class="btn-large btn-submit" [disabled]="Image.value=='' || !imageForm.valid">Submit</button>
+              <label style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;color:darkcyan;">Only image is allowed to upload.</label>
+
+            </form>
+          </div>
+        </div>
+      </div>
+     
+      <label style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;color: brown;">All (*) Marked fields are Mendatory. </label>
+</div>
+
+
