@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { error } from 'console';
 import { Claimservice } from 'src/Services/Claim.service';
 import { Claim } from '../Models/Claim.Model';
 

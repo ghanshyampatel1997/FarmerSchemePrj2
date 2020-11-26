@@ -28,7 +28,9 @@ namespace FarmerSchemeSellAndBidding.Controllers
                                   on r.UserID equals f.UserID
                                   where r.RollType1.ToLower()=="farmer"
                                   select new { u.UserEmailId,u.ContactNo_,u.fullname,u.address1,u.address2,
-                                  u.city,u.state,u.pincode,, b, f }).ToList();
+                                  u.city,u.state,u.pincode,u.pancardDocument,u.aadharCardDocument,
+                                      r.UserID,r.certificate,r.ApprovedStatus,
+                                      b.IFSCCode,b.BankAccountNo, f.landArea,f.landAddress,f.landPinCode}).ToList();
             return Ok(farmerdata);
 
         }

@@ -1,0 +1,87 @@
+<div *ngIf="Farmerregister">
+    <p>admin works!</p>
+    <p style="text-align: center;"><em><strong>Admin Approval for Users</strong></em></p>
+    <p><br /><br /></p>
+    <div style="text-align: center;" (click)="Farmerregiapproval()">Approve for Farmer Registration</div>
+    <p>&nbsp;</p>
+    <div style="text-align: center;">Approve for Bidder Registration</div>
+    <p>&nbsp;</p>
+    <div style="text-align: center;">Approve for Farmer Sell Request</div>
+    <p>&nbsp;</p>
+    <div style="text-align: center;">Approve for Bidding Status</div>
+    <p>&nbsp;</p>
+    <div style="text-align: center;">Approve for Insurance Claim</div>
+    
+</div>
+<div *ngIf="Farmerregi">
+<div class="Container-fluid">
+    <table>
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Details</th>
+                <th>Approval status</th>
+                
+            </tr>
+        </thead>
+        <tbody *ngFor="let d of Farmerregisterdataresult">
+            <tr>
+                <td>{{d.fullname}}</td>
+                <td><button (click)="Viewdata(d)">Details</button></td>
+                <div *ngIf="d.ApprovedStatus==null">
+                    <td>Not Approved</td>
+                </div>
+                <div *ngIf="d.ApprovedStatus != null">
+                    <td>Approved</td>
+                </div>
+                
+                
+            </tr>
+            
+            
+        </tbody>
+    </table>
+    
+       
+</div>
+</div>
+<div *ngIf="ViewDetails">
+    <button (click)="GoBack()">Go Back</button>
+    <div><label>Farmer Email Id</label></div><br/>
+    <div><label>{{UserEmailId}}</label></div><br/>
+    <div><label>Contact No</label></div><br/>
+    <div><label>{{ContactNo_}}</label></div><br/>
+    <div><label>Address1</label></div><br/>
+    <div><label>{{address1}}</label></div><br/>
+    <div><label>Address2</label></div><br/>
+    <div><label>{{address2}}</label></div><br/>
+    <div><label>City</label></div><br/>
+    <div><label>{{city}}</label></div><br/>
+    <div><label>State</label></div><br/>
+    <div><label>{{state}}</label></div><br/>
+    <div><label>Pincode</label></div><br/>
+    <div><label>{{pincode}}</label></div><br/>
+    <div><label>Pancard</label></div><br/>
+    <div><label>{{pancardDocument}}</label></div><br/>
+    <div><label>Aadharcard</label></div><br/>
+    <div><label>{{aadharCardDocument}}</label></div><br/>
+    <div><label>Certificate</label></div><br/>
+    <div><label>{{certificate}}</label></div><br/>
+    <div><label>IFSC Code</label></div><br/>
+    <div><label>{{IFSCCode}}</label></div><br/>
+
+    <div><label>Bank Account No</label></div><br/>
+    <div><label>{{BankAccountNo}}</label></div><br/>
+
+    <div><label>Land  Area</label></div><br/>
+    <div><label>{{landArea}}</label></div><br/>
+
+    <div><label>Land Address</label></div><br/>
+    <div><label>{{landAddress}}</label></div><br/>
+
+    <div><label>Land Pincode</label></div><br/>
+    <div><label>{{landPinCode}}</label></div><br/>
+    <div>Submit</div>
+    <div><button type="button">Submit</button></div>
+
+</div>

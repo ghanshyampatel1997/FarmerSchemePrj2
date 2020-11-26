@@ -25,6 +25,8 @@ import { InsuranceApplicationComponent } from './insurance-application/insurance
 import { InsuranceService } from 'src/Services/Insurance.Service';
 import { InsuranceClaimComponent } from './insurance-claim/insurance-claim.component';
 import { Claimservice } from 'src/Services/Claim.service';
+import { AdminFarmerRegiComponent } from './admin-farmer-regi/admin-farmer-regi.component';
+import { Farmerregisterdataservice } from 'src/Services/Farmerregi.service';
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { Claimservice } from 'src/Services/Claim.service';
     BidderRegistrationComponent,
     ViewmarketplaceComponent,
     InsuranceApplicationComponent,
-    InsuranceClaimComponent
+    InsuranceClaimComponent,
+    AdminFarmerRegiComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,7 @@ import { Claimservice } from 'src/Services/Claim.service';
   ],
 providers: [UploadImageService,BidderService,soldhistoryservice,
   FarmerRegisterService,ViewMarketPlaceservice,InsuranceService,
-  Claimservice],
+  Claimservice,Farmerregisterdataservice],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

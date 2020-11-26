@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './about/about.component';
+import { AdminFarmerRegiComponent } from './admin-farmer-regi/admin-farmer-regi.component';
 import { BidderComponent } from './bidder/bidder.component';
 import { ContactComponent } from './contact/contact.component';
 import { FarmerCropSellRequestComponent } from './farmer-crop-sell-request/farmer-crop-sell-request.component';
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'FarmerRegister', component:RegistrationComponent},
   {path: 'ViewMarketPlace', component:ViewmarketplaceComponent},
   {path: 'InsuranceApplication', component:InsuranceApplicationComponent},
-  {path: 'InsuranceClaim', component:InsuranceClaimComponent}
+  {path: 'InsuranceClaim', component:InsuranceClaimComponent},
+  {path: 'AdminFamerRegister', component:AdminFarmerRegiComponent}
   
   //{path: '', redirectTo: '/Home', pathMatch:'full'}
   ];
