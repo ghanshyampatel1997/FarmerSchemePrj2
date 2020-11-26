@@ -69,6 +69,10 @@ Insurance:InsuranceForm=new InsuranceForm();
   console.log(this.Insurance);
   this.Inservice.InsertInsuranceForm(this.Insurance).subscribe((data) => { this.Result = data;
     window.alert(this.Result);
+  },
+  (error)=>
+  {
+    window.alert(error.error.Message);
   })
 
   } 

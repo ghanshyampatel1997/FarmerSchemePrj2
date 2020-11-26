@@ -18,7 +18,11 @@ export class ViewmarketplaceComponent implements OnInit {
   getViewMarketplacedata()
   {
    this.VMservice.GetViewMarketplace().subscribe((data)=>{this.ViewMarketplacedata=data;
-    console.table(data)})
+    console.table(data)},
+    (error)=>
+    {
+      window.alert(error.error.Message);
+    })
    }
 
 }

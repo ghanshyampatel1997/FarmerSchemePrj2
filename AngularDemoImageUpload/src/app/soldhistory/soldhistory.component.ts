@@ -18,6 +18,9 @@ export class SoldhistoryComponent implements OnInit {
   soldhistorydata:Soldhistory;
   getsoldhistorydata()
   {
-    this.SHservice.Getsoldhistory().subscribe((data)=>{this.soldhistorydata=data;})
+    this.SHservice.Getsoldhistory().subscribe((data)=>{this.soldhistorydata=data;}, (error)=>
+    {
+      window.alert(error.error.Message);
+    })
   }
 }

@@ -51,6 +51,10 @@ export class InsuranceClaimComponent implements OnInit {
     this.claimservice.InsertClaimForm(this.Claim).subscribe((data) =>
      { this.Result = data;
     window.alert(this.Result);
+  },
+  (error)=>
+  {
+    window.alert(error.error.Message);
   })
  }
 }

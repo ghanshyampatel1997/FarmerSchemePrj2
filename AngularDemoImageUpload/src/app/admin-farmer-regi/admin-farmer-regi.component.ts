@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Farmerregisterdataservice } from 'src/Services/Farmerregi.service';
+import { Farmerregisterdataservice } from 'src/Services/AdminFarmerregi.service';
 
 @Component({
   selector: 'app-admin-farmer-regi',
@@ -26,7 +26,9 @@ export class AdminFarmerRegiComponent implements OnInit {
     this.Farmerregi=true;
     this.Fregiservice.Getfarmerregisterdata().subscribe((data)=>
     {this.Farmerregisterdataresult=data;console.log(data);console.table(data);
-      this.pq=this.Farmerregisterdataresult;console.log(this.pq);});
+      this.pq=this.Farmerregisterdataresult;console.log(this.pq);},
+      (error)=>{window.alert(error.error.Message)}
+      );
     
   }
   UserEmailId;
@@ -44,7 +46,8 @@ export class AdminFarmerRegiComponent implements OnInit {
   landArea;
   landAddress;
   landPinCode;
-
+userid;
+ApprovedStatus;
   Viewdata(d)
   {
     debugger;
@@ -58,6 +61,7 @@ export class AdminFarmerRegiComponent implements OnInit {
     this.state=d.state;
     this.pincode=d.pincode;
     this.pancardDocument=d.pancardDocument;
+    //this.aadharCardDocument="/assets/img/FarmerSchemeDB2Diagram.PNG";
     this.aadharCardDocument=d.aadharCardDocument;
     this.certificate=d.certificate;
     this.IFSCCode=d.IFSCCode;
@@ -65,11 +69,32 @@ export class AdminFarmerRegiComponent implements OnInit {
     this.landArea=d.landArea;
     this.landAddress=d.landAddress;
     this.landPinCode=d.landPinCode;
+    this.userid=d.UserID;
+    this.ApprovedStatus=d.ApprovedStatus;
 
   }
   GoBack()
   {
     this.ViewDetails=false;
     this.Farmerregi=true;
+  }
+  GoBackAgain()
+  {
+    this.Farmerregister=true;
+    this.Farmerregi=false;
+  }
+  Approveddata()
+  {
+    debugger;
+    this.Fregiservice.Approvefarmerregisterdata(this.userid).subscribe((data)=>
+    {
+      window.alert(data);
+    },
+    (error)=>
+    {
+      window.alert(error.error.Message);
+    });
+    this.GoBack();
+
   }
 }

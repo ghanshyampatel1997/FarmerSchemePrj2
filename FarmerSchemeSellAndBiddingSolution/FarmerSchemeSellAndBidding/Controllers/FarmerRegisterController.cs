@@ -40,8 +40,8 @@ namespace FarmerSchemeSellAndBidding.Controllers
                     //Create custom filename
                     imageName1 = new String(Path.GetFileNameWithoutExtension(postedFile1.FileName).Take(10).ToArray()).Replace(" ", "-");
                     imageName1 = imageName1 + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile1.FileName);
-                    var filePath1 = HttpContext.Current.Server.MapPath("~/Image/" + imageName1);
-                    
+                    var filePath1 = "D:/desktop/dotnet training/Final Project Repository/FarmerSchemePrj2/AngularDemoImageUpload/src/assets/img/" + imageName1;
+                    string filepath11= "/assets/img/" + imageName1;
 
                     string imageName2 = null;
                     //var httpRequest = HttpContext.Current.Request;
@@ -50,8 +50,8 @@ namespace FarmerSchemeSellAndBidding.Controllers
                     //Create custom filename
                     imageName2 = new String(Path.GetFileNameWithoutExtension(postedFile2.FileName).Take(10).ToArray()).Replace(" ", "-");
                     imageName2 = imageName2 + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile2.FileName);
-                    var filePath2 = HttpContext.Current.Server.MapPath("~/Image/" + imageName2);
-                    
+                    var filePath2 = "D:/desktop/dotnet training/Final Project Repository/FarmerSchemePrj2/AngularDemoImageUpload/src/assets/img/" + imageName2;
+                    string filepath22 = "/assets/img/" + imageName2;
 
                     string imageName3 = null;
                     //var httpRequest = HttpContext.Current.Request;
@@ -60,8 +60,8 @@ namespace FarmerSchemeSellAndBidding.Controllers
                     //Create custom filename
                     imageName3 = new String(Path.GetFileNameWithoutExtension(postedFile3.FileName).Take(10).ToArray()).Replace(" ", "-");
                     imageName3 = imageName3 + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile3.FileName);
-                    var filePath3 = HttpContext.Current.Server.MapPath("~/Image/" + imageName3);
-                    
+                    var filePath3 = "D:/desktop/dotnet training/Final Project Repository/FarmerSchemePrj2/AngularDemoImageUpload/src/assets/img/" + imageName3;
+                    string filepath33 = "/assets/img/" + imageName3;
 
                     //Adding data into table userRegister
                     UserRegister userRegister = new UserRegister();
@@ -74,15 +74,15 @@ namespace FarmerSchemeSellAndBidding.Controllers
                     userRegister.city = httpRequest["City"];
                     userRegister.state = httpRequest["State"];
                     userRegister.pincode = (int?)Convert.ToInt64(httpRequest["Pincode"]);
-                    userRegister.pancardDocument = filePath2;
-                    userRegister.aadharCardDocument = filePath1;
+                    userRegister.pancardDocument = filepath22;
+                    userRegister.aadharCardDocument = filepath11;
 
 
                     //Adding data into table rollType
                     RollType rollType = new RollType();
                     //rollType.UserID= Convert.ToInt32(httpRequest["Emailid"]);
                     rollType.RollType1 = "FARMER";
-                    rollType.certificate = filePath3;
+                    rollType.certificate = filepath33;
                     rollType.ApprovedStatus = null;
                     rollType.UserEmailId = ueid;
 

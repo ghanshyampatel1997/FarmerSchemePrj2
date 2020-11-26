@@ -1,4 +1,4 @@
-<div *ngIf="Farmerregister">
+<div class="intro" *ngIf="Farmerregister">
     <p>admin works!</p>
     <p style="text-align: center;"><em><strong>Admin Approval for Users</strong></em></p>
     <p><br /><br /></p>
@@ -15,12 +15,13 @@
 </div>
 <div *ngIf="Farmerregi">
 <div class="Container-fluid">
-    <table>
+    <button (click)="GoBackAgain()">Go Back</button><br/>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Full Name</th>
                 <th>Details</th>
-                <th>Approval status</th>
+                <th >Approval status</th>
                 
             </tr>
         </thead>
@@ -45,43 +46,48 @@
        
 </div>
 </div>
-<div *ngIf="ViewDetails">
-    <button (click)="GoBack()">Go Back</button>
-    <div><label>Farmer Email Id</label></div><br/>
-    <div><label>{{UserEmailId}}</label></div><br/>
-    <div><label>Contact No</label></div><br/>
-    <div><label>{{ContactNo_}}</label></div><br/>
-    <div><label>Address1</label></div><br/>
-    <div><label>{{address1}}</label></div><br/>
-    <div><label>Address2</label></div><br/>
-    <div><label>{{address2}}</label></div><br/>
-    <div><label>City</label></div><br/>
-    <div><label>{{city}}</label></div><br/>
-    <div><label>State</label></div><br/>
-    <div><label>{{state}}</label></div><br/>
-    <div><label>Pincode</label></div><br/>
-    <div><label>{{pincode}}</label></div><br/>
-    <div><label>Pancard</label></div><br/>
-    <div><label>{{pancardDocument}}</label></div><br/>
-    <div><label>Aadharcard</label></div><br/>
-    <div><label>{{aadharCardDocument}}</label></div><br/>
-    <div><label>Certificate</label></div><br/>
-    <div><label>{{certificate}}</label></div><br/>
-    <div><label>IFSC Code</label></div><br/>
-    <div><label>{{IFSCCode}}</label></div><br/>
+<div *ngIf="ViewDetails" class="container">
+    <button (click)="GoBack()">Go Back</button><br/>
+    
+            <label>Farmer Email Id : </label>
+       
+             <label>{{UserEmailId}}</label><br/><br/>
+    <label>Contact No  :  </label> 
+    <label>{{ContactNo_}}</label> <br/><br/>
+    <label>Address1  :  </label> 
+    <label>{{address1}}</label> <br/><br/>
+    <label>Address2   :  </label> 
+    <label>{{address2}}</label> <br/><br/>
+    <label>City   :  </label> 
+    <label>{{city}}</label> <br/><br/>
+    <label>State   :  </label> 
+     <label>{{state}}</label> <br/><br/>
+     <label>Pincode   :  </label> 
+     <label>{{pincode}}</label> <br/><br/>
+     <label>Pancard</label> <br/><br/>
+    <img [src]="pancardDocument"  style="width:250px;height:200px">
+    <!--  <label>{{pancardDocument}}</label> <br/> -->
+     <label>Aadharcard</label> <br/><br/>
+    <img [src]="aadharCardDocument"  style="width:250px;height:200px">
+    <!--  <img class="e2e-inner-html-bound" src={{aadharCardDocument}}> <br/> -->
+     <label>Certificate</label> <br/><br/>
+    <img [src]="certificate"  style="width:250px;height:200px"><br/><br/>
+    <!--  <label>{{certificate}}</label> <br/> -->
+     <label>IFSC Code   :  </label>
+     <label>{{IFSCCode}}</label> <br/><br/>
 
-    <div><label>Bank Account No</label></div><br/>
-    <div><label>{{BankAccountNo}}</label></div><br/>
+     <label>Bank Account No   :  </label> 
+     <label>{{BankAccountNo}}</label> <br/><br/>
 
-    <div><label>Land  Area</label></div><br/>
-    <div><label>{{landArea}}</label></div><br/>
+     <label>Land  Area   :  </label> 
+     <label>{{landArea}}</label> <br/><br/>
 
-    <div><label>Land Address</label></div><br/>
-    <div><label>{{landAddress}}</label></div><br/>
+     <label>Land Address   :  </label>
+     <label>{{landAddress}}</label> <br/><br/>
 
-    <div><label>Land Pincode</label></div><br/>
-    <div><label>{{landPinCode}}</label></div><br/>
-    <div>Submit</div>
-    <div><button type="button">Submit</button></div>
+     <label>Land Pincode   :  </label>
+     <label>{{landPinCode}}</label> <br/><br/>
+     <button *ngIf="ApprovedStatus==null" type="button" (click)="Approveddata() ">Approve</button> <br/><br/>
+     <button (click)="GoBack()">Go Back</button><br/><br/>
 
 </div>

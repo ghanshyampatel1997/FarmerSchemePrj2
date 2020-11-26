@@ -63,7 +63,7 @@ export class FarmerCropSellRequestComponent implements OnInit {
 
   OnSubmit(Cropetype,CropeName,Fertilizertype,Quantity,Image){
    this.imageService.postFile(Cropetype.value,CropeName.value,Fertilizertype.value,Quantity.value,this.fileToUpload).subscribe(
-     data =>{
+     (data) =>{
        console.log('done');
        Cropetype.value = null;
        CropeName.value = null;
@@ -71,6 +71,10 @@ export class FarmerCropSellRequestComponent implements OnInit {
        Quantity.value = null;
        Image.value = null;
        this.imageUrl = "/assets/img/default-image.png";
+     },
+     (error)=>
+     {
+       window.alert(error.error.Message);
      }
    );
   }

@@ -36,8 +36,9 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 //Create custom filename
                 imageName = new String(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
                 imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
-                var filePath = HttpContext.Current.Server.MapPath("~/Image/" + imageName);
+                var filePath = "D:/desktop/dotnet training/Final Project Repository/FarmerSchemePrj2/AngularDemoImageUpload/src/assets/img/" + imageName;
                 postedFile.SaveAs(filePath);
+                string filepath2 = "/assets/img/" + imageName;
 
                 string cname = httpRequest["Crope Name"];
                 int cid = (from cr in db.Cropprices
@@ -50,7 +51,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 farmerCropdetil.CropId = cid;//httpRequest["Crope Name"];
                 farmerCropdetil.fertilizerType = httpRequest["Fertilizer type"];
                 farmerCropdetil.quantity = Convert.ToInt32(httpRequest["Quantity"]);
-                farmerCropdetil.SoilPHCertificate = filePath;
+                farmerCropdetil.SoilPHCertificate = filepath2;
                 farmerCropdetil.AddedDate = DateTime.Now;
 
                 db.FarmerCropdetils.Add(farmerCropdetil);

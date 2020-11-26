@@ -116,6 +116,7 @@
     <Compile Include="Controllers\FarmerRegisterController.cs" />
     <Compile Include="Controllers\InsuranceApplicationController.cs" />
     <Compile Include="Controllers\InsuranceClaimController.cs" />
+    <Compile Include="Controllers\RollTypesController.cs" />
     <Compile Include="Controllers\SoldhistoryController.cs" />
     <Compile Include="Controllers\ViewMarketPlaceFarmerController.cs" />
     <Compile Include="Global.asax.cs">

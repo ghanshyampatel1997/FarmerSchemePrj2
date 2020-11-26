@@ -28,7 +28,12 @@ export class BidderComponent implements OnInit {
       
       this.MarketData=data;
       console.table(data)
+    },
+    (error)=>
+    {
+      window.alert(error.error.Message);
     })
+
   }
 
   bamount;

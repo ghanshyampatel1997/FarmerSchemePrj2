@@ -26,7 +26,7 @@ import { InsuranceService } from 'src/Services/Insurance.Service';
 import { InsuranceClaimComponent } from './insurance-claim/insurance-claim.component';
 import { Claimservice } from 'src/Services/Claim.service';
 import { AdminFarmerRegiComponent } from './admin-farmer-regi/admin-farmer-regi.component';
-import { Farmerregisterdataservice } from 'src/Services/Farmerregi.service';
+import { Farmerregisterdataservice } from 'src/Services/AdminFarmerregi.service';
 
 
 @NgModule({
