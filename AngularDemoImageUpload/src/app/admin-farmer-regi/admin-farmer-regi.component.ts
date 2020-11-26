@@ -89,12 +89,13 @@ ApprovedStatus;
     this.Fregiservice.Approvefarmerregisterdata(this.userid).subscribe((data)=>
     {
       window.alert(data);
+      this.GoBack();
+      this.Farmerregiapproval();
     },
     (error)=>
     {
       window.alert(error.error.Message);
     });
-    this.GoBack();
 
   }
 }
