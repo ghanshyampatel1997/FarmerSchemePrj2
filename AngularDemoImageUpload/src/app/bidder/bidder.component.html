@@ -1,4 +1,4 @@
-<p>bidder works!</p>
+<!-- <p>bidder works!</p>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a href="#" class="navbar-brand">
         <img src="https://www.logo-design-india.com/wp-content/uploads/2020/07/farmer-hut-logo.jpg" width="30" height="30" alt="" 
@@ -16,31 +16,41 @@
              <li class="nav-item"><a href="#" class="nav-link">Register</a></li>
         </ul>
     </div>
-</nav>
+</nav> -->
 
-<div>
-    <table class="Bidding Welcome" border="1" style="width: 720px;">
-        <thead >
-            <tr>
-                <td  style="width: 50px;">Serial No</td>
-                <td  style="width: 500px;">Crop type</td>
-                <td style="width: 500px;">Crop Name</td>
-                <td style="width: 250px;">Base Price</td>
-                <td style="width: 300px;">Current Bid</td>
-                <td style="width: 250px;">Bid amount</td>
-                <td style="width: 150px;">Submit</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let m of MarketData;let i=index;">
-                <td style="width: 105px;">{{i}}</td>
-                <td style="width: 105px;">{{m.cropType}}</td>
-                <td style="width: 119px;">{{m.cropname}}</td>
-                <td style="width: 126px;">{{m.MSP}}</td>
-                <td style="width: 118px;">{{m.bidAmount}}</td>
-                <td style="width: 118px;"><input type="number" #amount required></td>
-                <td><input type="submit" value="Submit" (click)="PlaceBidAmount(m.FarmerSellID,m.MSP,amount.value)"></td>
-            </tr>
-        </tbody>
-    </table>
+<div class = "container">
+    <div class = "row">
+        <div class ="col-10">
+            <div class = "jumbotron">
+                <div>
+                    <!-- <table class="Bidding Welcome" border="1" style="width: 720px;"> -->
+                    <table class="table table-striped" border="1">
+                        <thead >
+                            <tr>
+                                <th>Serial No</th>
+                                <th>Crop type</th>
+                                <th>Crop Name</th>
+                                <th>Base Price</th>
+                                <th>Current Bid</th>
+                                <th>Bid amount</th>
+                                <th>Submit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="" *ngFor="let m of MarketData;let i=index;">
+                                <td>{{i+1}}</td>
+                                <td>{{m.cropType}}</td>
+                                <td>{{m.cropname}}</td>
+                                <td>{{m.MSP}}</td>
+                                <td *ngIf="m.bidAmount != null">{{m.bidAmount}}</td>
+                                <td  *ngIf="m.bidAmount == null">Not Bidded yet</td>
+                                <td><input type="number" #amount required></td>
+                                <td><input type="submit" value="Submit" (click)="PlaceBidAmount(m.FarmerSellID,m.MSP,amount.value)"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -55,13 +55,23 @@ namespace FarmerSchemeSellAndBidding.Controllers
                         {
                             userid = it;
                             biddingTable.UserID = userid;
+                            try
+                            {
+                                int usid = (from r in db.RollTypes
+                                            where r.RollType1.ToUpper() == "BIDDER" && r.ApprovedStatus == true && r.UserID == userid
+                                            select r.UserID).First();
+                            }
+                            catch
+                            {
+                                return Ok("You are not Approved by admin to place bid amount.");
+                            }
                         }
 
                     }
 
                 }
             }
-
+            biddingTable.Biddingdate = DateTime.Now;
             //biddingTable.bidAmount = bidamount;
             //biddingTable.FarmerSellID = farsellid;
             //biddingTable.UserID= userid;

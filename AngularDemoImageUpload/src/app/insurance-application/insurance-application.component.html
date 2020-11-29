@@ -1,80 +1,86 @@
-<p>insurance-application works!</p>
-    
-    <div>
-    <h2 style="text-align: center;"><span style="color: #99cc00;"><em>Insurance Application Form</em></span></h2>
-    </div>
+<div class = "container">
+    <div class = "row">
+        <div class ="col-10">
+            <div class = "jumbotron">
+                    <div>
+                    <h2 style="text-align: center;"><span style="color: #99cc00;"><em>Insurance Application Form</em></span></h2>
+                    </div>
 
-    <form><fieldset>
-    <p><label><em>Season</em><span style="color: #ff0000;">*</span>:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</label> <label>Select list</label>
-        <select #season id="myList">
-            <option value="Choose">Choose</option>
-    <option value="Kharif">Kharif</option>
-    <option value="Zaid">Zaid</option>
-    <option value="Rabi">Rabi</option>
-    <option value="Annual">Annual</option>
+                    <form><fieldset>
+                    <p><label><em>Season</em><span style="color: #ff0000;">*</span>:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</label> <label>Select list</label>
+                        <select #season id="myList">
+                            <option value="Choose">Choose</option>
+                    <option value="Kharif">Kharif</option>
+                    <option value="Zaid">Zaid</option>
+                    <option value="Rabi">Rabi</option>
+                    <option value="Annual">Annual</option>
 
-    </select></p>
-    <p><label><em>Year<span style="color: #ff0000;"><label>*</label></span></em>:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</label>&nbsp;
-        <input ngModel name="year" #year="ngModel" id="myText" type="number" required/></p>
-        <div *ngIf="!year?.valid && (year?.dirty || year.touched)" class="error">
-            <div *ngIf="year.errors.required">
-                <small class="text-danger">year  is Required</small>
+                    </select></p>
+                    <p><label><em>Year<span style="color: #ff0000;"><label>*</label></span></em>:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</label>&nbsp;
+                        <input ngModel name="year" #year="ngModel" id="myText" type="number" required/></p>
+                        <div *ngIf="!year?.valid && (year?.dirty || year.touched)" class="error">
+                            <div *ngIf="year.errors.required">
+                                <small class="text-danger">year  is Required</small>
+                            </div>
+                        </div>
+                    <p><label><em>Crop Name<span style="color: #ff0000;"><label>*</label></span></em>:&nbsp; &nbsp; &nbsp; &nbsp;</label> 
+                        <input ngModel name="cropname" #cropname="ngModel" id="myText" type="text" required/></p>
+                        <div *ngIf="!cropname?.valid && (cropname?.dirty || cropname.touched)" class="error">
+                            <div *ngIf="cropname.errors.required">
+                                <small class="text-danger">cropname  is Required</small>
+                            </div>
+                        </div>
+                    <p><label><em>Sum insured<span style="color: #ff0000;"><label>*</label></span></em>:&nbsp; &nbsp; &nbsp;&nbsp;</label>
+                        <input ngModel name="suminsured" #suminsured="ngModel" id="myText" type="number"  required/></p>
+                        <div *ngIf="!suminsured?.valid && (suminsured?.dirty || suminsured.touched)" class="error">
+                            <div *ngIf="suminsured.errors.required">
+                                <small class="text-danger">Total sum insured  is Required</small>
+                            </div>
+                        </div>
+                    <p><label><em>Area in Hectar<span style="color: #ff0000;"><label>*</label></span></em>:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label> 
+                        <input ngModel name="area" #area="ngModel" id="myText" type="number"  required/></p>
+                        <div *ngIf="!area?.valid && (area?.dirty || area.touched)" class="error">
+                            <div *ngIf="area.errors.required">
+                                <small class="text-danger">Area  is Required</small>
+                            </div>
+                        </div>
+                    <div>
+                    <p><button class="btn btn-danger" type="reset">Reset</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        <button class="btn btn-danger" (click)="CalculateInsurance(season,year,cropname,suminsured,area)" type="Calculate">Calculate</button></p>
+                    </div>
+                    <p><span style="color: #ff0000;">*</span> <em>All fields are mandatory</em></p>
+                    </fieldset></form>
+                    <p>&nbsp;</p>
+                    <div class="container" *ngIf="Calculate" >            
+                        <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                            <th>Insurance Company</th>
+                            <th>Sum Insured (per Hectare)</th>
+                            <th>Share Premium </th>
+                            <th>Premium Amount</th>
+                            <th>Crop Name </th>
+                            <th>Area</th>
+                            <th>Total Sum Insured</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>State Bank of India</td>
+                            <td>{{SumInsuredperHectare}}</td>
+                            <td>{{SharePremium}}</td>
+                            <td>{{PremiumAmount}}</td>
+                            <td>{{CropName1}}</td>
+                            <td>{{Area}} Hectare</td>
+                            <td>{{SumInsured1}}</td>
+                            <td><button type="submit" (click)="AddInsuranceForm(season,year,cropname,suminsured,area)">Apply</button></td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
             </div>
         </div>
-    <p><label><em>Crop Name<span style="color: #ff0000;"><label>*</label></span></em>:&nbsp; &nbsp; &nbsp; &nbsp;</label> 
-        <input ngModel name="cropname" #cropname="ngModel" id="myText" type="text" required/></p>
-        <div *ngIf="!cropname?.valid && (cropname?.dirty || cropname.touched)" class="error">
-            <div *ngIf="cropname.errors.required">
-                <small class="text-danger">cropname  is Required</small>
-            </div>
-        </div>
-    <p><label><em>Sum insured<span style="color: #ff0000;"><label>*</label></span></em>:&nbsp; &nbsp; &nbsp;&nbsp;</label>
-         <input ngModel name="suminsured" #suminsured="ngModel" id="myText" type="number"  required/></p>
-         <div *ngIf="!suminsured?.valid && (suminsured?.dirty || suminsured.touched)" class="error">
-            <div *ngIf="suminsured.errors.required">
-                <small class="text-danger">Total sum insured  is Required</small>
-            </div>
-        </div>
-    <p><label><em>Area in Hectar<span style="color: #ff0000;"><label>*</label></span></em>:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label> 
-        <input ngModel name="area" #area="ngModel" id="myText" type="number"  required/></p>
-        <div *ngIf="!area?.valid && (area?.dirty || area.touched)" class="error">
-            <div *ngIf="area.errors.required">
-                <small class="text-danger">Area  is Required</small>
-            </div>
-        </div>
-    <div>
-    <p><button class="btn btn-danger" type="reset">Reset</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-        <button class="btn btn-danger" (click)="CalculateInsurance(season,year,cropname,suminsured,area)" type="Calculate">Calculate</button></p>
     </div>
-    <p><span style="color: #ff0000;">*</span> <em>All fields are mandatory</em></p>
-    </fieldset></form>
-    <p>&nbsp;</p>
-    <div class="container" *ngIf="Calculate" >            
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Insurance Company</th>
-              <th>Sum Insured (per Hectare)</th>
-              <th>Share Premium </th>
-              <th>Premium Amount</th>
-              <th>Crop Name </th>
-              <th>Area</th>
-              <th>Total Sum Insured</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>State Bank of India</td>
-              <td>{{SumInsuredperHectare}}</td>
-              <td>{{SharePremium}}</td>
-              <td>{{PremiumAmount}}</td>
-              <td>{{CropName1}}</td>
-              <td>{{Area}} Hectare</td>
-              <td>{{SumInsured1}}</td>
-              <td><button type="submit" (click)="AddInsuranceForm(season,year,cropname,suminsured,area)">Apply</button></td>
-            </tr>
-          </tbody>
-        </table>
-    </div>
+</div>
 
 

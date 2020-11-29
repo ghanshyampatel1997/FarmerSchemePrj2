@@ -36,6 +36,7 @@ Insurance:InsuranceForm=new InsuranceForm();
     else{
       this.currentYear= new Date().getFullYear();
       this.time=Number(this.currentYear);
+      
       if(year.value<this.time)
       {
         window.alert("Year has to be graeter or equal to current year.")

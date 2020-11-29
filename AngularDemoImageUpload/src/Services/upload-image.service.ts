@@ -6,13 +6,14 @@ export class UploadImageService {
 
   constructor(private http : HttpClient) { }
 
-  postFile(Cropetype: string,CropeName: string,Fertilizertype: string,Quantity: string, fileToUpload: File) {
+  postFile(Cropetype: string,CropeName: string,Fertilizertype: string,Quantity: string,userid:number, fileToUpload: File) {
     const endpoint = 'https://localhost:44334/api/AngFarmerCropSellRequests';
     const formData: FormData = new FormData();
     formData.append('Crope type', Cropetype);
     formData.append('Crope Name', CropeName);
     formData.append('Fertilizer type', Fertilizertype);
     formData.append('Quantity', Quantity);
+    formData.append('userid', String(userid));
     formData.append('Image', fileToUpload, fileToUpload.name);
     return this.http
       .post(endpoint, formData);

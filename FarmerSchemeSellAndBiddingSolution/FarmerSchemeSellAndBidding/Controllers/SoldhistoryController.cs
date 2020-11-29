@@ -13,7 +13,16 @@ namespace FarmerSchemeSellAndBidding.Controllers
         private FarmerSchemeDBEntities4 db = new FarmerSchemeDBEntities4();
         public IHttpActionResult Getsoldhistory()
         {
-            return Ok(db.Soldhistory());
+            var soldHistory = db.Soldhistory();
+            if (soldHistory != null)
+            {
+                return Ok(soldHistory);
+            }
+            else
+            {
+                return NotFound();
+            }
+           
         }
     }
 }

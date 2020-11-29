@@ -15,7 +15,7 @@ export class RegistrationComponent implements OnInit {
   fileToUpload1: File = null;
   fileToUpload2: File = null;
   fileToUpload3: File = null;
-  Usertype:string[]=["Farmer","Bidder"]
+
 
   constructor(private FRegisterservice:FarmerRegisterService) { }
 

@@ -1,0 +1,209 @@
+---------Webapi.Controller--------------
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using Admininsuranceclaim.Models;
+
+namespace Admininsuranceclaim.Controllers
+{
+    public class AdmininsuranceclaimController : ApiController
+    {
+        private FarmerSchemeDB1Entities2 Db = new FarmerSchemeDB1Entities2();
+        [HttpGet]
+        public IHttpActionResult Getadmininsuranceclaimapp()
+        {
+            try
+            {
+                dynamic insapp = (from i in Db.InsuranceApplications
+                                  join c in Db.ClaimForms on i.PolicyNo equals c.PolicyNo
+                                  join r in Db.RollTypes on i.UserID equals r.UserID
+                                  join u in Db.UserRegisters on r.UserEmailId equals u.UserEmailId
+                                  select new
+                                  {
+                                      i.season,
+                                      i.year,
+                                      i.cropname,
+                                      i.SumInsured,
+                                      i.FarmId,
+                                      c.ClaimNo,
+                                      c.CauseOfLoss,
+                                      c.dateOfLoss,
+                                      u.fullname,
+                                      u.city,
+                                      u.ContactNo_,
+                                      c.ClaimApprove
+                                  }).ToList();
+                return Ok(insapp);
+            }
+            catch
+            {
+                return BadRequest("Not eligible for Claim");
+            }
+        }
+        [HttpPost]
+        public IHttpActionResult PostClaimApproval(dynamic Num)
+        {
+            try
+            {
+                int NUM = Convert.ToInt32(Num);
+                ClaimForm Cno = (from c in Db.ClaimForms
+                                 where c.ClaimNo == NUM
+                                 select c).First();
+                Cno.ClaimApprove = true;
+                Db.Entry(Cno).State = EntityState.Modified;
+                Db.SaveChanges();
+                return Ok("Claim Request Approve");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+    }
+}
+---------------Claimrequestservice.ts------------------------
+import { HttpClient } from '@angular/common/http'
+import{Injectable} from '@angular/core'
+@Injectable({providedIn:"root"})
+
+
+export class Claimrequestservice
+{
+    constructor(private http:HttpClient)
+    {
+        
+    }
+    readonly uri="https://localhost:44314/api/Admininsuranceclaim"
+           
+    Getclaimrequestdata()
+     {
+        return this.http.get(this.uri);
+     }
+     Approveclaimdata(Num:number)
+      {
+      return this.http.post(this.uri,Num);
+     }
+}
+--------------admin claim approve.component.ts-----------
+import { Component, OnInit } from '@angular/core';
+import { Claimrequestservice } from 'src/service/Adminclaimapproval.service';
+
+@Component({
+  selector: 'app-adminclaimapproval',
+  templateUrl: './adminclaimapproval.component.html',
+  styleUrls: ['./adminclaimapproval.component.css']
+})
+export class AdminclaimapprovalComponent implements OnInit {
+  Adminclaimrequestapprove;
+  ViewDetails;
+
+  constructor(private insclaim : Claimrequestservice) { }
+
+  ngOnInit(): void {
+  this.Adminclaimrequestapprove=true;
+  this.ViewDetails=false;
+  this.Getfarmerinsclaimdata();
+
+  }
+  Insclaimdata;
+
+  Getfarmerinsclaimdata(){
+    this.insclaim.Getclaimrequestdata().subscribe((data)=>
+    {this.Insclaimdata=data;console.log(data);console.table(data);});
+
+  }
+  season;
+  year;
+  cropname;
+  suminsured;
+  FarmId;
+  ClaimNo;
+  CauseOfLoss;
+  dateOfLoss;
+  fullname;
+  city;
+  ContactNo_;
+  ClaimApprove;
+
+  Viewdata(c)
+  {
+    this.Adminclaimrequestapprove=false;
+    this.ViewDetails=true;
+    this.season=c.season;
+    this.year=c.year;
+    this.cropname=c.cropname;
+    this.suminsured=c.SumInsured;
+    this.FarmId=c.FarmId;
+    this.ClaimNo=c.ClaimNo;
+    this.CauseOfLoss=c.CauseOfLoss;
+    this.dateOfLoss=c.dateOfLoss;
+    this.fullname=c.fullname;
+    this.city=c.city;
+    this.ContactNo_=c.ContactNo_;
+    this.ClaimApprove=c.ClaimApprove;
+    
+  }
+  GoBack()
+  {
+    this.ViewDetails=false;
+    this.Adminclaimrequestapprove=true;
+  }
+  ApproveClaimrequest()
+  {
+    this.insclaim.Approveclaimdata(this.ClaimNo).subscribe((data)=>
+    {
+      window.alert(data);
+      this.GoBack();
+      this.Getfarmerinsclaimdata();
+    },
+    (error)=>{window.alert(error.error.Message);})
+  }
+
+}
+-----------admin claim request Component.html------------
+<p>adminclaimapproval works!</p>
+<div *ngIf="Adminclaimrequestapprove">
+    <div class="Container-fluid">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Details</th>
+                    <th>Approval status</th>  
+                </tr>
+            </thead>
+           <tbody *ngFor="let c of Insclaimdata">
+              <tr>
+                 <td>{{c.fullname}}</td>
+                 <td><button (click)="Viewdata(c)">Details</button></td>
+                 <div *ngIf="c.ClaimApprove==null">
+                    <td>Not Approved</td>
+                 </div>
+                 <div *ngIf="c.ClaimApprove != null">
+                    <td>Approved</td>
+                 </div>
+               </tr>
+            </tbody>
+        </table>
+    </div>
+ 
+</div>
+<div *ngIf="ViewDetails">
+    <button (click)="GoBack()">Go Back</button>
+    <div><label>Season : {{season}} </label></div><br/>
+    <div><label>Year : {{year}} </label></div><br/>
+    <div><label>Crop Name : {{cropname}} </label></div><br/>
+    <div><label>Sum Insured : {{suminsured}} </label></div><br/>
+    <div><label>Farm ID : {{FarmId}} </label></div><br/>
+    <div><label>Claim Number : {{ClaimNo}}</label></div><br/>
+    <div><label>Cause Of Loss : {{CauseOfLoss}} </label></div><br/>
+    <div><label>Date of Loss : {{dateOfLoss | date:'mediumDate'}} </label></div><br/>
+    <div><label>Name : {{fullname}}</label></div><br/>
+    <div><label>City : {{city}} </label></div><br/>
+    <div><label>Contact Number : {{ContactNo_}}</label></div><br/>
+    <div><button *ngIf="ClaimApprove==null" (click)="ApproveClaimrequest()"type="button">Approve</button></div>
+</div>

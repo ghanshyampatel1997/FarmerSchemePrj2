@@ -1,20 +1,33 @@
-<p>login works!</p>
-<div class = "container">
+<div class = "container" *ngIf="Loginformpart">
     <div class = "row">
         <div class ="col-10">
             <div class = "jumbotron">
-                <form name = "form" [formGroup] = "form">
+                <form name = "form" [formGroup] = "form" (ngSubmit)="onSubmit()">
                     <div>
                         <h2>Login</h2>
                         <br/>
                     </div>
                     <div class = "form-group">
-                        <label for = "userid">Mail Id</label>
+                        <label for = "usertype">User Type</label>
+                        <select type = "text" class ="form-control" formControlName="usertype" [ngClass]="{'is-invalid':
+                        form.get('usertype').touched && form.get('usertype').invalid}">
+                            <option value="farmer">Farmer</option>
+                            <option value="bidder">Bidder</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                        <div *ngIf="form.get('usertype').touched && form.get('usertype').invalid" class = "invalid-feedback">
+                            <div *ngIf="form.get('usertype').errors.required">Please select User Type.</div>
+                        </div>
+                    </div>
+                    <div class = "form-group">
+                        <label for = "userid">User Id</label>
                         <input type = "text" class ="form-control" formControlName="userid" [ngClass]="{'is-invalid':
                         form.get('userid').touched && form.get('userid').invalid}"/>
                 
-                        <div class = "invalid-feedback">
-                            <div>Please Enter your EMail Id</div>
+                        <div *ngIf="form.get('userid').touched && form.get('userid').invalid" class = "invalid-feedback">
+                            <div *ngIf="form.get('userid').errors.required">Please Enter your EMail Id</div>
+
+                            <!-- <div>Please Enter your EMail Id</div> -->
                         </div>
                     </div>
 
@@ -32,15 +45,51 @@
 
                     <div class = "form-group">
                         <button class = "btn btn-primary"[disabled]="!form.valid">Login</button>
- 
-                      <br/>
-                      <input type = "submit" class="btn btn-link" value = "Forgot Password?">
-                      &nbsp;&nbsp;&nbsp;&nbsp;
-                                                                            
-                    </div>
+                    </div>               
+                   
                 </form>
+                <br/>
+                <input type = "submit" (click)="forgetpassword()" class="btn btn-link" value = "Forgot Password?">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <br/>
+                <br/>
+                <input type = "submit" (click)="newuser()"  class="btn btn-link" value = "New User? Register Here">
+                <div *ngIf="registeroption">
+                    <br/>
+                    <br/>
+                    <label (click)="FarmerRegister()">Register As Farmer</label> 
+                    <br/>
+                    <br/>
+                    <label (click)="BidderRegister()">Register As Bidder</label>  
+                </div>
             </div>
 
+        </div>
+    </div>
+</div>
+
+<div class = "container" *ngIf="forgetpasswordpart">
+    <div class = "row">
+        <div class ="col-10">
+            <div class = "jumbotron">
+                <form name = "form2" [formGroup] = "form2" (ngSubmit)="forgetPassSubmit()">
+                   
+                    <div class = "form-group">
+                        <label for = "mailid">Privide your Email Address</label>
+                        <input type = "text" class ="form-control" formControlName="mailid" [ngClass]="{'is-invalid':
+                        form2.get('mailid').touched && form2.get('mailid').invalid}"/>
+                
+                        <div *ngIf="form2.get('mailid').touched && form2.get('mailid').invalid" class = "invalid-feedback">
+                            <div *ngIf="form2.get('mailid').errors.required">Please Enter your EMail Id</div>
+
+                            <!-- <div>Please Enter your EMail Id</div> -->
+                        </div>
+                    </div>
+                    <div class = "form-group">
+                        <button class = "btn btn-primary"[disabled]="!form2.valid">Send Mail</button>
+                    </div>
+                </form>                 
+            </div>
         </div>
     </div>
 </div>

@@ -1,93 +1,101 @@
-<div class="intro" *ngIf="Farmerregister">
+<div class = "container">
+    <div class = "row">
+        <div class ="col-10">
+            <div class = "jumbotron">
+                <div class="intro" *ngIf="Farmerregister">
 
-    <h2 style="text-align: center;"><em><strong>Admin Approval for Users</strong></em></h2>
-    <p><br /><br /></p>
-    <div style="text-align: center;border:1px black;" (click)="Farmerregiapproval()">Approve for Farmer Registration</div>
-    <p>&nbsp;</p>
-    <div style="text-align: center;">Approve for Bidder Registration</div>
-    <p>&nbsp;</p>
-    <div style="text-align: center;">Approve for Farmer Sell Request</div>
-    <p>&nbsp;</p>
-    <div style="text-align: center;">Approve for Bidding Status</div>
-    <p>&nbsp;</p>
-    <div style="text-align: center;">Approve for Insurance Claim</div>
-    
-</div>
-<div *ngIf="Farmerregi">
-<div class="Container-fluid">
-    <button (click)="GoBackAgain()">Go Back</button><br/>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Full Name</th>
-                <th>Details</th>
-                <th >Approval status</th>
-                
-            </tr>
-        </thead>
-        <tbody *ngFor="let d of Farmerregisterdataresult">
-            <tr>
-                <td>{{d.fullname}}</td>
-                <td><button (click)="Viewdata(d)">Details</button></td>
-                <div *ngIf="d.ApprovedStatus==null">
-                    <td>Not Approved</td>
+                    <h2 style="text-align: center;"><em><strong>Admin Approval for Users</strong></em></h2>
+                    <p><br /><br /></p>
+                    <div style="text-align: center;border:1px black;" (click)="Farmerregiapproval()">Approve for Farmer Registration</div>
+                    <p>&nbsp;</p>
+                    <div style="text-align: center;" (click)="BidderRegiapproval()">Approve for Bidder Registration</div>
+                    <p>&nbsp;</p>
+                    <div style="text-align: center;"(click)="FarmerSellRequestApproval()">Approve for Farmer Sell Request</div>
+                    <p>&nbsp;</p>
+                    <div style="text-align: center;" (click)="SoldApproval()">Approve for Bidding Status</div>
+                    <p>&nbsp;</p>
+                    <div style="text-align: center;"(click)="InsClaimApproval()">Approve for Insurance Claim</div>
+                    
                 </div>
-                <div *ngIf="d.ApprovedStatus != null">
-                    <td>Approved</td>
+                <div *ngIf="Farmerregi">
+                <div class="Container-fluid">
+                    <button (click)="GoBackAgain()">Go Back</button><br/>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>Details</th>
+                                <th >Approval status</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let d of Farmerregisterdataresult">
+                            <tr>
+                                <td>{{d.fullname}}</td>
+                                <td><button (click)="Viewdata(d)">Details</button></td>
+                                <div *ngIf="d.ApprovedStatus==null">
+                                    <td>Not Approved</td>
+                                </div>
+                                <div *ngIf="d.ApprovedStatus != null">
+                                    <td>Approved</td>
+                                </div>
+                                
+                                
+                            </tr>
+                            
+                            
+                        </tbody>
+                    </table>
+                    
+                    
                 </div>
-                
-                
-            </tr>
-            
-            
-        </tbody>
-    </table>
-    
-       
-</div>
-</div>
-<div *ngIf="ViewDetails" class="container">
-    <button (click)="GoBack()">Go Back</button><br/>
-    
-            <label>Farmer Email Id : </label>
-       
-             <label>{{UserEmailId}}</label><br/><br/>
-    <label>Contact No  :  </label> 
-    <label>{{ContactNo_}}</label> <br/><br/>
-    <label>Address1  :  </label> 
-    <label>{{address1}}</label> <br/><br/>
-    <label>Address2   :  </label> 
-    <label>{{address2}}</label> <br/><br/>
-    <label>City   :  </label> 
-    <label>{{city}}</label> <br/><br/>
-    <label>State   :  </label> 
-     <label>{{state}}</label> <br/><br/>
-     <label>Pincode   :  </label> 
-     <label>{{pincode}}</label> <br/><br/>
-     <label>Pancard</label> <br/><br/>
-    <img [src]="pancardDocument"  style="width:250px;height:200px">
-    <!--  <label>{{pancardDocument}}</label> <br/> -->
-     <label>Aadharcard</label> <br/><br/>
-    <img [src]="aadharCardDocument"  style="width:250px;height:200px">
-    <!--  <img class="e2e-inner-html-bound" src={{aadharCardDocument}}> <br/> -->
-     <label>Certificate</label> <br/><br/>
-    <img [src]="certificate"  style="width:250px;height:200px"><br/><br/>
-    <!--  <label>{{certificate}}</label> <br/> -->
-     <label>IFSC Code   :  </label>
-     <label>{{IFSCCode}}</label> <br/><br/>
+                </div>
+                <div *ngIf="ViewDetails" class="container">
+                    <button (click)="GoBack()">Go Back</button><br/>
+                    
+                            <label>Farmer Email Id : </label>
+                    
+                            <label>{{UserEmailId}}</label><br/><br/>
+                    <label>Contact No  :  </label> 
+                    <label>{{ContactNo_}}</label> <br/><br/>
+                    <label>Address1  :  </label> 
+                    <label>{{address1}}</label> <br/><br/>
+                    <label>Address2   :  </label> 
+                    <label>{{address2}}</label> <br/><br/>
+                    <label>City   :  </label> 
+                    <label>{{city}}</label> <br/><br/>
+                    <label>State   :  </label> 
+                    <label>{{state}}</label> <br/><br/>
+                    <label>Pincode   :  </label> 
+                    <label>{{pincode}}</label> <br/><br/>
+                    <label>Pancard</label> <br/><br/>
+                    <img [src]="pancardDocument"  style="width:250px;height:200px">
+                    <!--  <label>{{pancardDocument}}</label> <br/> -->
+                    <label>Aadharcard</label> <br/><br/>
+                    <img [src]="aadharCardDocument"  style="width:250px;height:200px">
+                    <!--  <img class="e2e-inner-html-bound" src={{aadharCardDocument}}> <br/> -->
+                    <label>Certificate</label> <br/><br/>
+                    <img [src]="certificate"  style="width:250px;height:200px"><br/><br/>
+                    <!--  <label>{{certificate}}</label> <br/> -->
+                    <label>IFSC Code   :  </label>
+                    <label>{{IFSCCode}}</label> <br/><br/>
 
-     <label>Bank Account No   :  </label> 
-     <label>{{BankAccountNo}}</label> <br/><br/>
+                    <label>Bank Account No   :  </label> 
+                    <label>{{BankAccountNo}}</label> <br/><br/>
 
-     <label>Land  Area   :  </label> 
-     <label>{{landArea}}</label> <br/><br/>
+                    <label>Land  Area   :  </label> 
+                    <label>{{landArea}}</label> <br/><br/>
 
-     <label>Land Address   :  </label>
-     <label>{{landAddress}}</label> <br/><br/>
+                    <label>Land Address   :  </label>
+                    <label>{{landAddress}}</label> <br/><br/>
 
-     <label>Land Pincode   :  </label>
-     <label>{{landPinCode}}</label> <br/><br/>
-     <button *ngIf="ApprovedStatus==null" type="button" (click)="Approveddata() ">Approve</button> <br/><br/>
-     <button (click)="GoBack()">Go Back</button><br/><br/>
+                    <label>Land Pincode   :  </label>
+                    <label>{{landPinCode}}</label> <br/><br/>
+                    <button *ngIf="ApprovedStatus==null" type="button" (click)="Approveddata() ">Approve</button> <br/><br/>
+                    <button (click)="GoBack()">Go Back</button><br/><br/>
 
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -109,13 +109,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminBidApprovalController.cs" />
+    <Compile Include="Controllers\AdminBidderRegistationApprovalController.cs" />
+    <Compile Include="Controllers\AdminClaimApprovalController.cs" />
     <Compile Include="Controllers\AdminFarmerController.cs" />
+    <Compile Include="Controllers\AdminFarmerSellRequestController.cs" />
     <Compile Include="Controllers\AngFarmerCropSellRequestsController.cs" />
+    <Compile Include="Controllers\BidderRegisterController.cs" />
     <Compile Include="Controllers\BiddingController.cs" />
     <Compile Include="Controllers\CroppricesController.cs" />
     <Compile Include="Controllers\FarmerRegisterController.cs" />
     <Compile Include="Controllers\InsuranceApplicationController.cs" />
     <Compile Include="Controllers\InsuranceClaimController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\RollTypesController.cs" />
     <Compile Include="Controllers\SoldhistoryController.cs" />
     <Compile Include="Controllers\ViewMarketPlaceFarmerController.cs" />

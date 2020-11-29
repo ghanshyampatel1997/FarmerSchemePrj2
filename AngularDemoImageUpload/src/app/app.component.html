@@ -12,8 +12,25 @@
           <a routerLinkActive="active" routerLink="About">About Us</a>
         </li>
         <li>
-          <a routerLinkActive="active" routerLink="Login">Login Here!!!</a>
+          <a routerLinkActive="active" routerLink="Cropsell" *ngIf="loginsessionuser && UserFarmer">Farmer Facility</a>
         </li>
+        <li>
+          <a routerLinkActive="active" routerLink="InsuranceApplication" *ngIf="loginsessionuser && UserFarmer">Farmer Insurance Application</a>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="InsuranceClaim" *ngIf="loginsessionuser && UserFarmer">Farmer Insurance Claim</a>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="Bidder" *ngIf="loginsessionuser && UserBidder">Bidder Facility</a>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="AdminFamerRegister" *ngIf="loginsessionuser && UserAdmin">Admin Facility</a>
+        </li>
+        <li>
+          <a routerLinkActive="active" *ngIf="!(loginsessionuser)" routerLink="Login">Login Here!!!</a>
+        </li>
+        <li *ngIf="loginsessionuser"><a (click)="logOff()">Logoff</a></li>
+        <li *ngIf="loginsessionuser" ><a>Hello {{username}}</a></li>
         <li>
           <a routerLinkActive="active" routerLink="Contact">Contact Us</a>
         </li>

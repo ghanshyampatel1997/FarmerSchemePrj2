@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Route} from '@angular/router';
+import {Route, Router} from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { UploadImageService } from 'src/Services/upload-image.service';
 
@@ -18,7 +18,7 @@ export class FarmerCropSellRequestComponent implements OnInit {
   fileToUpload: File = null;
 
 
-  constructor(private imageService : UploadImageService) { }
+  constructor(private imageService : UploadImageService,private router:Router) { }
 
   ngOnInit(): void {
     this.farmeroption=true;
@@ -42,12 +42,12 @@ export class FarmerCropSellRequestComponent implements OnInit {
   }
   cropHistoryrequest()
   {
-
+    this.router.navigate(['/SoldHistory']);
   }
 
   MarketPlacerequest()
   {
-
+    this.router.navigate(['/ViewMarketPlace']);
   }
 
   handleFileInput(file: FileList) {
@@ -60,9 +60,10 @@ export class FarmerCropSellRequestComponent implements OnInit {
     }
     reader.readAsDataURL(this.fileToUpload);
   }
-
+  
+userid=2;
   OnSubmit(Cropetype,CropeName,Fertilizertype,Quantity,Image){
-   this.imageService.postFile(Cropetype.value,CropeName.value,Fertilizertype.value,Quantity.value,this.fileToUpload).subscribe(
+   this.imageService.postFile(Cropetype.value,CropeName.value,Fertilizertype.value,Quantity.value,this.userid,this.fileToUpload).subscribe(
      (data) =>{
        console.log('done');
        Cropetype.value = null;

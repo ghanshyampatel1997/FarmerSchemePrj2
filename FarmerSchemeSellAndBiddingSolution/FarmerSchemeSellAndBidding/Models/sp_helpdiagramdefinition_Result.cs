@@ -10,10 +10,13 @@
 namespace FarmerSchemeSellAndBidding.Models
 {
     using System;
-    
+    using System.Runtime.Serialization;
+    [DataContract]
     public partial class sp_helpdiagramdefinition_Result
     {
+        [DataMember]
         public Nullable<int> version { get; set; }
+        [DataMember]
         public byte[] definition { get; set; }
     }
 }

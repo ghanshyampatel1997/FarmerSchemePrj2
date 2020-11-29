@@ -11,10 +11,14 @@ namespace FarmerSchemeSellAndBidding.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+
+    [DataContract]
     public partial class Admin
     {
+        [DataMember]
         public string AdminID { get; set; }
+        [DataMember]
         public string Password { get; set; }
     }
 }

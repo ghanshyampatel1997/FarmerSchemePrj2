@@ -52,7 +52,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                                       }).ToList();
                 return Ok(farmerdata);
             }
-            catch (Exception e)
+            catch
             {
                 return BadRequest("Data is not Available.");
             }

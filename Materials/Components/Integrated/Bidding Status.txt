@@ -1,0 +1,228 @@
+---------------BiddingStatusController.cs------------------
+
+using BiddingStatus.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+
+namespace BiddingStatus.Controllers
+{
+    public class BiddingStatusController : ApiController
+    {
+        private FarmerSchemeDB1Entities Db = new FarmerSchemeDB1Entities();
+
+        [HttpGet]
+        public IHttpActionResult geBiddingStatusDetails()
+        {
+            try
+            {
+                dynamic biddingdata = (from b in Db.BiddingTables
+                                       join f in Db.FarmerCropdetils
+                                       
+                                       on b.FarmerSellID equals f.FarmerSellID
+                                       join c in Db.Cropprices
+                                       on f.CropId equals c.CropId
+                                       join r in Db.RollTypes
+                                       on f.UserID equals r.UserID
+                                       join u in Db.UserRegisters
+                                       on r.UserEmailId equals u.UserEmailId
+                                       
+                                       select new
+                                       {
+                                           b.BidID,
+                                           b.bidAmount,
+                                           b.date,
+                                           b.ApprovedBid,
+                                           b.Biddingdate,
+                                           u.fullname,
+                                           f.cropType,
+                                           f.CropId,
+                                           f.quantity,
+                                           c.cropname,
+                                           c.MSP
+                                       }).ToList();
+                return Ok(biddingdata);
+            }
+            catch
+            {
+                return BadRequest("No Data Found!!!");
+            }
+        }
+
+        [HttpPost]
+        public IHttpActionResult PostBidStat(dynamic id)
+        {
+            try
+            {
+                int ID = Convert.ToInt32(id);
+                BiddingTable  Bid = (from b in Db.BiddingTables
+                         where b.BidID == ID
+                         select b).First();
+                Bid.ApprovedBid =true;
+                Db.Entry(Bid).State = EntityState.Modified;
+                Db.SaveChanges();
+                return Ok("Bid approved!!");
+
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        
+        
+
+    }
+}
+------------BiddingStatus.service.ts-------------------
+
+import { HttpClient } from '@angular/common/http'
+import{Injectable} from '@angular/core'
+@Injectable({providedIn:"root"})
+export class BiddingStatusService
+{
+    constructor(private http:HttpClient)
+        {
+        }
+        readonly uri="https://localhost:44354/api/BiddingStatus";
+        GetBiddingStatus() {
+            return this.http.get(this.uri);
+     
+        }  
+        ApproveBidStatusdata (ID:number)
+        {
+            return this.http.post(this.uri,ID);
+        }
+
+    }   
+----------------bidding-status.component.html---------------
+
+<p>bidding-status works!</p>
+<!-- <div *ngIf="bidding-status"></div> -->
+<!-- <div style="text-align: center;">Approval for Bidding Status</div> -->
+<div *ngIf="biddingstat">
+    <div class="Container-fluid">
+        <table>
+            <thead>
+                <tr>
+                    <th>Bid ID</th>
+                    <th>Details</th>
+                    <th>Approval status</th>
+                    
+                </tr>
+            </thead>
+            <tbody *ngFor="let b of Biddingdata">
+                <tr>
+                   <td>{{b.BidID}}</td>
+                   <td><button (click)="Viewdata(b)">Details</button></td>
+                   <div *ngIf="b.ApprovedBid==null">
+                      <td>Not Approved</td>
+                   </div>
+                   <div *ngIf="b.ApprovedBid != null">
+                      <td>Approved</td>
+                   </div>
+                 </tr>
+              </tbody>
+            </table>
+        </div>
+
+     
+    </div>
+    <div *ngIf="ViewDetails">
+        <button (click)="GoBack()">Go Back</button>
+        <div><label>Bid id :{{BidID}} </label></div><br/>
+        <div><label>Bid Amount :{{bidAmount}} </label></div><br/>
+     <div><label>Approved Bid :{{ApprovedBid}} </label></div><br/>
+    <div><label>Date :{{date}} </label></div><br/>
+     <div><label>Bidding date :{{Biddingdate}} </label></div><br/>
+     <div><label>Fullname :{{fullname}} </label></div><br/>
+    <div><label>Crop type :{{cropType}} </label></div><br/>
+     <div><label>Crop id :{{CropId}} </label></div><br/>
+    <div><label>Quantity :{{quantity}} </label></div><br/>
+     <div><label>Crop Name:{{cropname}} </label></div><br/>
+     <div><label>minimum selling price:{{MSP}} </label></div><br/>
+    
+    <div><button  (click)="ApproveBidRequest()"type="button" *ngIf="ApprovedBid==null">Approve</button></div>
+    </div>
+    
+-------------bidding-status.component.ts-------------
+
+import { Component, OnInit } from '@angular/core';
+import { BiddingStatusService } from 'src/service/BiddingStatus.service';
+
+@Component({
+  selector: 'app-bidding-status',
+  templateUrl: './bidding-status.component.html',
+  styleUrls: ['./bidding-status.component.css']
+})
+export class BiddingStatusComponent implements OnInit {
+  biddingstat;
+ ViewDetails;
+ Biddingdata;
+  constructor(private BSRequest: BiddingStatusService) { }
+
+  ngOnInit(): void {
+   this.biddingstat=true;
+   this.ViewDetails=false;
+   this.BidStatusapprovalgetdata();
+  }
+ 
+ BidStatusapprovalgetdata(){
+   this.BSRequest.GetBiddingStatus().subscribe((data)=>
+   {this.Biddingdata=data;console.log(data);console.table(data);});
+   
+ }
+ BidID;
+ bidAmount;
+ ApprovedBid;
+ date;
+ Biddingdate;
+ fullname;
+ cropType;
+ CropId;
+ quantity;
+ cropname;
+ MSP;
+ 
+
+ Viewdata(b)
+ {
+   this.biddingstat=false;
+   this.ViewDetails=true;
+   this.BidID=b.BidID;
+   this.bidAmount=b.bidAmount;
+   this.ApprovedBid=b.ApprovedBid;
+   this.date=b.date;
+   this.Biddingdate=b.Biddingdate;
+   this.fullname=b.fullname;
+   this.cropType=b.cropType;
+   this.quantity=b.quantity;
+   this.cropname=b.cropname;
+   this.MSP=b.MSP;
+
+  }
+  GoBack()
+  {
+    this.ViewDetails=false;
+    this.biddingstat=true;
+  }
+  ApproveBidRequest()
+  {
+  
+   this.BSRequest.ApproveBidStatusdata(this.BidID).subscribe((data)=>
+   {
+     window.alert(data);
+     this.GoBack();
+     this.BidStatusapprovalgetdata();
+
+   },
+   (error)=>{window.alert(error.error.Message);})
+  }
+
+}

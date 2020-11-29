@@ -1,0 +1,11 @@
+ProjectCheckList
+ 
+NamingConversion
+Region
+Comments
+HandlingNulls
+ExceptionHandling(angular and webapi)
+UserExists or emailexists
+Layout
+No Hard Coding
+Completed Modules List

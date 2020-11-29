@@ -10,13 +10,19 @@
 namespace FarmerSchemeSellAndBidding.Models
 {
     using System;
-    
+    using System.Runtime.Serialization;
+    [DataContract]
     public partial class MarketViewForBidder_Result
     {
+        [DataMember]
         public Nullable<int> FarmerSellID { get; set; }
+        [DataMember]
         public string cropType { get; set; }
+        [DataMember]
         public string cropname { get; set; }
+        [DataMember]
         public Nullable<int> MSP { get; set; }
+        [DataMember]
         public Nullable<int> bidAmount { get; set; }
     }
 }

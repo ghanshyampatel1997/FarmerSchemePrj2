@@ -11,7 +11,8 @@ namespace FarmerSchemeSellAndBidding.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+    [DataContract]
     public partial class InsuranceApplication
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,13 +20,19 @@ namespace FarmerSchemeSellAndBidding.Models
         {
             this.ClaimForms = new HashSet<ClaimForm>();
         }
-    
+        [DataMember]
         public int PolicyNo { get; set; }
+        [DataMember]
         public string season { get; set; }
+        [DataMember]
         public int year { get; set; }
+        [DataMember]
         public string cropname { get; set; }
+        [DataMember]
         public Nullable<int> SumInsured { get; set; }
+        [DataMember]
         public Nullable<int> FarmId { get; set; }
+        [DataMember]
         public Nullable<int> UserID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

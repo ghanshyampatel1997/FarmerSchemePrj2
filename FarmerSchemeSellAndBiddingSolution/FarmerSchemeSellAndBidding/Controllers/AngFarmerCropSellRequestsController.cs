@@ -53,6 +53,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 farmerCropdetil.quantity = Convert.ToInt32(httpRequest["Quantity"]);
                 farmerCropdetil.SoilPHCertificate = filepath2;
                 farmerCropdetil.AddedDate = DateTime.Now;
+                farmerCropdetil.UserID= Convert.ToInt32(httpRequest["userid"]);
 
                 db.FarmerCropdetils.Add(farmerCropdetil);
                 db.SaveChanges();

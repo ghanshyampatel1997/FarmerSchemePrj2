@@ -10,14 +10,21 @@
 namespace FarmerSchemeSellAndBidding.Models
 {
     using System;
-    
+    using System.Runtime.Serialization;
+    [DataContract]
     public partial class Soldhistory_Result
     {
+        [DataMember]
         public Nullable<System.DateTime> date { get; set; }
+        [DataMember]
         public string cropname { get; set; }
+        [DataMember]
         public Nullable<int> MSP { get; set; }
+        [DataMember]
         public Nullable<int> quantity { get; set; }
+        [DataMember]
         public Nullable<int> bidAmount { get; set; }
+        [DataMember]
         public Nullable<int> Totalprice { get; set; }
     }
 }

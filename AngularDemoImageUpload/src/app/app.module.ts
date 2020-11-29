@@ -27,6 +27,15 @@ import { InsuranceClaimComponent } from './insurance-claim/insurance-claim.compo
 import { Claimservice } from 'src/Services/Claim.service';
 import { AdminFarmerRegiComponent } from './admin-farmer-regi/admin-farmer-regi.component';
 import { Farmerregisterdataservice } from 'src/Services/AdminFarmerregi.service';
+import { AdminfarmersellrequestComponent } from './adminfarmersellrequest/adminfarmersellrequest.component';
+import { Farmersellrequestapproval } from 'src/Services/AdminFarmersellrequest.service';
+import { BidderRegisterService } from 'src/Services/BidderRegister.Service';
+import { AdminClaimApprovalComponent } from './admin-claim-approval/admin-claim-approval.component';
+import { AdminBidApprovalComponent } from './admin-bid-approval/admin-bid-approval.component';
+import { ForgetPasswordservice } from 'src/Services/ForgetPassword.service';
+import { BiddingStatusService } from 'src/Services/AdminBidApproval.Service';
+import { Claimrequestservice } from 'src/Services/AdminClaimRequest.Service';
+import { LoginService } from 'src/Services/Login.service';
 
 
 @NgModule({
@@ -44,7 +53,10 @@ import { Farmerregisterdataservice } from 'src/Services/AdminFarmerregi.service'
     ViewmarketplaceComponent,
     InsuranceApplicationComponent,
     InsuranceClaimComponent,
-    AdminFarmerRegiComponent
+    AdminFarmerRegiComponent,
+    AdminfarmersellrequestComponent,
+    AdminClaimApprovalComponent,
+    AdminBidApprovalComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +68,9 @@ import { Farmerregisterdataservice } from 'src/Services/AdminFarmerregi.service'
   ],
 providers: [UploadImageService,BidderService,soldhistoryservice,
   FarmerRegisterService,ViewMarketPlaceservice,InsuranceService,
-  Claimservice,Farmerregisterdataservice],
+  Claimservice,Farmerregisterdataservice,Farmersellrequestapproval,
+  BidderRegisterService,ForgetPasswordservice,BiddingStatusService,
+  Claimrequestservice,LoginService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

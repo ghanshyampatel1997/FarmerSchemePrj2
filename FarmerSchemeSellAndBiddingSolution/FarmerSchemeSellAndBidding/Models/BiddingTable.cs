@@ -11,15 +11,23 @@ namespace FarmerSchemeSellAndBidding.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+    [DataContract]
     public partial class BiddingTable
     {
+        [DataMember]
         public int BidID { get; set; }
+        [DataMember]
         public Nullable<int> bidAmount { get; set; }
+        [DataMember]
         public Nullable<int> FarmerSellID { get; set; }
+        [DataMember]
         public Nullable<bool> ApprovedBid { get; set; }
+        [DataMember]
         public Nullable<System.DateTime> date { get; set; }
+        [DataMember]
         public int UserID { get; set; }
+        [DataMember]
         public Nullable<System.DateTime> Biddingdate { get; set; }
     
         public virtual FarmerCropdetil FarmerCropdetil { get; set; }

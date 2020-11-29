@@ -1,59 +1,67 @@
-<h4 align="center">Particulars of Insuree</h4>
-<form>
-      <div>
-      <em><label for="policyno">Policy No* : </label></em><strong>&nbsp;
-      <input ngModel name="PolicyNo" #PolicyNo="ngModel" id="policyno" type="number" required/></strong><br /><br />
+<div class = "container">
+  <div class = "row">
+      <div class ="col-10">
+          <div class = "jumbotron">
+        <h4 align="center">Particulars of Insuree</h4>
+        <form>
+              <div>
+              <em><label for="policyno">Policy No* : </label></em><strong>&nbsp;
+              <input ngModel name="PolicyNo" #PolicyNo="ngModel" id="policyno" type="number" required/></strong><br /><br />
+              </div>
+              <div><button (click)="getdata(PolicyNo)">click Here To Get Data</button></div>
+              <div *ngIf="!PolicyNo?.valid && (PolicyNo?.dirty || PolicyNo.touched)" class="error">
+                <div *ngIf="PolicyNo.errors.required">
+                    <small class="text-danger">Policy Number  is Required</small>
+                </div>
+            </div>
+            
+              <div>
+                  <em>
+                <label for="lnsurance company">Insurance Company  :  </label></em>
+                <label>{{Insurancecompany}}</label> 
+              </div>
+              
+                <div>  
+                  <em>
+                <label for="Sum insured">Sum Insured  :  </label> </em>
+                <label>{{Suminsured}}</label>
+                </div> 
+
+                  <div> <em><label for="Name insuree">Name of Insuree  :  </label></em>
+                    <label for="Name insuree">{{Nameofinsuree}}</label>
+                  </div> 
+
+        </form>
+        <h4 align="center">Details of Cause for Loss</h4>
+        <form>
+            <div>
+              <em><label for="date of loss">Date of Loss*</label> 
+              <input id="date of loss" ngModel name="Dateofloss" #Dateofloss="ngModel" type="date" /></em><br /><br />
+            </div>
+            <div *ngIf="!Dateofloss?.valid && (Dateofloss?.dirty || Dateofloss.touched)" class="error">
+              <div *ngIf="Dateofloss.errors.required">
+                  <small class="text-danger">Date of loss  is Required</small>
+              </div>
+            </div>   
+            <div> 
+                    <label for="cause of loss">Cause of Loss*</label>
+                <label>Select list</label><select id="myList" ngModel name="Causeofloss" #Causeofloss="ngModel">
+                <Option Value="Choose">Choose</Option>
+                <option value="Natural Calamities">Natural Calamities</option>
+                <option value="Insects/Pests">Insects/Pests</option>
+                  <option value="Crop Diseases">Crop Diseases</option>
+                  </select>
+              </div>
+              <div *ngIf="!Causeofloss?.valid && (Causeofloss?.dirty || Causeofloss.touched)" class="error">
+                <div *ngIf="Causeofloss.errors.required">
+                    <small class="text-danger">Date of loss  is Required</small>
+                </div>
+              </div>   
+          </form>
+        <p><input type="submit" (click)= "AddInsuranceClaim(PolicyNo,Insurancecompany, Suminsured,Nameofinsuree,Dateofloss,Causeofloss) "value="Submit" /></p>
+        <p><em>*All fields are Mandatory</em></p>
       </div>
-      <div><button (click)="getdata(PolicyNo)">click Here To Get Data</button></div>
-      <div *ngIf="!PolicyNo?.valid && (PolicyNo?.dirty || PolicyNo.touched)" class="error">
-        <div *ngIf="PolicyNo.errors.required">
-            <small class="text-danger">Policy Number  is Required</small>
-        </div>
     </div>
-    
-      <div>
-          <em>
-         <label for="lnsurance company">Insurance Company  :  </label></em>
-         <label>{{Insurancecompany}}</label> 
-      </div>
-       
-         <div>  
-          <em>
-         <label for="Sum insured">Sum Insured  :  </label> </em>
-         <label>{{Suminsured}}</label>
-        </div> 
-
-          <div> <em><label for="Name insuree">Name of Insuree  :  </label></em>
-            <label for="Name insuree">{{Nameofinsuree}}</label>
-          </div> 
-
-</form>
-<h4 align="center">Details of Cause for Loss</h4>
-<form>
-    <div>
-      <em><label for="date of loss">Date of Loss*</label> 
-      <input id="date of loss" ngModel name="Dateofloss" #Dateofloss="ngModel" type="date" /></em><br /><br />
-     </div>
-     <div *ngIf="!Dateofloss?.valid && (Dateofloss?.dirty || Dateofloss.touched)" class="error">
-      <div *ngIf="Dateofloss.errors.required">
-          <small class="text-danger">Date of loss  is Required</small>
-      </div>
-    </div>   
-     <div> 
-            <label for="cause of loss">Cause of Loss*</label>
-         <label>Select list</label><select id="myList" ngModel name="Causeofloss" #Causeofloss="ngModel">
-         <Option Value="Choose">Choose</Option>
-         <option value="Natural Calamities">Natural Calamities</option>
-         <option value="Insects/Pests">Insects/Pests</option>
-          <option value="Crop Diseases">Crop Diseases</option>
-          </select>
-       </div>
-       <div *ngIf="!Causeofloss?.valid && (Causeofloss?.dirty || Causeofloss.touched)" class="error">
-        <div *ngIf="Causeofloss.errors.required">
-            <small class="text-danger">Date of loss  is Required</small>
-        </div>
-      </div>   
-  </form>
-<p><input type="submit" (click)= "AddInsuranceClaim(PolicyNo,Insurancecompany, Suminsured,Nameofinsuree,Dateofloss,Causeofloss) "value="Submit" /></p>
-<p><em>*All fields are Mandatory</em></p>
+  </div>
+</div>
 

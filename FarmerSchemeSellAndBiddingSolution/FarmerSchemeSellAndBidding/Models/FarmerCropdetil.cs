@@ -11,7 +11,8 @@ namespace FarmerSchemeSellAndBidding.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+    [DataContract]
     public partial class FarmerCropdetil
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,15 +20,23 @@ namespace FarmerSchemeSellAndBidding.Models
         {
             this.BiddingTables = new HashSet<BiddingTable>();
         }
-    
+        [DataMember]
         public int FarmerSellID { get; set; }
+        [DataMember]
         public string cropType { get; set; }
+        [DataMember]
         public Nullable<int> CropId { get; set; }
+        [DataMember]
         public string fertilizerType { get; set; }
+        [DataMember]
         public Nullable<int> quantity { get; set; }
+        [DataMember]
         public string SoilPHCertificate { get; set; }
+        [DataMember]
         public Nullable<bool> AproovedFarmersell { get; set; }
+        [DataMember]
         public Nullable<int> UserID { get; set; }
+        [DataMember]
         public Nullable<System.DateTime> AddedDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

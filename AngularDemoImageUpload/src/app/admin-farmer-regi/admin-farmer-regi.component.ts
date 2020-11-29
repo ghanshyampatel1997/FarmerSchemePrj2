@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Farmerregisterdataservice } from 'src/Services/AdminFarmerregi.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class AdminFarmerRegiComponent implements OnInit {
   Farmerregister;
   Farmerregi;
   ViewDetails;
-  constructor(private Fregiservice:Farmerregisterdataservice) { }
+  constructor(private Fregiservice:Farmerregisterdataservice,private router:Router) { }
 
   ngOnInit(): void {
     this.Farmerregister=true;
@@ -31,6 +32,7 @@ export class AdminFarmerRegiComponent implements OnInit {
       );
     
   }
+
   UserEmailId;
   ContactNo_;
   address1;
@@ -48,6 +50,7 @@ export class AdminFarmerRegiComponent implements OnInit {
   landPinCode;
 userid;
 ApprovedStatus;
+
   Viewdata(d)
   {
     debugger;
@@ -73,16 +76,19 @@ ApprovedStatus;
     this.ApprovedStatus=d.ApprovedStatus;
 
   }
+
   GoBack()
   {
     this.ViewDetails=false;
     this.Farmerregi=true;
   }
+
   GoBackAgain()
   {
     this.Farmerregister=true;
     this.Farmerregi=false;
   }
+
   Approveddata()
   {
     debugger;
@@ -97,5 +103,22 @@ ApprovedStatus;
       window.alert(error.error.Message);
     });
 
+  }
+
+  BidderRegiapproval()
+  {
+    this.router.navigate(['/home']);
+  }
+  FarmerSellRequestApproval()
+  {
+    this.router.navigate(['/AdminFamerSellRequest']);
+  }
+  SoldApproval()
+  {
+    this.router.navigate(['/AdminBidApproval']);
+  }
+  InsClaimApproval()
+  {
+    this.router.navigate(['/AdminClaimApproval']);
   }
 }

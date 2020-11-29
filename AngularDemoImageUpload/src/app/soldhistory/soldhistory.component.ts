@@ -15,6 +15,7 @@ export class SoldhistoryComponent implements OnInit {
     this.getsoldhistorydata();
   }
 
+  
   soldhistorydata:Soldhistory;
   getsoldhistorydata()
   {

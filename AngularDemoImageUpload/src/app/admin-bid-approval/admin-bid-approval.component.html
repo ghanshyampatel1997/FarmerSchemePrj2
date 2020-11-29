@@ -1,0 +1,54 @@
+<!-- <div *ngIf="bidding-status"></div> -->
+<!-- <div style="text-align: center;">Approval for Bidding Status</div> -->
+<div class = "container">
+    <div class = "row">
+        <div class ="col-10">
+            <div class = "jumbotron">
+                <div *ngIf="biddingstat">
+                    <div class="Container-fluid">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Bid ID</th>
+                                    <th>Details</th>
+                                    <th>Approval status</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let b of Biddingdata">
+                                <tr>
+                                <td>{{b.BidID}}</td>
+                                <td><button (click)="Viewdata(b)">Details</button></td>
+                                <div *ngIf="b.ApprovedBid==null">
+                                    <td>Not Approved</td>
+                                </div>
+                                <div *ngIf="b.ApprovedBid != null">
+                                    <td>Approved</td>
+                                </div>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+
+                    
+                    </div>
+                    <div *ngIf="ViewDetails">
+                        <button (click)="GoBack()">Go Back</button>
+                        <div><label>Bid id :{{BidID}} </label></div><br/>
+                        <div><label>Bid Amount :{{bidAmount}} </label></div><br/>
+                    <div><label>Approved Bid :{{ApprovedBid}} </label></div><br/>
+                    <div><label>Date :{{date}} </label></div><br/>
+                    <div><label>Bidding date :{{Biddingdate}} </label></div><br/>
+                    <div><label>Fullname :{{fullname}} </label></div><br/>
+                    <div><label>Crop type :{{cropType}} </label></div><br/>
+                    <div><label>Crop id :{{CropId}} </label></div><br/>
+                    <div><label>Quantity :{{quantity}} </label></div><br/>
+                    <div><label>Crop Name:{{cropname}} </label></div><br/>
+                    <div><label>minimum selling price:{{MSP}} </label></div><br/>
+                    
+                    <div><button  (click)="ApproveBidRequest()"type="button" *ngIf="ApprovedBid==null">Approve</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

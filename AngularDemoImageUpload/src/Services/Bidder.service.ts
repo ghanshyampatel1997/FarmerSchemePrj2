@@ -15,16 +15,7 @@ export class BidderService {
   PostBidAmount(bidclass:any)
   {
     //this.bidclass2=this.fillbidclass(FarmerSellID,bidAmount)
-    return this.http.post(this.endpoint,bidclass)
-      .subscribe(
-        result => {
-          window.alert(result);
-
-        },
-        error => {
-          console.log('There was an error: ')
-        }
-      );
+    return this.http.post(this.endpoint,bidclass);
     //return this.http.post(this.endpoint+"?FarmerSellID="+FarmerSellID+"&bidAmount="+bidAmount);
   }
 

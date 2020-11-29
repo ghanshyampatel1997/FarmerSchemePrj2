@@ -1,26 +1,34 @@
-<p>soldhistory works!</p>
-<div>
-    <table class="Sold History" border="1" style="width: 720px;">
-<thead>
-  <tr>
-      <td style="width: 150px;">Date & Time</td>
-      <td style="width: 500px;">Crop Name</td>
-      <td style="width: 250px;">Quantity/ 20 kg</td>
-      <td style="width: 150px;">MSP</td>
-      <td style="width: 250px;">Sold price</td>
-      <td style="width: 200px;">Total Price</td>
-  </tr>
-</thead>
-<tbody>
-  <tr *ngFor="let s of soldhistorydata;">
-      <td style="width: 105px;">{{s.date}}</td>
-      <td style="width: 105px;">{{s.cropname}}</td>
-      <td style="width: 119px;">{{s.quantity}}</td>
-      <td style="width: 126px;">{{s.MSP}}</td>
-      <td style="width: 118px;">{{s.bidAmount}}</td>
-      <td style="width: 118px;">{{s.Totalprice}}</td>
-  </tr>
+<div class = "container">
+  <div class = "row">
+      <div class ="col-10">
+          <div class = "jumbotron">
+            <div>
+                <table class="table table-striped" border="1">
+                  <thead>
+                    <tr>
+                        <td><b>Date</b></td>
+                        <td><b>Crop Name</b></td>
+                        <td><b>Quantity/ 20 kg</b></td>
+                        <td><b>MSP</b></td>
+                        <td><b>Sold price</b></td>
+                        <td><b>Total Price</b></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let s of soldhistorydata;">
+                        <td>{{s.date| date:'mediumDate'}}</td>
+                        <td>{{s.cropname}}</td>
+                        <td>{{s.quantity}}</td>
+                        <td>{{s.MSP}}</td>
+                        <td>{{s.bidAmount}}</td>
+                        <td>{{s.Totalprice}}</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   
-</tbody>
-</table>
-</div>

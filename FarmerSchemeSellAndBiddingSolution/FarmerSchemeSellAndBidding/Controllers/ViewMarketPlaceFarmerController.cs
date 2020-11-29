@@ -12,7 +12,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
     public class ViewMarketPlaceFarmerController : ApiController
     {
         private FarmerSchemeDBEntities4 db = new FarmerSchemeDBEntities4();
-
+        [HttpGet]
         public IHttpActionResult GetViewMarketplace()
         {
             var ViewMarketPlace = db.ViewMarketplace();
