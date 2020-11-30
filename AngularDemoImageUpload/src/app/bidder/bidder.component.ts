@@ -49,7 +49,7 @@ export class BidderComponent implements OnInit {
     }
     else
     {
-      this.bidclass.push({"FarmerSellID":FarmerSellID,"amount":this.bamount,"Userid":2})
+      this.bidclass.push({"FarmerSellID":FarmerSellID,"amount":this.bamount,"Userid":Number(sessionStorage.getItem('id'))})
       //this.bidclass.amount=amount;
       this.bidderservice.PostBidAmount(this.bidclass).subscribe(
         result => {

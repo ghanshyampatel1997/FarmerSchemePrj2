@@ -66,7 +66,7 @@ Insurance:InsuranceForm=new InsuranceForm();
   this.Insurance.cropname=cropname.value;
   this.Insurance.SumInsured=suminsured.value;
   this.Insurance.Area=area.value;
-  this.Insurance.Userid=2;
+  this.Insurance.Userid=Number(sessionStorage.getItem('id'));
   console.log(this.Insurance);
   this.Inservice.InsertInsuranceForm(this.Insurance).subscribe((data) => { this.Result = data;
     window.alert(this.Result);

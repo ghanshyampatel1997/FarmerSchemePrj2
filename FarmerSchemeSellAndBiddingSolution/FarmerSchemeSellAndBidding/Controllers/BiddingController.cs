@@ -11,6 +11,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
     public class BiddingController : ApiController
     {
         private FarmerSchemeDBEntities4 db = new FarmerSchemeDBEntities4();
+
        //GET: api/Bidding
         public IHttpActionResult GetFarmerCropdetils()
         {

@@ -40,8 +40,10 @@ usertype
     {
       this.usertype=data;
       console.log(data);
+
       sessionStorage.setItem('roll',this.usertype[0]);
-      sessionStorage.setItem('email',this.usertype[1]);//sessionStorage.setItem('email',this.form.value.userid);
+      sessionStorage.setItem('email',this.usertype[1]);
+      sessionStorage.setItem('id',this.form.value.userid);
       this.router.navigate(['/Home']);
     },
     (error)=>{window.alert(error.error.Message)});

@@ -61,7 +61,7 @@ export class FarmerCropSellRequestComponent implements OnInit {
     reader.readAsDataURL(this.fileToUpload);
   }
   
-userid=2;
+userid=Number(sessionStorage.getItem('id'));
   OnSubmit(Cropetype,CropeName,Fertilizertype,Quantity,Image){
    this.imageService.postFile(Cropetype.value,CropeName.value,Fertilizertype.value,Quantity.value,this.userid,this.fileToUpload).subscribe(
      (data) =>{
