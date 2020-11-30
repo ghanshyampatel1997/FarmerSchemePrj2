@@ -14,6 +14,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
     {
         FarmerSchemeDBEntities4 db = new FarmerSchemeDBEntities4();
         //Post method To inbuilt data from Angular
+        #region Bidderregistration
         [HttpPost]
         public IHttpActionResult PostFRegistration()
         {
@@ -125,6 +126,6 @@ namespace FarmerSchemeSellAndBidding.Controllers
             }
 
         }
-
+#endregion
     }
 }
