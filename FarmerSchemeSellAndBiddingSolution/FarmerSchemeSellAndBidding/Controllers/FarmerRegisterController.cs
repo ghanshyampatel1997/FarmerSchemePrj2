@@ -15,6 +15,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
         FarmerSchemeDBEntities4 db = new FarmerSchemeDBEntities4();
         
         //Post:api/FarmerRegister
+        #region Farmer registration
         [HttpPost]
         public IHttpActionResult PostFRegistration()
         {
@@ -136,5 +137,6 @@ namespace FarmerSchemeSellAndBidding.Controllers
             }
             
         }
+        #endregion
     }
 }
