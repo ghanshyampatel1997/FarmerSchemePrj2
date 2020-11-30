@@ -14,6 +14,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
         [HttpPost]
         //[Route("InsuranceApplication")]
         //Post Method to add Apply for insurance
+        #region 
         public IHttpActionResult PostinsuranceForm(dynamic InsForm)
         {
             try
@@ -69,5 +70,6 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 return BadRequest(e.Message);
             }
         }
+        #endregion
     }
 }
