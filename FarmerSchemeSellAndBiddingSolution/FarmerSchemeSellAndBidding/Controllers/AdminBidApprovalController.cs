@@ -64,6 +64,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                                     where b.BidID == ID
                                     select b).First();
                 Bid.ApprovedBid = true;
+                //To update Approvedbid
                 Db.Entry(Bid).State = EntityState.Modified;
                 Db.SaveChanges();
                 return Ok("Bid approved!!");
