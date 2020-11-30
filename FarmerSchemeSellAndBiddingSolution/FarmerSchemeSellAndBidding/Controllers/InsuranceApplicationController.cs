@@ -13,6 +13,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
         private FarmerSchemeDBEntities4 db = new FarmerSchemeDBEntities4();
         [HttpPost]
         //[Route("InsuranceApplication")]
+        //Post Method to add Apply for insurance
         public IHttpActionResult PostinsuranceForm(dynamic InsForm)
         {
             try
