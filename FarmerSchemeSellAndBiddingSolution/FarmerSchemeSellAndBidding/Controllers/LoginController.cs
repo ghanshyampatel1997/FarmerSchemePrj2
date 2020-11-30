@@ -11,7 +11,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
     public class LoginController : ApiController
     {
         private FarmerSchemeDBEntities4 db = new FarmerSchemeDBEntities4();
-
+//Post Method To login
         [HttpPost]
         public IHttpActionResult Getlogindata(dynamic login)
         {
@@ -27,7 +27,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                     string pas;
                     try
                     {
-                        
+                        //To check Password match for User id
                         pas = (from a in db.Admins
                                       where a.AdminID == uid1
                                       select a.Password).First();
@@ -49,6 +49,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 else
                 {
                     int uid = login.userid;
+                    //To check userid is available are not
                     try
                     {
                         utype = (from u in db.RollTypes
@@ -68,6 +69,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                                  select u.password).FirstOrDefault();
                         if (upass == pw)
                         {
+                        //To check whether Admin is approved are not
                             bool? status = (from u in db.RollTypes
                                            where u.UserID == uid
                                            select u.ApprovedStatus).FirstOrDefault();
