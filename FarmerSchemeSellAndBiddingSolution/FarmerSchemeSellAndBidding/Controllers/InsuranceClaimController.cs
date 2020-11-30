@@ -12,6 +12,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
     {
         private FarmerSchemeDBEntities4 Db = new FarmerSchemeDBEntities4();
         //GET method to Appilied Insurance data
+        #region
         [HttpGet]
         public IHttpActionResult GetInsuranceClaim([FromUri]int Pn)
         {
@@ -39,7 +40,9 @@ namespace FarmerSchemeSellAndBidding.Controllers
             data.Add(name);
             return Ok(data);
         }
+        #endregion
         //Post Method To Apply for claim
+        #region
             [HttpPost]
         public IHttpActionResult PostInsuranceClaim(dynamic InsClaim)
         {
@@ -95,6 +98,6 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 return Ok("Data is present");
             }
         }
-
+#endregion
     }
 }
