@@ -22,6 +22,7 @@ export class AdminFarmerRegiComponent implements OnInit {
   
   Farmerregisterdataresult;
   pq;
+  //To display the fields provided by farmer to register for admin approval
   Farmerregiapproval(){
     this.Farmerregister=false;
     this.Farmerregi=true;
