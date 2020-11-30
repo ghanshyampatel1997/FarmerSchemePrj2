@@ -19,7 +19,7 @@ export class AdminClaimApprovalComponent implements OnInit {
   }
 
   Insclaimdata;
-
+//To display the details provided by farmer for Admin claim approval
   Getfarmerinsclaimdata(){
     this.insclaim.Getclaimrequestdata().subscribe((data)=>
     {this.Insclaimdata=data;console.log(data);console.table(data);});
@@ -61,6 +61,7 @@ export class AdminClaimApprovalComponent implements OnInit {
     this.ViewDetails=false;
     this.Adminclaimrequestapprove=true;
   }
+  //To fetch the data after admin approval
   ApproveClaimrequest()
   {
     this.insclaim.Approveclaimdata(this.ClaimNo).subscribe((data)=>
