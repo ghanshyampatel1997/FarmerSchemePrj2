@@ -52,7 +52,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 return BadRequest("No Data Found!!!");
             }
         }
-//post method to update Approvedstatus column
+//post method to Add Approvedstatus column
         [HttpPost]
         public IHttpActionResult PostBidStat(dynamic id)
         {
