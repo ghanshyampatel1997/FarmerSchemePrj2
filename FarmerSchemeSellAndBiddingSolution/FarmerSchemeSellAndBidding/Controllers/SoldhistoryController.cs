@@ -11,6 +11,8 @@ namespace FarmerSchemeSellAndBidding.Controllers
     public class SoldhistoryController : ApiController
     {
         private FarmerSchemeDBEntities4 db = new FarmerSchemeDBEntities4();
+        //Get Method to Fetch Sold history
+        #region Get sold history
         public IHttpActionResult Getsoldhistory()
         {
             var soldHistory = db.Soldhistory();
@@ -24,5 +26,6 @@ namespace FarmerSchemeSellAndBidding.Controllers
             }
            
         }
+       #endregion 
     }
 }
