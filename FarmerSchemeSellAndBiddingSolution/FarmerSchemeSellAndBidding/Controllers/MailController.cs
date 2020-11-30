@@ -16,6 +16,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
     {
         private FarmerSchemeDBEntities4 Db = new FarmerSchemeDBEntities4();
         //Post method when user forgets the password
+        #region
         [HttpPost]
         public async Task<string> GetMail(dynamic mailid)
         {
@@ -45,7 +46,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
             }
             
         }
-
+#endregion
         //[HttpGet]
         //public async Task ResendOtp(string email, string pass)  
         //{
