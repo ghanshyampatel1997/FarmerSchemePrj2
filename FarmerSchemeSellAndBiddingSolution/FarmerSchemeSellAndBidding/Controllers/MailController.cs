@@ -15,12 +15,14 @@ namespace FarmerSchemeSellAndBidding.Controllers
     public class MailController : ApiController
     {
         private FarmerSchemeDBEntities4 Db = new FarmerSchemeDBEntities4();
+        //Post method when we forgot our password
         [HttpPost]
         public async Task<string> GetMail(dynamic mailid)
         {
             string email= mailid.mailid;
             if(mailid != null)
             {
+            // TO check email is present are not if yes then pass word will send to Email
                 if (Db.UserRegisters.FirstOrDefault(u => u.UserEmailId == email) is null) return "Invalid Email Id";
                 //Random generator = new Random();
                 //int r = generator.Next(100000, 1000000);
