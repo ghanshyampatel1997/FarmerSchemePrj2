@@ -22,6 +22,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
         [ResponseType(typeof(AngFarmerCropSellRequest))]
         public HttpResponseMessage PostAngFarmerCropSellRequest()
         {
+        // to bind the incoming values from the request to the model correctly 
             if (!ModelState.IsValid)
             {
                 return Request.CreateResponse(HttpStatusCode.NotAcceptable);
