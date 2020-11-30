@@ -50,7 +50,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 else
                 {
                     int uid = login.userid;
-                    //To check userid is available are not
+                    //To check userid is available or not
                     try
                     {
                         utype = (from u in db.RollTypes
@@ -70,7 +70,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                                  select u.password).FirstOrDefault();
                         if (upass == pw)
                         {
-                        //To check whether Admin is approved are not
+                        //To check whether Admin  approved or not
                             bool? status = (from u in db.RollTypes
                                            where u.UserID == uid
                                            select u.ApprovedStatus).FirstOrDefault();
@@ -97,7 +97,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                     }
                     else
                     {
-                        return BadRequest("User id and usertype does not matches.");
+                        return BadRequest("User id and usertype does not match.");
                     }
 
                 }
