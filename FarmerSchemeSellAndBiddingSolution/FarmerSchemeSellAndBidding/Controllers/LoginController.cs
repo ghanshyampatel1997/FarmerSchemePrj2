@@ -12,6 +12,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
     {
         private FarmerSchemeDBEntities4 db = new FarmerSchemeDBEntities4();
 //Post Method To login
+#region 
         [HttpPost]
         public IHttpActionResult Getlogindata(dynamic login)
         {
@@ -107,5 +108,6 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 return NotFound();
             }
         }
+        #endregion
     }
 }
