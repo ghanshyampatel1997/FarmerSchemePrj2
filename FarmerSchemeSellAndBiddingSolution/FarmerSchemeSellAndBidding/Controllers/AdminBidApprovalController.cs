@@ -11,12 +11,16 @@ namespace FarmerSchemeSellAndBidding.Controllers
 {
     public class AdminBidApprovalController : ApiController
     {
+    //Adding Database Entity
         FarmerSchemeDBEntities4 Db = new FarmerSchemeDBEntities4();
+        //Get Method to Fetch Biddingdata
         [HttpGet]
         public IHttpActionResult geBiddingStatusDetails()
         {
+        //using trycatch block for error handiling
             try
             {
+            //Linq query to fetch data
                 dynamic biddingdata = (from b in Db.BiddingTables
                                        join f in Db.FarmerCropdetils
                                        on b.FarmerSellID equals f.FarmerSellID
@@ -48,10 +52,11 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 return BadRequest("No Data Found!!!");
             }
         }
-
+//post method to update Approvedstatus column
         [HttpPost]
         public IHttpActionResult PostBidStat(dynamic id)
         {
+         //using trycatch block for error handiling
             try
             {
                 int ID = Convert.ToInt32(id);
@@ -59,6 +64,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                                     where b.BidID == ID
                                     select b).First();
                 Bid.ApprovedBid = true;
+                //To update Approvedbid
                 Db.Entry(Bid).State = EntityState.Modified;
                 Db.SaveChanges();
                 return Ok("Bid approved!!");
