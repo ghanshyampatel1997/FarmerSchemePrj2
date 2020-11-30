@@ -12,6 +12,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
     public class AdminClaimApprovalController : ApiController
     {
         FarmerSchemeDBEntities4 Db = new FarmerSchemeDBEntities4();
+        //get method to fetch Insuranceapplicationdata
         [HttpGet]
         public IHttpActionResult Getadmininsuranceclaimapp()
         {
@@ -43,6 +44,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 return BadRequest("Not eligible for Claim");
             }
         }
+        //Post method to Update Claim approval by admin
         [HttpPost]
         public IHttpActionResult PostClaimApproval(dynamic Num)
         {
