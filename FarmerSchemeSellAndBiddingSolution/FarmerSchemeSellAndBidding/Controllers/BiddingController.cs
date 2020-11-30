@@ -11,12 +11,13 @@ namespace FarmerSchemeSellAndBidding.Controllers
     public class BiddingController : ApiController
     {
         private FarmerSchemeDBEntities4 db = new FarmerSchemeDBEntities4();
-       //GET: api/Bidding
+       //GET Method to fetch Farmer Crop details
         public IHttpActionResult GetFarmerCropdetils()
         {
             //var data=(db.MarketViewForBidder()).ToList();
             return Ok(db.MarketViewForBidderwithMaxBidAmount());
         }
+        //Post method to Provide Bid Amount and go for bidding
         [HttpPost]
         //public IHttpActionResult PostBidAmount(string FarmerSellID,string amount,string userid)
         public IHttpActionResult PostBidAmount(dynamic bidclass)
