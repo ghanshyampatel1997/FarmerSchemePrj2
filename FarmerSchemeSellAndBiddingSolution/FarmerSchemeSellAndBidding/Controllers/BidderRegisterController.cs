@@ -13,7 +13,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
     public class BidderRegisterController : ApiController
     {
         FarmerSchemeDBEntities4 db = new FarmerSchemeDBEntities4();
-        //Post:api/BidderRegister
+        //Post method To inbuilt data from Angular
         [HttpPost]
         public IHttpActionResult PostFRegistration()
         {
