@@ -1,0 +1,52 @@
+<div class="intro" *ngIf="Bidderregister"></div>
+<div style="text-align: center;border:1px black;" (click)="Bidderregiapproval()">Approve for Bidder Registration</div>
+<div *ngIf="Bidderregi">
+<div class="Container-fluid">
+    <button (click)="GoBackAgain()">Go Back</button><br/>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Details</th>
+                <th >Approval status</th> 
+            </tr>
+        </thead>
+        <tbody *ngFor="let b of Bidderregisterdataresult">
+            <tr>
+                <td>{{b.fullname}}</td>
+                <td><button (click)="Viewdata(b)">Details</button></td>
+                <div *ngIf="b.ApprovedStatus==null">
+                    <td>Not Approved</td>
+                </div>
+                <div *ngIf="b.ApprovedStatus != null">
+                    <td>Approved</td>
+                </div>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+<div *ngIf="ViewDetails" class="container">
+    <button (click)="GoBack()">Go Back</button><br/>
+    <label>Bidder Email Id : {{UserEmailId}} </label><br/>   
+    <label>Contact No  : {{ContactNo_}} </label> <br/>
+    <label>Address1  : {{address1}} </label> <br/>
+    <label>Address2   : {{address2}} </label> <br/>
+    <label>City   : {{city}} </label> <br/>
+    <label>State   : {{state}} </label> <br/>
+    <label>Pincode   : {{pincode}} </label> <br/>
+     <label>Pancard</label> <br/><br/>
+    <img [src]="pancardDocument"  style="width:250px;height:200px">
+    <!--  <label>{{pancardDocument}}</label> <br/> -->
+     <label>Aadharcard</label> <br/><br/>
+    <img [src]="aadharCardDocument"  style="width:250px;height:200px">
+    <!--  <img class="e2e-inner-html-bound" src={{aadharCardDocument}}> <br/> -->
+     <label>Certificate</label> <br/><br/>
+    <img [src]="certificate"  style="width:250px;height:200px"><br/><br/>
+    <!--  <label>{{certificate}}</label> <br/> -->
+     <label>IFSC Code   : {{IFSCCode}} </label><br/>
+     <label>Bank Account No   : {{BankAccountNo}} </label> <br/>
+     <button *ngIf="ApprovedStatus==null" type="button" (click)="Approveddata() ">Approve</button> <br/><br/>
+     <button (click)="GoBack()">Go Back</button><br/><br/>
+
+</div>

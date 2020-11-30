@@ -1,4 +1,4 @@
-﻿using FarmerSchemeSellAndBidding.Models;
+using Admininsuranceclaim.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,11 +9,11 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 
-namespace FarmerSchemeSellAndBidding.Controllers
+namespace Admininsuranceclaim.Controllers
 {
-    public class AdminBidderRegistationApprovalController : ApiController
+    public class AdminBidderApprovalController : ApiController
     {
-        FarmerSchemeDBEntities4 Db = new FarmerSchemeDBEntities4();
+        private FarmerSchemeDB1Entities2 Db = new FarmerSchemeDB1Entities2();
         // GET: api/AdminFarmer
         [HttpGet]
         public IHttpActionResult GetBidderdetails()
@@ -72,6 +72,5 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 return BadRequest(e.Message);
             }
         }
-
     }
 }

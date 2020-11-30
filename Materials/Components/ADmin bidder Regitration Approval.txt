@@ -1,0 +1,291 @@
+-----------Webapi.Adminbiddercontroller------------
+using Admininsuranceclaim.Models;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web;
+using System.Web.Http;
+
+namespace Admininsuranceclaim.Controllers
+{
+    public class AdminBidderApprovalController : ApiController
+    {
+        private FarmerSchemeDB1Entities2 db = new FarmerSchemeDB1Entities2();
+        [HttpPost]
+        public IHttpActionResult PostBidderRegistration()
+        {
+            try
+            {
+                var httpRequest = HttpContext.Current.Request;
+                string rt = "BIDDER";
+                string ueid = httpRequest["Emailid"];
+                dynamic emailid = (from r in db.RollTypes
+                                   where r.RollType1.ToUpper() == rt && r.UserEmailId.ToLower() == ueid.ToLower()
+                                   select r.UserEmailId).ToList();
+                if (emailid.Count != 0)
+                {
+                    return Ok(ueid + " is already used by another Bidder");
+                }
+                else
+                {
+                    string imageName1 = null;
+                    //Upload Image
+                    var postedFile1 = httpRequest.Files["Image1"];
+                    //Create custom filename
+                    imageName1 = new String(Path.GetFileNameWithoutExtension(postedFile1.FileName).Take(10).ToArray()).Replace(" ", "-");
+                    imageName1 = imageName1 + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile1.FileName);
+                    var filePath1 = "D:/desktop/dotnet training/Final Project Repository/FarmerSchemePrj2/AngularDemoImageUpload/src/assets/img/" + imageName1;
+                    string filepath11 = "/assets/img/" + imageName1;
+
+                    string imageName2 = null;
+                    //var httpRequest = HttpContext.Current.Request;
+                    //Upload Image
+                    var postedFile2 = httpRequest.Files["Image2"];
+                    //Create custom filename
+                    imageName2 = new String(Path.GetFileNameWithoutExtension(postedFile2.FileName).Take(10).ToArray()).Replace(" ", "-");
+                    imageName2 = imageName2 + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile2.FileName);
+                    var filePath2 = "D:/desktop/dotnet training/Final Project Repository/FarmerSchemePrj2/AngularDemoImageUpload/src/assets/img/" + imageName2;
+                    string filepath22 = "/assets/img/" + imageName2;
+
+                    string imageName3 = null;
+                    //var httpRequest = HttpContext.Current.Request;
+                    //Upload Image
+                    var postedFile3 = httpRequest.Files["Image3"];
+                    //Create custom filename
+                    imageName3 = new String(Path.GetFileNameWithoutExtension(postedFile3.FileName).Take(10).ToArray()).Replace(" ", "-");
+                    imageName3 = imageName3 + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile3.FileName);
+                    var filePath3 = "D:/desktop/dotnet training/Final Project Repository/FarmerSchemePrj2/AngularDemoImageUpload/src/assets/img/" + imageName3;
+                    string filepath33 = "/assets/img/" + imageName3;
+
+                    UserRegister userRegister = new UserRegister();
+                    userRegister.UserEmailId = ueid;
+                    userRegister.password = httpRequest["Password"];
+                    userRegister.ContactNo_ = httpRequest["ContactNo"];
+                    userRegister.fullname = httpRequest["Fullname"];
+                    userRegister.address1 = httpRequest["Address1"];
+                    userRegister.address2 = httpRequest["Address2"];
+                    userRegister.city = httpRequest["City"];
+                    userRegister.state = httpRequest["State"];
+                    userRegister.pincode = (int?)Convert.ToInt64(httpRequest["Pincode"]);
+                    userRegister.pancardDocument = filepath22;
+                    userRegister.aadharCardDocument = filepath11;
+
+                    //Adding data into table rollType
+                    RollType rollType = new RollType();
+                    //rollType.UserID= Convert.ToInt32(httpRequest["Emailid"]);
+                    rollType.RollType1 = "BIDDER";
+                    rollType.certificate = filepath33;
+                    rollType.ApprovedStatus = null;
+                    rollType.UserEmailId = ueid;
+
+
+                    //Adding data into table bankDetail
+                    BankDetail bankDetail = new BankDetail();
+                    bankDetail.IFSCCode = httpRequest["IFSCCode"]; ;
+                    bankDetail.BankAccountNo = (int?)Convert.ToInt64(httpRequest["BankAccountno"]);
+                    //saving Images
+                    postedFile1.SaveAs(filePath1);
+                    postedFile2.SaveAs(filePath2);
+                    postedFile3.SaveAs(filePath3);
+                    // saving data into table userRegister
+                    db.UserRegisters.Add(userRegister);
+                    db.SaveChanges();
+
+                    // saving data into table rolltype
+                    db.RollTypes.Add(rollType);
+                    db.SaveChanges();
+
+                    //getting userid as foreingn key for other table  
+                    int uid = (from r in db.RollTypes
+                               where r.RollType1.ToUpper() == rt && r.UserEmailId.ToLower() == ueid.ToLower()
+                               select r.UserID).First();
+
+                    //saving data of bank details
+                    bankDetail.UserID = uid;
+                    db.BankDetails.Add(bankDetail);
+                    db.SaveChanges();
+
+                    return Ok("Bidder Registration Successfull. Use " + uid + " for Login Userid");
+                }
+            }
+            catch (Exception e)
+            {
+                return Ok(e.Message);
+            }
+        }
+    }
+}
+-------------Bidderregisterdataservice.service.ts------------
+
+ 
+import { HttpClient } from '@angular/common/http'
+import { identifierName } from '@angular/compiler';
+import{Injectable} from '@angular/core'
+@Injectable({providedIn:"root"})
+export class Bidderregisterdataservice
+{
+    constructor(private http:HttpClient)
+        {
+        }
+        readonly uri="https://localhost:44314/api/AdminBidderApproval";
+        Getbidderregisterdata() {
+            return this.http.get(this.uri);
+        }  
+        Approvebidderregisterdata(Id:number) {
+            return this.http.post(this.uri,Id);
+        }  
+   
+}
+
+------------AdminbidderREgi.component.html------------------
+<p>admin-bidder-registration works!</p>
+<div class="intro" *ngIf="Bidderregister"></div>
+<div style="text-align: center;border:1px black;" (click)="Bidderregiapproval()">Approve for Bidder Registration</div>
+<div *ngIf="Bidderregi">
+<div class="Container-fluid">
+    <button (click)="GoBackAgain()">Go Back</button><br/>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Details</th>
+                <th >Approval status</th> 
+            </tr>
+        </thead>
+        <tbody *ngFor="let b of Bidderregisterdataresult">
+            <tr>
+                <td>{{b.fullname}}</td>
+                <td><button (click)="Viewdata(b)">Details</button></td>
+                <div *ngIf="b.ApprovedStatus==null">
+                    <td>Not Approved</td>
+                </div>
+                <div *ngIf="b.ApprovedStatus != null">
+                    <td>Approved</td>
+                </div>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+<div *ngIf="ViewDetails" class="container">
+    <button (click)="GoBack()">Go Back</button><br/>
+    <label>Bidder Email Id : {{UserEmailId}} </label>   
+    <label>Contact No  : {{ContactNo_}} </label> 
+    <label>Address1  : {{address1}} </label> 
+    <label>Address2   : {{address2}} </label> 
+    <label>City   : {{city}} </label> 
+    <label>State   : {{state}} </label> 
+    <label>Pincode   : {{pincode}} </label> 
+     <label>Pancard</label> <br/><br/>
+    <img [src]="pancardDocument"  style="width:250px;height:200px">
+    <!--  <label>{{pancardDocument}}</label> <br/> -->
+     <label>Aadharcard</label> <br/><br/>
+    <img [src]="aadharCardDocument"  style="width:250px;height:200px">
+    <!--  <img class="e2e-inner-html-bound" src={{aadharCardDocument}}> <br/> -->
+     <label>Certificate</label> <br/><br/>
+    <img [src]="certificate"  style="width:250px;height:200px"><br/><br/>
+    <!--  <label>{{certificate}}</label> <br/> -->
+     <label>IFSC Code   : {{IFSCCode}} </label>
+     <label>Bank Account No   : {{BankAccountNo}} </label> 
+     <button *ngIf="ApprovedStatus==null" type="button" (click)="Approveddata() ">Approve</button> <br/><br/>
+     <button (click)="GoBack()">Go Back</button><br/><br/>
+
+</div>
+-----------AdminbidderRegi.component.ts---------------
+import { Component, OnInit } from '@angular/core';
+import { Bidderregisterdataservice } from 'src/service/AdminBidderregi.service';
+
+@Component({
+  selector: 'app-admin-bidder-registration',
+  templateUrl: './admin-bidder-registration.component.html',
+  styleUrls: ['./admin-bidder-registration.component.css']
+})
+export class AdminBidderRegistrationComponent implements OnInit {
+  Bidderregister;
+  Bidderregi;
+  ViewDetails;
+  
+
+  constructor(private Bregiservice:Bidderregisterdataservice) { }
+
+  ngOnInit(): void {
+    this.Bidderregister=true;
+    this.Bidderregi=false;
+    this.ViewDetails=false;
+  }
+  Bidderregisterdataresult;
+  br;
+  Bidderregiapproval(){
+    this.Bidderregister=false;
+    this.Bidderregi=true;
+    this.Bidderregi.Getbidderregisterdata().subscribe((data)=>
+    {this.Bidderregisterdataresult=data;console.log(data);console.table(data);
+      this.br=this.Bidderregisterdataresult;console.log(this.br);},
+      (error)=>{window.alert(error.error.Message)}
+      );
+    }
+   UserEmailId;
+   ContactNo_;
+   address1;
+   address2;
+   city;
+   state;
+   pincode;
+   aadharCardDocument;
+   pancardDocument;
+   certificate;
+   IFSCCode;
+   BankAccountNo;
+   userid;
+   ApprovedStatus;
+   Viewdata(b)
+   {
+     debugger;
+     this.Bidderregi=false;
+     this.ViewDetails=true;
+     this.UserEmailId=b.UserEmailId;
+     this.ContactNo_=b.ContactNo_;
+     this.address1=b.address1;
+     this.address2=b.address2;
+     this.city=b.city;
+     this.state=b.state;
+     this.pincode=b.pincode;
+     this.pancardDocument=b.pancardDocument;
+     //this.aadharCardDocument="/assets/img/FarmerSchemeDB2Diagram.PNG";
+     this.aadharCardDocument=b.aadharCardDocument;
+     this.certificate=b.certificate;;
+     this.IFSCCode=b.IFSCCode;
+     this.BankAccountNo=b.BankAccountNo;
+     this.userid=b.UserID;
+     this.ApprovedStatus=b.ApprovedStatus;
+   }
+   GoBack()
+  {
+    this.ViewDetails=false;
+    this.Bidderregi=true;
+  }
+  GoBackAgain()
+  {
+    this.Bidderregister=true;
+    this.Bidderregi=false;
+  }
+  Approveddata()
+  {
+    debugger;
+    this.Bregiservice.Approvebidderregisterdata(this.userid).subscribe((data)=>
+    {
+      window.alert(data);
+      this.GoBack();
+      this.Bidderregiapproval();
+    },
+    (error)=>
+    {
+      window.alert(error.error.Message);
+    });
+
+  }
+
+}

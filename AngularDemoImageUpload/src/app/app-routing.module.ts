@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { AdminBidApprovalComponent } from './admin-bid-approval/admin-bid-approval.component';
+import { AdminBidderRegiApprovalComponent } from './admin-bidder-regi-approval/admin-bidder-regi-approval.component';
 import { AdminClaimApprovalComponent } from './admin-claim-approval/admin-claim-approval.component';
 import { AdminFarmerRegiComponent } from './admin-farmer-regi/admin-farmer-regi.component';
 import { AdminfarmersellrequestComponent } from './adminfarmersellrequest/adminfarmersellrequest.component';
@@ -36,6 +37,7 @@ const routes: Routes = [
   {path: 'BidderRegister', component:BidderRegistrationComponent},
   {path: 'AdminBidApproval', component:AdminBidApprovalComponent},
   {path: 'AdminClaimApproval', component:AdminClaimApprovalComponent},
+  {path: 'AdminBidderRegister', component:AdminBidderRegiApprovalComponent},
   //Error page
 {path:'**',component:HomeComponent}
   

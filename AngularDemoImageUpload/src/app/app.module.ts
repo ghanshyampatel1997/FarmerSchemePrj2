@@ -36,6 +36,8 @@ import { ForgetPasswordservice } from 'src/Services/ForgetPassword.service';
 import { BiddingStatusService } from 'src/Services/AdminBidApproval.Service';
 import { Claimrequestservice } from 'src/Services/AdminClaimRequest.Service';
 import { LoginService } from 'src/Services/Login.service';
+import { AdminBidderRegiApprovalComponent } from './admin-bidder-regi-approval/admin-bidder-regi-approval.component';
+import { AdminBidderregisterApprovalservice } from 'src/Services/AdminBidderRegiApproval.Service';
 
 
 @NgModule({
@@ -56,7 +58,8 @@ import { LoginService } from 'src/Services/Login.service';
     AdminFarmerRegiComponent,
     AdminfarmersellrequestComponent,
     AdminClaimApprovalComponent,
-    AdminBidApprovalComponent
+    AdminBidApprovalComponent,
+    AdminBidderRegiApprovalComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +73,7 @@ providers: [UploadImageService,BidderService,soldhistoryservice,
   FarmerRegisterService,ViewMarketPlaceservice,InsuranceService,
   Claimservice,Farmerregisterdataservice,Farmersellrequestapproval,
   BidderRegisterService,ForgetPasswordservice,BiddingStatusService,
-  Claimrequestservice,LoginService,],
+  Claimrequestservice,LoginService,AdminBidderregisterApprovalservice],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

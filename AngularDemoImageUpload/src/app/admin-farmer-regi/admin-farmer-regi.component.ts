@@ -107,7 +107,7 @@ ApprovedStatus;
 
   BidderRegiapproval()
   {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/AdminBidderRegister']);
   }
   FarmerSellRequestApproval()
   {
