@@ -18,7 +18,7 @@ export class AdminBidApprovalComponent implements OnInit {
     this.ViewDetails=false;
     this.BidStatusapprovalgetdata();
    }
-  
+  //This displays data for approval
   BidStatusapprovalgetdata(){
     this.BSRequest.GetBiddingStatus().subscribe((data)=>
     {this.Biddingdata=data;console.log(data);console.table(data);});
@@ -58,6 +58,7 @@ export class AdminBidApprovalComponent implements OnInit {
      this.ViewDetails=false;
      this.biddingstat=true;
    }
+  //To fetch the data after admin approval
    ApproveBidRequest()
    {
    
