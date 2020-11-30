@@ -12,6 +12,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
     public class AdminFarmerSellRequestController : ApiController
     {
         private FarmerSchemeDBEntities4 Db = new FarmerSchemeDBEntities4();
+        //GEt method To fetch farmer selrequest data
 
         [HttpGet]
         public IHttpActionResult Getfarmersellrequestddetails()
@@ -43,7 +44,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 return BadRequest("No Data Found!!!");
             }
         }
-
+//Post method to approve farmer sell request by admin 
         [HttpPost]
         public IHttpActionResult PostSellrequestApproval(dynamic id)
         {
