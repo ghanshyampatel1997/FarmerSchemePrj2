@@ -15,12 +15,15 @@ namespace FarmerSchemeSellAndBidding.Controllers
     public class MailController : ApiController
     {
         private FarmerSchemeDBEntities4 Db = new FarmerSchemeDBEntities4();
+        //Post method when user forgets the password
+        #region
         [HttpPost]
         public async Task<string> GetMail(dynamic mailid)
         {
             string email= mailid.mailid;
             if(mailid != null)
             {
+            // TO check whether email is present or not if yes, then password will be sent to the registered Emailid.
                 if (Db.UserRegisters.FirstOrDefault(u => u.UserEmailId == email) is null) return "Invalid Email Id";
                 //Random generator = new Random();
                 //int r = generator.Next(100000, 1000000);
@@ -43,7 +46,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
             }
             
         }
-
+#endregion
         //[HttpGet]
         //public async Task ResendOtp(string email, string pass)  
         //{

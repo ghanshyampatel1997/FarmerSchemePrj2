@@ -11,7 +11,8 @@ namespace FarmerSchemeSellAndBidding.Controllers
     public class LoginController : ApiController
     {
         private FarmerSchemeDBEntities4 db = new FarmerSchemeDBEntities4();
-
+//Post Method To login
+#region 
         [HttpPost]
         public IHttpActionResult Getlogindata(dynamic login)
         {
@@ -27,7 +28,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                     string pas;
                     try
                     {
-                        
+                        //To check Password match for User id
                         pas = (from a in db.Admins
                                       where a.AdminID == uid1
                                       select a.Password).First();
@@ -49,6 +50,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 else
                 {
                     int uid = login.userid;
+                    //To check userid is available or not
                     try
                     {
                         utype = (from u in db.RollTypes
@@ -68,6 +70,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                                  select u.password).FirstOrDefault();
                         if (upass == pw)
                         {
+                        //To check whether Admin  approved or not
                             bool? status = (from u in db.RollTypes
                                            where u.UserID == uid
                                            select u.ApprovedStatus).FirstOrDefault();
@@ -94,7 +97,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                     }
                     else
                     {
-                        return BadRequest("User id and usertype does not matches.");
+                        return BadRequest("User id and usertype does not match.");
                     }
 
                 }
@@ -105,5 +108,6 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 return NotFound();
             }
         }
+        #endregion
     }
 }

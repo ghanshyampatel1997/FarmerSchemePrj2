@@ -13,11 +13,16 @@ namespace FarmerSchemeSellAndBidding.Controllers
         private FarmerSchemeDBEntities4 db = new FarmerSchemeDBEntities4();
 
        //GET: api/Bidding
+       //GET Method to fetch Farmer Crop details
+       #region getfarmercropdetail
         public IHttpActionResult GetFarmerCropdetils()
         {
             //var data=(db.MarketViewForBidder()).ToList();
             return Ok(db.MarketViewForBidderwithMaxBidAmount());
         }
+        #endregion
+        //Post method to Provide Bid Amount and go for bidding
+        #region postbidamount
         [HttpPost]
         //public IHttpActionResult PostBidAmount(string FarmerSellID,string amount,string userid)
         public IHttpActionResult PostBidAmount(dynamic bidclass)
@@ -81,5 +86,6 @@ namespace FarmerSchemeSellAndBidding.Controllers
 
             return Ok("You applied for bid.");
         }
+        #endregion
     }
 }

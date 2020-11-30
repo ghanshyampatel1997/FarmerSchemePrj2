@@ -12,6 +12,8 @@ namespace FarmerSchemeSellAndBidding.Controllers
     public class ViewMarketPlaceFarmerController : ApiController
     {
         private FarmerSchemeDBEntities4 db = new FarmerSchemeDBEntities4();
+        //GET Method to fetch ViewMarket place
+        #region View Market Place
         [HttpGet]
         public IHttpActionResult GetViewMarketplace()
         {
@@ -26,5 +28,6 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 return NotFound();
             }
         }
+        #endregion
     }
 }

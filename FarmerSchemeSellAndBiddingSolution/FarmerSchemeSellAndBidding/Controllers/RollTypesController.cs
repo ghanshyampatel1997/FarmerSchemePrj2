@@ -22,7 +22,8 @@ namespace FarmerSchemeSellAndBidding.Controllers
             return db.RollTypes;
         }
 
-        // GET: api/RollTypes/5
+        // GET Roll types by ID
+        #region
         [ResponseType(typeof(RollType))]
         public IHttpActionResult GetRollType(int id)
         {
@@ -34,8 +35,10 @@ namespace FarmerSchemeSellAndBidding.Controllers
 
             return Ok(rollType);
         }
+        #endregion
 
-        // PUT: api/RollTypes/5
+        // PUT: Update rolltype
+        #region
         [ResponseType(typeof(void))]
         public IHttpActionResult PutRollType(int id, RollType rollType)
         {
@@ -69,8 +72,10 @@ namespace FarmerSchemeSellAndBidding.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
+        #endregion
 
         // POST: api/RollTypes
+        #region to add roll type
         [ResponseType(typeof(RollType))]
         public IHttpActionResult PostRollType(RollType rollType)
         {
@@ -84,8 +89,10 @@ namespace FarmerSchemeSellAndBidding.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = rollType.UserID }, rollType);
         }
+        #endregion
 
         // DELETE: api/RollTypes/5
+        #region to del rolltype
         [ResponseType(typeof(RollType))]
         public IHttpActionResult DeleteRollType(int id)
         {
@@ -114,5 +121,6 @@ namespace FarmerSchemeSellAndBidding.Controllers
         {
             return db.RollTypes.Count(e => e.UserID == id) > 0;
         }
+        #endregion
     }
 }

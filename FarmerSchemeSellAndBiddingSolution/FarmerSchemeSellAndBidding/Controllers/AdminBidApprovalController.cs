@@ -14,6 +14,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
     //Adding Database Entity
         FarmerSchemeDBEntities4 Db = new FarmerSchemeDBEntities4();
         //Get Method to Fetch Biddingdata
+        #region Getbiddingstatus
         [HttpGet]
         public IHttpActionResult geBiddingStatusDetails()
         {
@@ -52,7 +53,9 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 return BadRequest("No Data Found!!!");
             }
         }
-//post method to update Approvedstatus column
+        #endregion
+//post method to Add Approvedstatus column
+#region POstBidstatus
         [HttpPost]
         public IHttpActionResult PostBidStat(dynamic id)
         {
@@ -77,6 +80,6 @@ namespace FarmerSchemeSellAndBidding.Controllers
 
         }
 
-
+#endregion
     }
 }

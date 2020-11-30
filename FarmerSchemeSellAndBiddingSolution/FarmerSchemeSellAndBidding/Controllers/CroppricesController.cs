@@ -16,13 +16,16 @@ namespace FarmerSchemeSellAndBidding.Controllers
     {
         private FarmerSchemeDBEntities4 db = new FarmerSchemeDBEntities4();
 
-        // GET: api/Cropprices
+        // GET Method to Fetch Cropprice Table
+        #region 
         public IQueryable<Cropprice> GetCropprices()
         {
             return db.Cropprices;
         }
-
+        #endregion
+//Get Method to Fetch Cropprice Table
         // GET: api/Cropprices/5
+        #region 
         [ResponseType(typeof(Cropprice))]
         public IHttpActionResult GetCropprice(int id)
         {
@@ -35,6 +38,6 @@ namespace FarmerSchemeSellAndBidding.Controllers
             return Ok(cropprice);
         }
 
-       
+            #endregion
     }
 }
