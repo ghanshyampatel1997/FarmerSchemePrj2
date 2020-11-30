@@ -19,6 +19,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
         private FarmerSchemeDBEntities4 db = new FarmerSchemeDBEntities4();
 
         // POST: api/AngFarmerCropSellRequests
+        #region Croprequest from angular
         [ResponseType(typeof(AngFarmerCropSellRequest))]
         public HttpResponseMessage PostAngFarmerCropSellRequest()
         {
@@ -65,6 +66,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.OK, e.Message);
             }
+            #endregion
             //int cid = (from cr in db.Cropprices
             //           where cr.cropname == angFarmerCropSellRequest.cropname
             //           select cr.CropId).First();
