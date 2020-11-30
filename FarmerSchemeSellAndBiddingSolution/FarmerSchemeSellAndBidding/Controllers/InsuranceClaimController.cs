@@ -11,6 +11,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
     public class InsuranceClaimController : ApiController
     {
         private FarmerSchemeDBEntities4 Db = new FarmerSchemeDBEntities4();
+        //GET method to Appilied Insurance data
         [HttpGet]
         public IHttpActionResult GetInsuranceClaim([FromUri]int Pn)
         {
@@ -18,6 +19,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
             data.Add("State Bank Of India");
             try
             {
+            //TO check policy nuber is present Are not
                 int? sumi = (from i in Db.InsuranceApplications
                              where i.PolicyNo == Pn
                              select i.SumInsured).First();
@@ -37,6 +39,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
             data.Add(name);
             return Ok(data);
         }
+        //Post Method To Apply for claim
             [HttpPost]
         public IHttpActionResult PostInsuranceClaim(dynamic InsClaim)
         {
