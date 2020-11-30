@@ -15,6 +15,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
     {
         FarmerSchemeDBEntities4 Db = new FarmerSchemeDBEntities4();
         // GET: api/AdminFarmer
+        #region To Get bidderdetails
         [HttpGet]
         public IHttpActionResult GetBidderdetails()
         {
@@ -51,7 +52,9 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 return BadRequest("Data is not Available.");
             }
         }
+        #endregion
         //Post:api/AdminFarmer?id=ID
+        #region Admin approval
         [HttpPost]
         public IHttpActionResult PostApprovebidderRegi(dynamic id)
         {
@@ -72,6 +75,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 return BadRequest(e.Message);
             }
         }
+        #endregion
 
     }
 }
