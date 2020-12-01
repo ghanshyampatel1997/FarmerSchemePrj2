@@ -29,13 +29,13 @@
                 
                 </div>
                 <div *ngIf="ViewDetails">
-                    <button (click)="GoBack()">Go Back</button>
-                    <div class="center"><label>Farmersell Id : {{FarmerSellID}}</label></div>
-                    <div class="center"><label>Crop Type : {{cropType}}</label></div>
-                    <div class="center"><label>Crop Name : {{cropname}}</label></div>
-                    <div class="center"><label>Minimum selling price : {{MSP}} </label></div>
-                    <div class="center"><label>Fertilizer type : {{fertilizerType}}</label></div>
-                    <div class="center"><label>Quantity : {{quantity}}</label></div>
+                    <button (click)="GoBack()">Go Back</button><br/>
+                    <div class="center"><label>Farmersell Id : {{FarmerSellID}}</label></div><br/>
+                    <div class="center"><label>Crop Type : {{cropType}}</label></div><br/>
+                    <div class="center"><label>Crop Name : {{cropname}}</label></div><br/>
+                    <div class="center"><label>Minimum selling price : {{MSP}} </label></div><br/>
+                    <div class="center"><label>Fertilizer type : {{fertilizerType}}</label></div><br/>
+                    <div class="center"><label>Quantity : {{quantity}}</label></div><br/>
                     <div class="center"><label>Soil PH certificate : </label>
                     <img [src]="SoilPHCertificate"  style="width:250px;height:200px"></div><br/><br/>
                     <div><button  (click)="ApproveSellRequest()"type="button" *ngIf="ApprovedStatus==null">Approve</button></div>

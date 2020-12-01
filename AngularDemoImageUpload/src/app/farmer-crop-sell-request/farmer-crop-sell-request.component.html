@@ -61,21 +61,27 @@
                       </div>
                       <label for="Quantity" style="width: 50%;text-align: center;">Soil PH Certificate*</label>
                       <img [src]="imageUrl"  style="width:250px;height:200px">
-                      <div class="row">
-                        <div class="input-field col s12">
-                        <input type="file" style="width: 50%;text-align: center;" #Image name="Image"accept="image/*" (change)="handleFileInput($event.target.files)">
-                        <label style="align-content: center;" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;color:darkcyan;">Only image is allowed to upload.</label><br/><br/>
+                      
+                        <div class="row" style="width: 50%;">
+                        <input type="file" style="width: 50%;float: right;margin-right: 10%;" #Image name="Image"accept="image/*" (change)="handleFileInput($event.target.files)">
+                        </div>
+                        <div class="row" style="width: 50%;">
+                        <label style="width: 50%;float: right;margin-right: 10%;font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;color:darkcyan;">Only image is allowed to upload.</label><br/><br/>
+                        </div>
+                        <div class="row">
+                          <div class="input-field col s12">
+                      <button type="submit" style="margin-left: 35%;align-items: center;" class="btn-large btn-submit" [disabled]="Image.value=='' || !imageForm.valid">Submit</button>
                         </div>
                       </div>
-                      <button type="submit" style="align-items: center;" class="btn-large btn-submit" [disabled]="Image.value=='' || !imageForm.valid">Submit</button>
-
+      
                     </form>
                   </div>
                 </div>
               </div>
-            
-              <label style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;color: brown;">All (*) Marked fields are Mendatory. </label>
-        </div>
+              <div class="row" style="width: 50%;">
+              <label style="width: 50%;float: right;margin-right: 10%;font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;color: brown;">All (*) Marked fields are Mendatory. </label>
+            </div>
+          </div>
       </div>
     </div>
   </div>
