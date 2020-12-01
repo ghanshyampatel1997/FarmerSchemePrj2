@@ -21,7 +21,8 @@ export class AdminBidApprovalComponent implements OnInit {
   //This displays data for approval
   BidStatusapprovalgetdata(){
     this.BSRequest.GetBiddingStatus().subscribe((data)=>
-    {this.Biddingdata=data;console.log(data);console.table(data);});
+    {this.Biddingdata=data;console.log(data);console.table(data);},
+    (error)=>{window.alert(error.error.Message)});
     
   }
   BidID;

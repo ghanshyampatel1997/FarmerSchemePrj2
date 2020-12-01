@@ -12,7 +12,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
     {
         private FarmerSchemeDBEntities4 db = new FarmerSchemeDBEntities4();
 //Post Method To login
-#region 
+#region CheckingLoginCredential
         [HttpPost]
         public IHttpActionResult Getlogindata(dynamic login)
         {

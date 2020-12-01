@@ -32,7 +32,7 @@ import { Farmersellrequestapproval } from 'src/Services/AdminFarmersellrequest.s
 import { BidderRegisterService } from 'src/Services/BidderRegister.Service';
 import { AdminClaimApprovalComponent } from './admin-claim-approval/admin-claim-approval.component';
 import { AdminBidApprovalComponent } from './admin-bid-approval/admin-bid-approval.component';
-import { ForgetPasswordservice } from 'src/Services/ForgetPassword.service';
+import { ForgotPasswordservice } from 'src/Services/ForgotPassword.service';
 import { BiddingStatusService } from 'src/Services/AdminBidApproval.Service';
 import { Claimrequestservice } from 'src/Services/AdminClaimRequest.Service';
 import { LoginService } from 'src/Services/Login.service';
@@ -72,7 +72,7 @@ import { AdminBidderregisterApprovalservice } from 'src/Services/AdminBidderRegi
 providers: [UploadImageService,BidderService,soldhistoryservice,
   FarmerRegisterService,ViewMarketPlaceservice,InsuranceService,
   Claimservice,Farmerregisterdataservice,Farmersellrequestapproval,
-  BidderRegisterService,ForgetPasswordservice,BiddingStatusService,
+  BidderRegisterService,ForgotPasswordservice,BiddingStatusService,
   Claimrequestservice,LoginService,AdminBidderregisterApprovalservice],
   bootstrap: [AppComponent]
 })

@@ -17,15 +17,15 @@ namespace FarmerSchemeSellAndBidding.Controllers
         private FarmerSchemeDBEntities4 db = new FarmerSchemeDBEntities4();
 
         // GET Method to Fetch Cropprice Table
-        #region 
+        #region FetchCropDetails
         public IQueryable<Cropprice> GetCropprices()
         {
             return db.Cropprices;
         }
         #endregion
-//Get Method to Fetch Cropprice Table
+        //Get Method to Fetch Cropprice Table
         // GET: api/Cropprices/5
-        #region 
+        #region FetchPerticularCropDetails
         [ResponseType(typeof(Cropprice))]
         public IHttpActionResult GetCropprice(int id)
         {

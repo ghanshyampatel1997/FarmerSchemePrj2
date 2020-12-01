@@ -29,18 +29,18 @@
                 </div>
                 <div *ngIf="ViewDetails">
                     <button (click)="GoBack()">Go Back</button>
-                    <div><label>Season : {{season}} </label></div><br/>
-                    <div><label>Year : {{year}} </label></div><br/>
-                    <div><label>Crop Name : {{cropname}} </label></div><br/>
-                    <div><label>Sum Insured : {{suminsured}} </label></div><br/>
-                    <div><label>Farm ID : {{FarmId}} </label></div><br/>
-                    <div><label>Claim Number : {{ClaimNo}}</label></div><br/>
-                    <div><label>Cause Of Loss : {{CauseOfLoss}} </label></div><br/>
-                    <div><label>Date of Loss : {{dateOfLoss | date:'mediumDate'}} </label></div><br/>
-                    <div><label>Name : {{fullname}}</label></div><br/>
-                    <div><label>City : {{city}} </label></div><br/>
-                    <div><label>Contact Number : {{ContactNo_}}</label></div><br/>
-                    <div><button *ngIf="ClaimApprove==null" (click)="ApproveClaimrequest()"type="button">Approve</button></div>
+                    <div class="center"><label>Season : {{season}} </label></div><br/>
+                    <div class="center"><label>Year : {{year}} </label></div><br/>
+                    <div class="center"><label>Crop Name : {{cropname}} </label></div><br/>
+                    <div class="center"><label>Sum Insured : {{suminsured}} </label></div><br/>
+                    <div class="center"><label>Farm ID : {{FarmId}} </label></div><br/>
+                    <div class="center"><label>Claim Number : {{ClaimNo}}</label></div><br/>
+                    <div class="center"><label>Cause Of Loss : {{CauseOfLoss}} </label></div><br/>
+                    <div class="center"><label>Date of Loss : {{dateOfLoss | date:'mediumDate'}} </label></div><br/>
+                    <div class="center"><label>Name : {{fullname}}</label></div><br/>
+                    <div class="center"><label>City : {{city}} </label></div><br/>
+                    <div class="center"><label>Contact Number : {{ContactNo_}}</label></div><br/>
+                    <button *ngIf="ClaimApprove==null" (click)="ApproveClaimrequest()"type="button">Approve</button>
                 </div>
             </div>
         </div>

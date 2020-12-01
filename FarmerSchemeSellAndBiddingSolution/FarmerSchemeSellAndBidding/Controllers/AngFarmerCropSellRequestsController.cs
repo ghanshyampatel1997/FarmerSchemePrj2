@@ -21,6 +21,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
         // POST: api/AngFarmerCropSellRequests
         #region Croprequest from angular
         [ResponseType(typeof(AngFarmerCropSellRequest))]
+        [HttpPost]
         public HttpResponseMessage PostAngFarmerCropSellRequest()
         {
         // to bind the incoming values from the request to the model correctly 
@@ -66,7 +67,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.OK, e.Message);
             }
-            #endregion
+           
             //int cid = (from cr in db.Cropprices
             //           where cr.cropname == angFarmerCropSellRequest.cropname
             //           select cr.CropId).First();
@@ -84,7 +85,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
 
             //return Ok();
         }
+        #endregion
 
-       
     }
 }

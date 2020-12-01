@@ -30,20 +30,14 @@
                 </div>
                 <div *ngIf="ViewDetails">
                     <button (click)="GoBack()">Go Back</button>
-                    <div><label>Farmersell Id : </label></div>
-                    <div><label>{{FarmerSellID}}</label></div>
-                    <div><label>Crop Type : </label></div>
-                    <div><label>{{cropType}}</label></div>
-                    <div><label>Crop Name : </label></div>
-                    <div><label>{{cropname}}</label></div>
-                    <div><label>Minimum selling price : </label></div>
-                    <div><label> {{MSP}}</label></div>
-                    <div><label>Fertilizer type : </label></div>
-                    <div><label>{{fertilizerType}}</label></div>
-                    <div><label>Quantity : </label></div>
-                    <div><label>{{quantity}}</label></div>
-                    <div><label>Soil PH certificate : </label></div>
-                    <img [src]="SoilPHCertificate"  style="width:250px;height:200px"><br/><br/>
+                    <div class="center"><label>Farmersell Id : {{FarmerSellID}}</label></div>
+                    <div class="center"><label>Crop Type : {{cropType}}</label></div>
+                    <div class="center"><label>Crop Name : {{cropname}}</label></div>
+                    <div class="center"><label>Minimum selling price : {{MSP}} </label></div>
+                    <div class="center"><label>Fertilizer type : {{fertilizerType}}</label></div>
+                    <div class="center"><label>Quantity : {{quantity}}</label></div>
+                    <div class="center"><label>Soil PH certificate : </label>
+                    <img [src]="SoilPHCertificate"  style="width:250px;height:200px"></div><br/><br/>
                     <div><button  (click)="ApproveSellRequest()"type="button" *ngIf="ApprovedStatus==null">Approve</button></div>
                 </div>
             </div>

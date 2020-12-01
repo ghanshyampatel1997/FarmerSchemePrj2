@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ForgetPasswordservice } from 'src/Services/ForgetPassword.service';
+import { ForgotPasswordservice } from 'src/Services/ForgotPassword.service';
 import { LoginService } from 'src/Services/Login.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   form2 = new FormGroup({
     mailid:new FormControl('',Validators.required),
      })
-  constructor(private loginservice:LoginService,private router:Router,private forgetpassservice:ForgetPasswordservice) { }
+  constructor(private loginservice:LoginService,private router:Router,private forgetpassservice:ForgotPasswordservice) { }
   Loginformpart;
   forgetpasswordpart;
   registeroption;
@@ -61,14 +61,14 @@ usertype
     this.router.navigate(['/BidderRegister']);
   }
 
-  forgetpassword()
+  forgotpassword()
   {
     this.Loginformpart=false;
     this.forgetpasswordpart=true;
   }
   passw;
 
-  forgetPassSubmit()
+  forgotPassSubmit()
   {
     debugger;
     this.forgetpassservice.getPassMail(this.form2.value).subscribe((data)=>

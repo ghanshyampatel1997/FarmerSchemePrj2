@@ -63,8 +63,10 @@ export class FarmerCropSellRequestComponent implements OnInit {
   
 userid=Number(sessionStorage.getItem('id'));
   OnSubmit(Cropetype,CropeName,Fertilizertype,Quantity,Image){
+    debugger;
    this.imageService.postFile(Cropetype.value,CropeName.value,Fertilizertype.value,Quantity.value,this.userid,this.fileToUpload).subscribe(
      (data) =>{
+       window.alert(data);
        console.log('done');
        Cropetype.value = null;
        CropeName.value = null;

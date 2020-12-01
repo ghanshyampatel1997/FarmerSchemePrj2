@@ -27,9 +27,9 @@
                     </div> -->
                     <form #imageForm=ngForm (ngSubmit)="OnSubmit(Cropetype,CropeName,Fertilizertype,Quantity,Image)">
                       <div class="row">
-                        <div class="input-field col s12">
-                            <label for="Cropetype">Crope type*</label>
-                          <input type="text" #Cropetype ngModel name="Cropetype" id="Cropetype" required>  
+                        <div>
+                            <label for="Cropetype" style="width: 50%;text-align: center;">Crop Type*</label>
+                          <input type="text" style="width: 30%;" #Cropetype  name="Cropetype" id="Cropetype" required>  
                         </div>
                         <div *ngIf="!Cropetype?.valid && (Cropetype?.dirty || Cropetype?.touched)" class="error">
                           <div *ngIf="Cropetype.errors.required">
@@ -40,8 +40,8 @@
                       
                       <div class="row">
                         <div class="input-field col s12">
-                            <label for="CropeName">Crope Name*</label>
-                            <select [(ngModel)]="selected">
+                            <label for="CropeName" style="width: 50%;text-align: center;">Crope Name*</label>
+                            <select #CropeName style="width: 30%;">
                               <option *ngFor="let c of cropdata" [ngValue]="person">{{c.cropname}}</option>
                             </select>
                           <!-- <input type="text" #CropeName ngModel name="CropeName" id="CropeName" required>   -->
@@ -49,21 +49,25 @@
                       </div>
                       <div class="row">
                         <div class="input-field col s12">
-                            <label for="Fertilizertype">Fertilizer type*</label>
-                          <input type="text" #Fertilizertype ngModel name="Fertilizertype" id="Fertilizertype" required>  
+                            <label for="Fertilizertype" style="width: 50%;text-align: center;">Fertilizer Type*</label>
+                          <input type="text" style="width: 30%;" #Fertilizertype  name="Fertilizertype" id="Fertilizertype" required>  
                         </div>
                       </div>
                       <div class="row">
                         <div class="input-field col s12">
-                            <label for="Quantity">Quantity(per 20 Kg)*</label>
-                          <input type="text" #Quantity ngModel name="Quantity" id="Quantity" required>  
+                            <label for="Quantity" style="width: 50%;text-align: center;" >Quantity(per 20 Kg)*</label>
+                          <input type="text" style="width: 30%;" #Quantity  name="Quantity" id="Quantity" required>  
                         </div>
                       </div>
-                      <label for="Quantity">Soil PH Certificate*</label>
+                      <label for="Quantity" style="width: 50%;text-align: center;">Soil PH Certificate*</label>
                       <img [src]="imageUrl"  style="width:250px;height:200px">
-                      <input type="file" #Image accept="image/*" (change)="handleFileInput($event.target.files)">
-                      <button type="submit" class="btn-large btn-submit" [disabled]="Image.value=='' || !imageForm.valid">Submit</button>
-                      <label style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;color:darkcyan;">Only image is allowed to upload.</label>
+                      <div class="row">
+                        <div class="input-field col s12">
+                        <input type="file" style="width: 50%;text-align: center;" #Image name="Image"accept="image/*" (change)="handleFileInput($event.target.files)">
+                        <label style="align-content: center;" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;color:darkcyan;">Only image is allowed to upload.</label><br/><br/>
+                        </div>
+                      </div>
+                      <button type="submit" style="align-items: center;" class="btn-large btn-submit" [disabled]="Image.value=='' || !imageForm.valid">Submit</button>
 
                     </form>
                   </div>

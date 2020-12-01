@@ -53,44 +53,36 @@
                 <div *ngIf="ViewDetails" class="container">
                     <button (click)="GoBack()">Go Back</button><br/>
                     
-                            <label>Farmer Email Id : </label>
-                    
-                            <label>{{UserEmailId}}</label><br/><br/>
-                    <label>Contact No  :  </label> 
-                    <label>{{ContactNo_}}</label> <br/><br/>
-                    <label>Address1  :  </label> 
-                    <label>{{address1}}</label> <br/><br/>
-                    <label>Address2   :  </label> 
-                    <label>{{address2}}</label> <br/><br/>
-                    <label>City   :  </label> 
-                    <label>{{city}}</label> <br/><br/>
-                    <label>State   :  </label> 
-                    <label>{{state}}</label> <br/><br/>
-                    <label>Pincode   :  </label> 
-                    <label>{{pincode}}</label> <br/><br/>
-                    <label>Pancard</label> <br/><br/>
-                    <img [src]="pancardDocument"  style="width:250px;height:200px">
-                    <!--  <label>{{pancardDocument}}</label> <br/> -->
-                    <label>Aadharcard</label> <br/><br/>
-                    <img [src]="aadharCardDocument"  style="width:250px;height:200px">
+                    <div class="center"><label>Farmer Email Id : {{UserEmailId}}</label></div>
+                    <div class="center"><label>Contact No  :  {{ContactNo_}}</label></div> 
+                    <div class="center"><label>Address1  : {{address1}} </label></div> 
+                    <div class="center"><label>Address2   :  {{address2}}  </label></div> 
+                    <div class="center"><label>City   :  {{city}}</label></div> 
+                    <div class="center"><label>State   :  {{state}}</label></div> 
+                    <div class="center"><label>Pincode   :  {{pincode}}</label></div> 
+                    <div class="center"><label>Pancard</label> <br/><br/>
+                    <img [src]="pancardDocument"  style="width:250px;height:200px"></div>
+                    <!--  <div class="center"><label>{{pancardDocument}}</label></div> <br/> -->
+                    <div class="center"><label>Aadharcard</label> <br/><br/>
+                    <img [src]="aadharCardDocument"  style="width:250px;height:200px"></div>
                     <!--  <img class="e2e-inner-html-bound" src={{aadharCardDocument}}> <br/> -->
-                    <label>Certificate</label> <br/><br/>
-                    <img [src]="certificate"  style="width:250px;height:200px"><br/><br/>
-                    <!--  <label>{{certificate}}</label> <br/> -->
-                    <label>IFSC Code   :  </label>
-                    <label>{{IFSCCode}}</label> <br/><br/>
+                    <div class="center"><label>Certificate</label> <br/><br/>
+                    <img [src]="certificate"  style="width:250px;height:200px"></div><br/><br/>
+                    <!--  <div class="center"><label>{{certificate}}</label></div> <br/> -->
+                    <div class="center"><label>IFSC Code   : {{IFSCCode}} </label></div>
+                  
 
-                    <label>Bank Account No   :  </label> 
-                    <label>{{BankAccountNo}}</label> <br/><br/>
+                    <div class="center"><label>Bank Account No   : {{BankAccountNo}} </label></div> 
+                
 
-                    <label>Land  Area   :  </label> 
-                    <label>{{landArea}}</label> <br/><br/>
+                    <div class="center"><label>Land  Area   : {{landArea}} </label></div> 
+                   
 
-                    <label>Land Address   :  </label>
-                    <label>{{landAddress}}</label> <br/><br/>
+                    <div class="center"><label>Land Address   : {{landAddress}} </label></div>
+                    
 
-                    <label>Land Pincode   :  </label>
-                    <label>{{landPinCode}}</label> <br/><br/>
+                    <div class="center"><label>Land Pincode   : {{landPinCode}} </label></div>
+                  
                     <button *ngIf="ApprovedStatus==null" type="button" (click)="Approveddata() ">Approve</button> <br/><br/>
                     <button (click)="GoBack()">Go Back</button><br/><br/>
 

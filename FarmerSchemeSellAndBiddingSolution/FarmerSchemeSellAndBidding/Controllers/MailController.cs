@@ -15,9 +15,9 @@ namespace FarmerSchemeSellAndBidding.Controllers
     public class MailController : ApiController
     {
         private FarmerSchemeDBEntities4 Db = new FarmerSchemeDBEntities4();
-        //Post method when user forgets the password
-        #region
-        [HttpPost]
+        //Post method when user forgots the password
+        #region SendMailForForgotPassword
+        [HttpPost] 
         public async Task<string> GetMail(dynamic mailid)
         {
             string email= mailid.mailid;

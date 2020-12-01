@@ -16,7 +16,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
         //Get Method to Fetch Biddingdata
         #region Getbiddingstatus
         [HttpGet]
-        public IHttpActionResult geBiddingStatusDetails()
+        public IHttpActionResult getBiddingStatusDetails()
         {
         //using trycatch block for error handiling
             try

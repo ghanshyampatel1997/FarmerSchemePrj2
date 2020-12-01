@@ -14,7 +14,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
         [HttpPost]
         //[Route("InsuranceApplication")]
         //Post Method to add Apply for insurance
-        #region 
+        #region Post insurance Application
         public IHttpActionResult PostinsuranceForm(dynamic InsForm)
         {
             try
@@ -62,7 +62,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 }
                 else
                 {
-                    return BadRequest("Data is not fatched from form");
+                    return BadRequest("Data is not found in form");
                 }
             }
             catch(Exception e)
