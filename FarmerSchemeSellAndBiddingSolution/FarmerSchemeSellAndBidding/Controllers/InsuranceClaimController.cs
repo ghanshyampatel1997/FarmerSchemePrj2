@@ -36,6 +36,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                            on i.UserID equals r.UserID
                            join u in Db.UserRegisters
                            on r.UserEmailId equals u.UserEmailId
+                           where i.PolicyNo == Pn
                            select u.fullname).First();
             data.Add(name);
             return Ok(data);

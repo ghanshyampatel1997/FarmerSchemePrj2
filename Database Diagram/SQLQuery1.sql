@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [FarmerSchemeDB]    Script Date: 12/1/2020 9:23:38 AM ******/
+/****** Object:  Database [FarmerSchemeDB]    Script Date: 12/2/2020 9:32:39 AM ******/
 CREATE DATABASE [FarmerSchemeDB]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -78,7 +78,7 @@ ALTER DATABASE [FarmerSchemeDB] SET QUERY_STORE = OFF
 GO
 USE [FarmerSchemeDB]
 GO
-/****** Object:  Table [dbo].[Admin]    Script Date: 12/1/2020 9:23:39 AM ******/
+/****** Object:  Table [dbo].[Admin]    Script Date: 12/2/2020 9:32:40 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -92,7 +92,7 @@ CREATE TABLE [dbo].[Admin](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BankDetails]    Script Date: 12/1/2020 9:23:39 AM ******/
+/****** Object:  Table [dbo].[BankDetails]    Script Date: 12/2/2020 9:32:40 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -108,7 +108,7 @@ CREATE TABLE [dbo].[BankDetails](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BiddingTable]    Script Date: 12/1/2020 9:23:39 AM ******/
+/****** Object:  Table [dbo].[BiddingTable]    Script Date: 12/2/2020 9:32:40 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -127,7 +127,7 @@ CREATE TABLE [dbo].[BiddingTable](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ClaimForm]    Script Date: 12/1/2020 9:23:39 AM ******/
+/****** Object:  Table [dbo].[ClaimForm]    Script Date: 12/2/2020 9:32:40 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -144,7 +144,7 @@ CREATE TABLE [dbo].[ClaimForm](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Cropprice]    Script Date: 12/1/2020 9:23:39 AM ******/
+/****** Object:  Table [dbo].[Cropprice]    Script Date: 12/2/2020 9:32:40 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -159,7 +159,7 @@ CREATE TABLE [dbo].[Cropprice](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FarmerCropdetils]    Script Date: 12/1/2020 9:23:39 AM ******/
+/****** Object:  Table [dbo].[FarmerCropdetils]    Script Date: 12/2/2020 9:32:40 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -180,7 +180,7 @@ CREATE TABLE [dbo].[FarmerCropdetils](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FarmerLand]    Script Date: 12/1/2020 9:23:39 AM ******/
+/****** Object:  Table [dbo].[FarmerLand]    Script Date: 12/2/2020 9:32:40 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -197,7 +197,7 @@ CREATE TABLE [dbo].[FarmerLand](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[InsuranceApplication]    Script Date: 12/1/2020 9:23:39 AM ******/
+/****** Object:  Table [dbo].[InsuranceApplication]    Script Date: 12/2/2020 9:32:40 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -216,7 +216,7 @@ CREATE TABLE [dbo].[InsuranceApplication](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RollType]    Script Date: 12/1/2020 9:23:39 AM ******/
+/****** Object:  Table [dbo].[RollType]    Script Date: 12/2/2020 9:32:40 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -233,7 +233,7 @@ CREATE TABLE [dbo].[RollType](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserRegister]    Script Date: 12/1/2020 9:23:39 AM ******/
+/****** Object:  Table [dbo].[UserRegister]    Script Date: 12/2/2020 9:32:40 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -256,15 +256,11 @@ CREATE TABLE [dbo].[UserRegister](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-INSERT [dbo].[Admin] ([AdminID], [Password]) VALUES (N'admin123', N'admin12345')
+INSERT [dbo].[Admin] ([AdminID], [Password]) VALUES (N'admin123', N'YWRtaW4xMjM0NQ==')
 GO
 SET IDENTITY_INSERT [dbo].[BankDetails] ON 
 GO
 INSERT [dbo].[BankDetails] ([BankId], [IFSCCode], [BankAccountNo], [UserID]) VALUES (1000, N'nvgvvhvxbchjbj', 814422010, 12)
-GO
-INSERT [dbo].[BankDetails] ([BankId], [IFSCCode], [BankAccountNo], [UserID]) VALUES (1001, N'SBIN0005678', 1812700162, 13)
-GO
-INSERT [dbo].[BankDetails] ([BankId], [IFSCCode], [BankAccountNo], [UserID]) VALUES (1002, N'SBIN0005678', 1812700162, 14)
 GO
 INSERT [dbo].[BankDetails] ([BankId], [IFSCCode], [BankAccountNo], [UserID]) VALUES (1003, N'SBIN0005678', 1812700162, 15)
 GO
@@ -272,13 +268,17 @@ INSERT [dbo].[BankDetails] ([BankId], [IFSCCode], [BankAccountNo], [UserID]) VAL
 GO
 INSERT [dbo].[BankDetails] ([BankId], [IFSCCode], [BankAccountNo], [UserID]) VALUES (1005, N'SBIN0005645', 1234564646, 1)
 GO
-INSERT [dbo].[BankDetails] ([BankId], [IFSCCode], [BankAccountNo], [UserID]) VALUES (1006, N'SBIN0004656', -1419104202, 17)
+INSERT [dbo].[BankDetails] ([BankId], [IFSCCode], [BankAccountNo], [UserID]) VALUES (1006, N'SBIN0004656', 1419104202, 17)
 GO
-INSERT [dbo].[BankDetails] ([BankId], [IFSCCode], [BankAccountNo], [UserID]) VALUES (1007, N'SBIN0007865', 960004474, 19)
+INSERT [dbo].[BankDetails] ([BankId], [IFSCCode], [BankAccountNo], [UserID]) VALUES (1007, N'SBIN0007865', 3250004474, 19)
 GO
-INSERT [dbo].[BankDetails] ([BankId], [IFSCCode], [BankAccountNo], [UserID]) VALUES (1008, N'SBIN0005678', -1824642207, 20)
+INSERT [dbo].[BankDetails] ([BankId], [IFSCCode], [BankAccountNo], [UserID]) VALUES (1008, N'SBIN0005678', 1824642207, 20)
 GO
 INSERT [dbo].[BankDetails] ([BankId], [IFSCCode], [BankAccountNo], [UserID]) VALUES (1009, N'SBIN0008945', 564879452612, 23)
+GO
+INSERT [dbo].[BankDetails] ([BankId], [IFSCCode], [BankAccountNo], [UserID]) VALUES (1010, N'HDFC0001534', 32567852637, 24)
+GO
+INSERT [dbo].[BankDetails] ([BankId], [IFSCCode], [BankAccountNo], [UserID]) VALUES (1012, N'HDFC0004563', -1742030851, 26)
 GO
 SET IDENTITY_INSERT [dbo].[BankDetails] OFF
 GO
@@ -306,15 +306,21 @@ INSERT [dbo].[BiddingTable] ([BidID], [bidAmount], [FarmerSellID], [ApprovedBid]
 GO
 INSERT [dbo].[BiddingTable] ([BidID], [bidAmount], [FarmerSellID], [ApprovedBid], [date], [UserID], [Biddingdate]) VALUES (11, 1800, 1011, NULL, NULL, 1, CAST(N'2020-10-11' AS Date))
 GO
-INSERT [dbo].[BiddingTable] ([BidID], [bidAmount], [FarmerSellID], [ApprovedBid], [date], [UserID], [Biddingdate]) VALUES (12, 1900, 1011, NULL, NULL, 1, CAST(N'2020-10-11' AS Date))
-GO
-INSERT [dbo].[BiddingTable] ([BidID], [bidAmount], [FarmerSellID], [ApprovedBid], [date], [UserID], [Biddingdate]) VALUES (15, 1300, 1001, NULL, NULL, 2, NULL)
-GO
 INSERT [dbo].[BiddingTable] ([BidID], [bidAmount], [FarmerSellID], [ApprovedBid], [date], [UserID], [Biddingdate]) VALUES (16, 1300, 1001, NULL, NULL, 2, CAST(N'2020-11-27' AS Date))
 GO
 INSERT [dbo].[BiddingTable] ([BidID], [bidAmount], [FarmerSellID], [ApprovedBid], [date], [UserID], [Biddingdate]) VALUES (17, 1750, 1021, NULL, NULL, 2, CAST(N'2020-11-30' AS Date))
 GO
 INSERT [dbo].[BiddingTable] ([BidID], [bidAmount], [FarmerSellID], [ApprovedBid], [date], [UserID], [Biddingdate]) VALUES (18, 900, 1006, NULL, NULL, 19, CAST(N'2020-11-30' AS Date))
+GO
+INSERT [dbo].[BiddingTable] ([BidID], [bidAmount], [FarmerSellID], [ApprovedBid], [date], [UserID], [Biddingdate]) VALUES (19, 500, 1029, 1, CAST(N'2020-01-12' AS Date), 19, CAST(N'2020-12-01' AS Date))
+GO
+INSERT [dbo].[BiddingTable] ([BidID], [bidAmount], [FarmerSellID], [ApprovedBid], [date], [UserID], [Biddingdate]) VALUES (20, 815, 1030, 1, CAST(N'2020-12-01' AS Date), 19, CAST(N'2020-12-01' AS Date))
+GO
+INSERT [dbo].[BiddingTable] ([BidID], [bidAmount], [FarmerSellID], [ApprovedBid], [date], [UserID], [Biddingdate]) VALUES (21, 1396, 1031, 1, CAST(N'2020-12-01' AS Date), 19, CAST(N'2020-12-01' AS Date))
+GO
+INSERT [dbo].[BiddingTable] ([BidID], [bidAmount], [FarmerSellID], [ApprovedBid], [date], [UserID], [Biddingdate]) VALUES (22, 450, 1029, NULL, NULL, 19, CAST(N'2020-12-01' AS Date))
+GO
+INSERT [dbo].[BiddingTable] ([BidID], [bidAmount], [FarmerSellID], [ApprovedBid], [date], [UserID], [Biddingdate]) VALUES (23, 550, 1032, 1, CAST(N'2020-12-01' AS Date), 19, CAST(N'2020-12-01' AS Date))
 GO
 SET IDENTITY_INSERT [dbo].[BiddingTable] OFF
 GO
@@ -338,9 +344,11 @@ INSERT [dbo].[Cropprice] ([CropId], [cropname], [MSP]) VALUES (5, N'Groundnut', 
 GO
 INSERT [dbo].[Cropprice] ([CropId], [cropname], [MSP]) VALUES (6, N'Ragi', 450)
 GO
-INSERT [dbo].[Cropprice] ([CropId], [cropname], [MSP]) VALUES (7, N'Bajra soybean', 700)
+INSERT [dbo].[Cropprice] ([CropId], [cropname], [MSP]) VALUES (7, N'Bajra ', 700)
 GO
 INSERT [dbo].[Cropprice] ([CropId], [cropname], [MSP]) VALUES (8, N'Maize', 800)
+GO
+INSERT [dbo].[Cropprice] ([CropId], [cropname], [MSP]) VALUES (9, N'Sitafal', 2000)
 GO
 SET IDENTITY_INSERT [dbo].[FarmerCropdetils] ON 
 GO
@@ -382,6 +390,14 @@ INSERT [dbo].[FarmerCropdetils] ([FarmerSellID], [cropType], [CropId], [fertiliz
 GO
 INSERT [dbo].[FarmerCropdetils] ([FarmerSellID], [cropType], [CropId], [fertilizerType], [quantity], [SoilPHCertificate], [AproovedFarmersell], [UserID], [AddedDate]) VALUES (1028, N'Rabi', 1, N'Natural', 78, N'/assets/img/certificat203300315.jpg', NULL, 16, CAST(N'2020-11-30' AS Date))
 GO
+INSERT [dbo].[FarmerCropdetils] ([FarmerSellID], [cropType], [CropId], [fertilizerType], [quantity], [SoilPHCertificate], [AproovedFarmersell], [UserID], [AddedDate]) VALUES (1029, N'Zaid', 4, N'Natural', 67, N'/assets/img/certificat205121305.jpg', 1, 16, CAST(N'2020-12-01' AS Date))
+GO
+INSERT [dbo].[FarmerCropdetils] ([FarmerSellID], [cropType], [CropId], [fertilizerType], [quantity], [SoilPHCertificate], [AproovedFarmersell], [UserID], [AddedDate]) VALUES (1030, N'Zaid', 6, N'Natural', 50, N'/assets/img/certificat204239318.jpg', 1, 16, CAST(N'2020-12-01' AS Date))
+GO
+INSERT [dbo].[FarmerCropdetils] ([FarmerSellID], [cropType], [CropId], [fertilizerType], [quantity], [SoilPHCertificate], [AproovedFarmersell], [UserID], [AddedDate]) VALUES (1031, N'Kharif', 7, N'Chemical', 50, N'/assets/img/certificat200735899.jpg', 1, 26, CAST(N'2020-12-01' AS Date))
+GO
+INSERT [dbo].[FarmerCropdetils] ([FarmerSellID], [cropType], [CropId], [fertilizerType], [quantity], [SoilPHCertificate], [AproovedFarmersell], [UserID], [AddedDate]) VALUES (1032, N'kharif', 4, N'Natural', 20, N'/assets/img/certificat200116695.jpg', 1, 16, CAST(N'2020-12-01' AS Date))
+GO
 SET IDENTITY_INSERT [dbo].[FarmerCropdetils] OFF
 GO
 SET IDENTITY_INSERT [dbo].[FarmerLand] ON 
@@ -405,6 +421,8 @@ GO
 INSERT [dbo].[FarmerLand] ([FarmId], [landArea], [landAddress], [landPinCode], [UserID]) VALUES (9, N'Vadali', N'Jamnagar', 653234, 17)
 GO
 INSERT [dbo].[FarmerLand] ([FarmId], [landArea], [landAddress], [landPinCode], [UserID]) VALUES (10, N'Tamilnadu', N'Tamilnadu', 455678, 23)
+GO
+INSERT [dbo].[FarmerLand] ([FarmId], [landArea], [landAddress], [landPinCode], [UserID]) VALUES (11, N'Sabarkantha', N'Chulla, Kadiyadara', 353632, 26)
 GO
 SET IDENTITY_INSERT [dbo].[FarmerLand] OFF
 GO
@@ -458,7 +476,13 @@ INSERT [dbo].[RollType] ([UserID], [RollType], [certificate], [ApprovedStatus], 
 GO
 INSERT [dbo].[RollType] ([UserID], [RollType], [certificate], [ApprovedStatus], [UserEmailId]) VALUES (23, N'FARMER', N'/assets/img/certificat204510657.jpg', 1, N'tejeshedunoori@gmail.com')
 GO
+INSERT [dbo].[RollType] ([UserID], [RollType], [certificate], [ApprovedStatus], [UserEmailId]) VALUES (24, N'BIDDER', N'/assets/img/certificat204455120.jpg', NULL, N'dharmendrak@gmail.com')
+GO
+INSERT [dbo].[RollType] ([UserID], [RollType], [certificate], [ApprovedStatus], [UserEmailId]) VALUES (26, N'FARMER', N'/assets/img/certificat205637462.jpg', 1, N'sk.imthiyaz4@gmail.com')
+GO
 SET IDENTITY_INSERT [dbo].[RollType] OFF
+GO
+INSERT [dbo].[UserRegister] ([UserEmailId], [password], [ContactNo.], [fullname], [address1], [address2], [city], [state], [pincode], [pancardDocument], [aadharCardDocument]) VALUES (N'dharmendrak@gmail.com', N'ZGhhcmFt', N'789-567-3456', N'Dharmendra Kumar Pandya', N'Bundi Nagar,Jammu', N'Jammu kashmir', N'Jammu', N'Jammu kashmir', 568924, N'/assets/img/Pan-Card204455120.jpg', N'/assets/img/Aadhar-Car204455118.jpg')
 GO
 INSERT [dbo].[UserRegister] ([UserEmailId], [password], [ContactNo.], [fullname], [address1], [address2], [city], [state], [pincode], [pancardDocument], [aadharCardDocument]) VALUES (N'ghanshyam@gmail.com', N'1234567', N'4578595626', N'Ghanshyam', N'home', NULL, N'''Ahmedabad''', N'Gujarat', 487859, N'/assets/img/Pan-Card205543208.jpg', N'/assets/img/Aadhar-Car205512368.jpg')
 GO
@@ -466,11 +490,11 @@ INSERT [dbo].[UserRegister] ([UserEmailId], [password], [ContactNo.], [fullname]
 GO
 INSERT [dbo].[UserRegister] ([UserEmailId], [password], [ContactNo.], [fullname], [address1], [address2], [city], [state], [pincode], [pancardDocument], [aadharCardDocument]) VALUES (N'ghanshyampatel@gmail.com', N'123456', N'7956124859', N'Manasvini', N'home2', NULL, N'''gujarat''', N'gujarat', 264859, N'/assets/img/Pan-Card205543208.jpg', N'/assets/img/Aadhar-Car205512368.jpg')
 GO
-INSERT [dbo].[UserRegister] ([UserEmailId], [password], [ContactNo.], [fullname], [address1], [address2], [city], [state], [pincode], [pancardDocument], [aadharCardDocument]) VALUES (N'ghanshyampatel123@gmail.com', N'shyam', N'777-765-4278', N'Tejesh', N'Rampur,Vadali', N'Gujarat', N'Vadli', N'Gujarat', 353236, N'/assets/img/Pan-Card203149610.jpg', N'/assets/img/adhar-Car203149609.jpg')
+INSERT [dbo].[UserRegister] ([UserEmailId], [password], [ContactNo.], [fullname], [address1], [address2], [city], [state], [pincode], [pancardDocument], [aadharCardDocument]) VALUES (N'ghanshyampatel123@gmail.com', N'c2h5YW0=', N'777-765-4278', N'Tejesh', N'Rampur,Vadali', N'Gujarat', N'Vadli', N'Gujarat', 353236, N'/assets/img/Pan-Card203149610.jpg', N'/assets/img/adhar-Car203149609.jpg')
 GO
-INSERT [dbo].[UserRegister] ([UserEmailId], [password], [ContactNo.], [fullname], [address1], [address2], [city], [state], [pincode], [pancardDocument], [aadharCardDocument]) VALUES (N'ghanshyampatel199789@gmail.com', N'7777906453', N'7777906453', N'Ghanshyam Patel', N'Vadali,Sabarkantha,Gujarat', N'Guajarat', N'vadali', N'Gujarat', 383235, N'/assets/img/Pan-Card205543208.jpg', N'/assets/img/Aadhar-Car205512368.jpg')
+INSERT [dbo].[UserRegister] ([UserEmailId], [password], [ContactNo.], [fullname], [address1], [address2], [city], [state], [pincode], [pancardDocument], [aadharCardDocument]) VALUES (N'ghanshyampatel199789@gmail.com', N'ZGhhcmFt', N'7777906453', N'Ghanshyam Patel', N'Vadali,Sabarkantha,Gujarat', N'Guajarat', N'vadali', N'Gujarat', 383235, N'/assets/img/Pan-Card205543208.jpg', N'/assets/img/Aadhar-Car205512368.jpg')
 GO
-INSERT [dbo].[UserRegister] ([UserEmailId], [password], [ContactNo.], [fullname], [address1], [address2], [city], [state], [pincode], [pancardDocument], [aadharCardDocument]) VALUES (N'jayantibhai.batli@gmail.com', N'Jayanti', N'777-092-6789', N'JayntiBhai Batlivada', N'SundarNagar', N'Jamnagar', N'Valsad', N'Gujarat', 363738, N'/assets/img/Pan-Card202720344.jpg', N'/assets/img/Aadhar-Car202720344.jpg')
+INSERT [dbo].[UserRegister] ([UserEmailId], [password], [ContactNo.], [fullname], [address1], [address2], [city], [state], [pincode], [pancardDocument], [aadharCardDocument]) VALUES (N'jayantibhai.batli@gmail.com', N'SmF5YW50aQ==', N'777-092-6789', N'JayntiBhai Batlivada', N'SundarNagar', N'Jamnagar', N'Valsad', N'Gujarat', 363738, N'/assets/img/Pan-Card202720344.jpg', N'/assets/img/Aadhar-Car202720344.jpg')
 GO
 INSERT [dbo].[UserRegister] ([UserEmailId], [password], [ContactNo.], [fullname], [address1], [address2], [city], [state], [pincode], [pancardDocument], [aadharCardDocument]) VALUES (N'jickcn,z,,nzkckk', N'shyam', N'7622827845', N'Imthiyaz', N'vadali', N'gujarat', N'vadali', N'gujarat', 567845, N'/assets/img/pigs2201618505.jpg', N'/assets/img/oil-india-201617549.jpg')
 GO
@@ -487,6 +511,8 @@ GO
 INSERT [dbo].[UserRegister] ([UserEmailId], [password], [ContactNo.], [fullname], [address1], [address2], [city], [state], [pincode], [pancardDocument], [aadharCardDocument]) VALUES (N'ravikumar123@gmail.com', N'Ravik', N'790-789-5645', N'Ravikumar', N'Jamnagar,Junagath', N'Delvada', N'Junagath', N'Gujarat', 789056, N'/assets/img/Pan-Card204510657.jpg', N'/assets/img/Aadhar-Car204510656.jpg')
 GO
 INSERT [dbo].[UserRegister] ([UserEmailId], [password], [ContactNo.], [fullname], [address1], [address2], [city], [state], [pincode], [pancardDocument], [aadharCardDocument]) VALUES (N'Shyam@gmail.com', N'12345678', N'4878895625', N'Mukesh', N'Udaygath', N'Chopal fali', N'Navi Mumbai', N'Mumbai', 485926, N'/assets/img/Pan-Card205543208.jpg', N'/assets/img/Aadhar-Car205512368.jpg')
+GO
+INSERT [dbo].[UserRegister] ([UserEmailId], [password], [ContactNo.], [fullname], [address1], [address2], [city], [state], [pincode], [pancardDocument], [aadharCardDocument]) VALUES (N'sk.imthiyaz4@gmail.com', N'c2hlaWs=', N'532-890-6543', N'Ravi Teja', N'Chulla, Kadiyadara', N'Sabarkantha', N'Kadiyadara', N'Gujarat', 353632, N'/assets/img/Pan-Card205637462.jpg', N'/assets/img/Aadhar-Car205637452.jpg')
 GO
 INSERT [dbo].[UserRegister] ([UserEmailId], [password], [ContactNo.], [fullname], [address1], [address2], [city], [state], [pincode], [pancardDocument], [aadharCardDocument]) VALUES (N'tejeshedunoori@gmail.com', N'123456789', N'1234567890', N'Tejesh Reddi', N'Tamilnadu', NULL, N'tamilnadu', N'tamilnadu', 652145, N'/assets/img/Pan-Card205543208.jpg', N'/assets/img/Aadhar-Car205512368.jpg')
 GO
@@ -542,7 +568,7 @@ REFERENCES [dbo].[UserRegister] ([UserEmailId])
 GO
 ALTER TABLE [dbo].[RollType] CHECK CONSTRAINT [FK_301]
 GO
-/****** Object:  StoredProcedure [dbo].[MarketViewForBidder]    Script Date: 12/1/2020 9:23:40 AM ******/
+/****** Object:  StoredProcedure [dbo].[MarketViewForBidder]    Script Date: 12/2/2020 9:32:40 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -560,7 +586,7 @@ where f.AproovedFarmersell=1
 order by f.AddedDate desc
 end
 GO
-/****** Object:  StoredProcedure [dbo].[MarketViewForBidderwithMaxBidAmount]    Script Date: 12/1/2020 9:23:40 AM ******/
+/****** Object:  StoredProcedure [dbo].[MarketViewForBidderwithMaxBidAmount]    Script Date: 12/2/2020 9:32:40 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -579,7 +605,7 @@ group by f.FarmerSellID,f.cropType,c.cropname,c.MSP,f.AddedDate
 order by f.AddedDate desc
 end
 GO
-/****** Object:  StoredProcedure [dbo].[Soldhistory]    Script Date: 12/1/2020 9:23:40 AM ******/
+/****** Object:  StoredProcedure [dbo].[Soldhistory]    Script Date: 12/2/2020 9:32:40 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -594,7 +620,7 @@ where b.ApprovedBid=1
 order by b.date desc
 end
 GO
-/****** Object:  StoredProcedure [dbo].[ViewMarketplace]    Script Date: 12/1/2020 9:23:40 AM ******/
+/****** Object:  StoredProcedure [dbo].[ViewMarketplace]    Script Date: 12/2/2020 9:32:40 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON

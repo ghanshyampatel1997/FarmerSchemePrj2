@@ -68,6 +68,15 @@ namespace FarmerSchemeSellAndBidding.Controllers
                     UserRegister userRegister = new UserRegister();
                     userRegister.UserEmailId = ueid;
                     userRegister.password = httpRequest["Password"];
+
+                    //Password Encryption Code
+                    byte[] encData_byte = new byte[userRegister.password.Length];
+                    encData_byte = System.Text.Encoding.UTF8.GetBytes(userRegister.password);
+                    string encodedpassword = Convert.ToBase64String(encData_byte);
+                    userRegister.password = encodedpassword;
+
+
+
                     userRegister.ContactNo_ = httpRequest["ContactNo"];
                     userRegister.fullname = httpRequest["Fullname"];
                     userRegister.address1 = httpRequest["Address1"];

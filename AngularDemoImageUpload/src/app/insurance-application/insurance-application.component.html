@@ -37,7 +37,7 @@
                                 <small class="text-danger">Total sum insured  is Required</small>
                             </div>
                         </div>
-                    <p><label><em>Area in Hectar<span style="color: #ff0000;"><label>*</label></span></em>:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label> 
+                    <p><label><em>Area in Hectare<span style="color: #ff0000;"><label>*</label></span></em>:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label> 
                         <input ngModel name="area" #area="ngModel" id="myText" type="number"  required/></p>
                         <div *ngIf="!area?.valid && (area?.dirty || area.touched)" class="error">
                             <div *ngIf="area.errors.required">

@@ -60,7 +60,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 Cno.ClaimApprove = true;
                 Db.Entry(Cno).State = EntityState.Modified;
                 Db.SaveChanges();
-                return Ok("Claim Request Approve");
+                return Ok("Claim Request is Approved");
             }
             catch (Exception e)
             {

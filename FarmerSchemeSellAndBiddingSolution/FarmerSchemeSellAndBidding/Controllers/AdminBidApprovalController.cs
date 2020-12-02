@@ -66,6 +66,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 BiddingTable Bid = (from b in Db.BiddingTables
                                     where b.BidID == ID
                                     select b).First();
+                Bid.date = DateTime.Now;
                 Bid.ApprovedBid = true;
                 //To update Approvedbid
                 Db.Entry(Bid).State = EntityState.Modified;

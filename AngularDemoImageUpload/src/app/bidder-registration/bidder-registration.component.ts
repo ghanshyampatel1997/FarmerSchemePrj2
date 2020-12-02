@@ -65,25 +65,25 @@ massage;
    else{
     this.BidRegiService.postFile(Fullname.value,ContactNo.value,Emailid.value,Address1.value,Address2.value,City.value,State.value,Pincode.value,BankAccountno.value,IFSCCode.value,Password.value,this.fileToUpload1,this.fileToUpload2,this.fileToUpload3).subscribe(
       (data) =>{this.massage=data;
-        window.alert(this.massage);
-        Fullname.value = null;
-        ContactNo.value = null;
-        Emailid.value = null;
-        Address1.value=null;
-        Address2.value=null;
-        City.value=null;
-        State.value=null;
-        Pincode.value=null;
-        BankAccountno.value=null;
-        IFSCCode.value=null;
-        Image1.value=null;
-        Image2.value=null;
-        Image3.value=null;
-        Password.value=null;
-        CPassword.value=null;
-        this.imageUrl1 = "/assets/img/default-image.png";
-        this.imageUrl2 = "/assets/img/default-image.png";
-        this.imageUrl3 = "/assets/img/default-image.png";
+        // window.alert(this.massage);
+        // Fullname.value = null;
+        // ContactNo.value = null;
+        // Emailid.value = null;
+        // Address1.value=null;
+        // Address2.value=null;
+        // City.value=null;
+        // State.value=null;
+        // Pincode.value=null;
+        // BankAccountno.value=null;
+        // IFSCCode.value=null;
+        // Image1.value=null;
+        // Image2.value=null;
+        // Image3.value=null;
+        // Password.value=null;
+        // CPassword.value=null;
+        // this.imageUrl1 = "/assets/img/default-image.png";
+        // this.imageUrl2 = "/assets/img/default-image.png";
+        // this.imageUrl3 = "/assets/img/default-image.png";
       },
       (error)=>
       {

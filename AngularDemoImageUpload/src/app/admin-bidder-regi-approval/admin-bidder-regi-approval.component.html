@@ -1,5 +1,5 @@
 <div class="intro" *ngIf="Bidderregister"></div>
-<div style="text-align: center;border:1px black;" (click)="Bidderregiapproval()">Approve for Bidder Registration</div>
+<div style="text-align: center;border:1px black;" (click)="Bidderregiapproval()"> <h2 style="text-align: center;">Welcome Admin to Bidder Registration Approval Page, Click here to see Details.</h2></div>
 <div *ngIf="Bidderregi">
 <div class="Container-fluid">
     <button (click)="GoBackAgain()">Go Back</button><br/>
@@ -35,7 +35,7 @@
     <div class="center"> <label>City   : {{city}} </label> </div><br/> 
     <div class="center"> <label>State   : {{state}} </label> </div><br/> 
     <div class="center"> <label>Pincode   : {{pincode}} </label></div><br/> 
-    <div class="center"><div class="center"> <label>Pancard</label> </div>
+    <div class="center"><label>Pancard</label>
     <img [src]="pancardDocument"  style="width:250px;height:200px"></div><br/> <br/>
     <!--  <label>{{pancardDocument}}</label> <br/> -->
     <div class="center"><label>Aadharcard</label> <br/><br/>

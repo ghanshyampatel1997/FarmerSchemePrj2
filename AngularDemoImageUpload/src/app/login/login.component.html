@@ -75,7 +75,7 @@
                 <form name = "form2" [formGroup] = "form2" (ngSubmit)="forgotPassSubmit()">
                    
                     <div class = "form-group">
-                        <label for = "mailid">Privide your Email Address</label>
+                        <label for = "mailid">Provide your Email Address</label>
                         <input type = "text" class ="form-control" formControlName="mailid" [ngClass]="{'is-invalid':
                         form2.get('mailid').touched && form2.get('mailid').invalid}"/>
                 

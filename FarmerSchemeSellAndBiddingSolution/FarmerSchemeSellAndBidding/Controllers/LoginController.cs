@@ -22,6 +22,13 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 string upass;
                 string type = login.usertype;
                 string pw = login.password;
+
+                //Password Encryption Code
+                byte[] encData_byte = new byte[pw.Length];
+                encData_byte = System.Text.Encoding.UTF8.GetBytes(pw);
+                string encodedpassword = Convert.ToBase64String(encData_byte);
+                pw = encodedpassword;
+
                 if (type.ToLower()=="admin")
                 {
                     string uid1 = login.userid;
@@ -32,6 +39,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                         pas = (from a in db.Admins
                                       where a.AdminID == uid1
                                       select a.Password).First();
+                        
                     }
                     catch
                     {

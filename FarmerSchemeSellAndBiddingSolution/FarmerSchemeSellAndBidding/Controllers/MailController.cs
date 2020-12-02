@@ -30,12 +30,24 @@ namespace FarmerSchemeSellAndBidding.Controllers
                 string r = (from u in Db.UserRegisters
                      where u.UserEmailId == email
                      select u.password).FirstOrDefault();
+                var e = r;
+
+                //Decryption
+                System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
+                System.Text.Decoder utf8Decode = encoder.GetDecoder();
+                byte[] todecode_byte = Convert.FromBase64String(e);
+                int charCount = utf8Decode.GetCharCount(todecode_byte, 0, todecode_byte.Length);
+                char[] decoded_char = new char[charCount];
+                utf8Decode.GetChars(todecode_byte, 0, todecode_byte.Length, decoded_char, 0);
+                string pass = new String(decoded_char);
+
+
                 SmtpClient smtp = new SmtpClient();
                 MailMessage mailMessage = new MailMessage();
                 mailMessage.From = new MailAddress("FarmerScheme@gmail.com");
                 mailMessage.To.Add(email);
                 mailMessage.Subject = "Forgot Password Of Farmer Scheme Web Application.";
-                mailMessage.Body = "Dear User.Your password is " + r + ". Kindly Remember it for future login into the system";
+                mailMessage.Body = "Dear User.Your password is " + pass + ". Kindly Remember it for future login into the system";
                 await Task.Run(() => smtp.SendAsync(mailMessage, null));
                 return r;
 

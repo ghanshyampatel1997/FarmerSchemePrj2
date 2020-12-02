@@ -30,7 +30,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
                                    select r.UserEmailId).ToList();
                 if (emailid.Count != 0)
                 {
-                    return Ok(ueid + " is already used by another Bidder");
+                    return BadRequest(ueid + " is already used by another Bidder");
                 }
                 else
                 {
@@ -67,6 +67,13 @@ namespace FarmerSchemeSellAndBidding.Controllers
                     UserRegister userRegister = new UserRegister();
                     userRegister.UserEmailId = ueid;
                     userRegister.password = httpRequest["Password"];
+
+                    //Password Encryption Code
+                    byte[] encData_byte = new byte[userRegister.password.Length];
+                    encData_byte = System.Text.Encoding.UTF8.GetBytes(userRegister.password);
+                    string encodedpassword = Convert.ToBase64String(encData_byte);
+                    userRegister.password = encodedpassword;
+
                     userRegister.ContactNo_ = httpRequest["ContactNo"];
                     userRegister.fullname = httpRequest["Fullname"];
                     userRegister.address1 = httpRequest["Address1"];
@@ -122,7 +129,7 @@ namespace FarmerSchemeSellAndBidding.Controllers
             }
             catch (Exception e)
             {
-                return Ok(e.Message);
+                return BadRequest(e.Message);
             }
 
         }

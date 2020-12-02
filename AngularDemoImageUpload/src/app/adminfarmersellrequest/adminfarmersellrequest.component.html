@@ -4,6 +4,7 @@
             <div class = "jumbotron">
                 <div *ngIf="Adminfarmersellrequestapprove">
                     <div class="Container-fluid">
+                        <h2 style="text-align: center;">Welcome Admin to Farmer Crop sell request Approval Page</h2>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -33,9 +34,9 @@
                     <div class="center"><label>Farmersell Id : {{FarmerSellID}}</label></div><br/>
                     <div class="center"><label>Crop Type : {{cropType}}</label></div><br/>
                     <div class="center"><label>Crop Name : {{cropname}}</label></div><br/>
-                    <div class="center"><label>Minimum selling price : {{MSP}} </label></div><br/>
+                    <div class="center"><label>Minimum selling price (in Rs. per 20Kg): {{MSP}} </label></div><br/>
                     <div class="center"><label>Fertilizer type : {{fertilizerType}}</label></div><br/>
-                    <div class="center"><label>Quantity : {{quantity}}</label></div><br/>
+                    <div class="center"><label>Quantity (in multiple of 20Kg) : {{quantity}}</label></div><br/>
                     <div class="center"><label>Soil PH certificate : </label>
                     <img [src]="SoilPHCertificate"  style="width:250px;height:200px"></div><br/><br/>
                     <div><button  (click)="ApproveSellRequest()"type="button" *ngIf="ApprovedStatus==null">Approve</button></div>
